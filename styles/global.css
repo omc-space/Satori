@@ -1,0 +1,20 @@
+:root{
+  --primary-color: #089773;
+  --primary-color-2: #f9bfb7;
+  --spotlight-color: #e6f7f3;
+  --spotlight-color-2: #faeae7;
+}
+
+/* 设置滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px; /* 宽度 */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* 滚动条的背景颜色 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dcdcdc; /* 滚动条的滑块颜色 */
+  border-radius: 3px;
+}

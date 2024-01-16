@@ -33,6 +33,7 @@
     "vue-tsc": "^1.8.25"
   },
   "dependencies": {
-    "@omc-space/api-client": "^0.0.3"
+    "@omc-space/api-client": "^0.0.3",
+    "floating-vue": "^5.1.0"
   }
 }

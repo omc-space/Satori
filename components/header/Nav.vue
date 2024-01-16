@@ -6,11 +6,8 @@ const bgPosition = reactive({
 })
 
 const route = useRoute()
-const path = computed(() => route.path)
+const pathPrefix = computed(() => `/${route.path.split('/')[1]}`)
 
-watch(path, (newVal) => {
-  console.log('newVal', newVal)
-})
 const menus = ref([
   {
     name: '首页',
@@ -57,7 +54,7 @@ const spotlightStyle = computed(() => {
 <template>
   <nav class="flex-center px-4">
     <div
-      class="lig flex-center cursor-default rounded-full px-2 text-x shadow backdrop-blur-md transition"
+      class="spotlight flex-center cursor-default rounded-full px-4 text-x shadow backdrop-blur-md transition"
       :style="spotlightStyle"
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"
@@ -65,8 +62,8 @@ const spotlightStyle = computed(() => {
       <NuxtLink
         v-for="i in menus"
         :key="i.path" :to="i.path"
-        class="hover:primary-color relative h-full p-2 px-4"
-        :class="{ selected: path.startsWith(i.path) }"
+        class="relative h-full p-2 px-4 hover:primary-color"
+        :class="{ selected: pathPrefix === i.path }"
       >
         {{ i.name }}
         <span class="absolute bottom-0 left-0 hidden h-[1px] w-full" />
@@ -76,10 +73,10 @@ const spotlightStyle = computed(() => {
 </template>
 
 <style scoped lang="postcss">
-.lig {
+.spotlight {
   background-clip: padding-box;
   background: radial-gradient(
-    134px circle at var(--position-x) var(--position-y),
+    124px circle at var(--position-x) var(--position-y),
     var(--spotlight-color) 0%,
     transparent 65%
   );
