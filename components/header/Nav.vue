@@ -4,7 +4,6 @@ const bgPosition = reactive({
   left: 0,
   top: 0,
 })
-
 const route = useRoute()
 const pathPrefix = computed(() => `/${route.path.split('/')[1]}`)
 
@@ -59,15 +58,25 @@ const spotlightStyle = computed(() => {
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"
     >
-      <NuxtLink
-        v-for="i in menus"
-        :key="i.path" :to="i.path"
-        class="relative h-full p-2 px-4 hover:primary-color"
-        :class="{ selected: pathPrefix === i.path }"
-      >
-        {{ i.name }}
-        <span class="absolute bottom-0 left-0 hidden h-[1px] w-full" />
-      </NuxtLink>
+      <VMenu v-for="i in menus" :key="i.path">
+        <NuxtLink
+          :to="i.path"
+          class="relative inline-block px-4 py-2 hover:primary-color"
+          :class="{ selected: pathPrefix === i.path }"
+        >
+          {{ i.name }}
+          <span class="absolute bottom-0 left-0 hidden h-[1px] w-full" />
+        </NuxtLink>
+        <template #popper>
+          <ul>
+            <li v-for="i in 5" :key="i" w-20 p-2 text-center>
+              <NuxtLink>
+                {{ i }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </template>
+      </VMenu>
     </div>
   </nav>
 </template>
@@ -92,5 +101,33 @@ const spotlightStyle = computed(() => {
       transparent 100%
     );
   }
+}
+</style>
+
+<style>
+.v-popper--theme-dropdown .v-popper__inner {
+  padding: 6px;
+}
+
+.v-popper--theme-my-theme.v-popper__popper--hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    visibility 0.15s;
+}
+
+.v-popper--theme-my-theme.v-popper__popper--shown {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+.v-popper--theme-my-theme .v-popper__arrow-outer {
+  visibility: hidden;
+}
+
+.v-popper--theme-my-theme .v-popper__arrow-inner {
+  visibility: hidden;
 }
 </style>

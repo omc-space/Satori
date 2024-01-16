@@ -8,6 +8,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
+    'floating-vue/nuxt',
+    '@oku-ui/motion-nuxt',
   ],
 
   experimental: {
