@@ -3,15 +3,6 @@
 
 <template>
   <div border>
-    <p>
-      --- home start---
-    </p>
-    <CommonFloatPopover>
-      <div>
-        aaa
-      </div>
-    </CommonFloatPopover>
-
-    <p>--- home end---</p>
+    home
   </div>
 </template>

@@ -6,6 +6,7 @@ const bgPosition = reactive({
 })
 const route = useRoute()
 const pathPrefix = computed(() => `/${route.path.split('/')[1]}`)
+const selectIndex = ref(-1)
 
 const menus = ref([
   {
@@ -45,6 +46,10 @@ function handleMouseLeave() {
   bgPosition.show = false
 }
 
+function onMouseLeave() {
+  selectIndex.value = -1
+}
+
 const spotlightStyle = computed(() => {
   return bgPosition.show ? `--position-x:${bgPosition.left}px;--position-y:${bgPosition.top}px` : ''
 })
@@ -58,7 +63,10 @@ const spotlightStyle = computed(() => {
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"
     >
-      <VMenu v-for="i in menus" :key="i.path">
+      <CommonFloatPopover
+        v-for="i in menus" :key="i.path"
+        :delay="{ show: 0, hide: 50 }"
+      >
         <NuxtLink
           :to="i.path"
           class="relative inline-block px-4 py-2 hover:primary-color"
@@ -68,15 +76,25 @@ const spotlightStyle = computed(() => {
           <span class="absolute bottom-0 left-0 hidden h-[1px] w-full" />
         </NuxtLink>
         <template #popper>
-          <ul>
-            <li v-for="i in 5" :key="i" w-20 p-2 text-center>
-              <NuxtLink>
-                {{ i }}
-              </NuxtLink>
-            </li>
-          </ul>
+          <div
+            class="relative flex flex-col text-sm"
+            @mouseleave="onMouseLeave"
+          >
+            <div
+              v-if="selectIndex !== -1"
+              class="absolute inset-0 z--1 h-[36px] w-26 border rounded bg-gray-100 transition-300"
+              :style="{ transform: `translate3d(0,${selectIndex * 36}px,0)` }"
+            />
+            <NuxtLink
+              v-for="i, idx in 5" :key="i" to="/"
+              class="h-[36px] w-26 text-center lh-[36px] hover:color-[var(--primary-color)]"
+              @mouseenter="selectIndex = idx"
+            >
+              这是第{{ i }}项
+            </NuxtLink>
+          </div>
         </template>
-      </VMenu>
+      </CommonFloatPopover>
     </div>
   </nav>
 </template>
@@ -101,33 +119,5 @@ const spotlightStyle = computed(() => {
       transparent 100%
     );
   }
-}
-</style>
-
-<style>
-.v-popper--theme-dropdown .v-popper__inner {
-  padding: 6px;
-}
-
-.v-popper--theme-my-theme.v-popper__popper--hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition:
-    opacity 0.15s,
-    visibility 0.15s;
-}
-
-.v-popper--theme-my-theme.v-popper__popper--shown {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.15s;
-}
-
-.v-popper--theme-my-theme .v-popper__arrow-outer {
-  visibility: hidden;
-}
-
-.v-popper--theme-my-theme .v-popper__arrow-inner {
-  visibility: hidden;
 }
 </style>
