@@ -3,6 +3,8 @@
   --primary-color-2: #f9bfb7;
   --spotlight-color: #e6f7f3;
   --spotlight-color-2: #faeae7;
+  --dark-bg-color: #333;
+  --dark-text-color: #fff;
 }
 
 /* 设置滚动条样式 */

@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <main mt-18>
+  <main>
     <slot />
   </main>
   <Footer />

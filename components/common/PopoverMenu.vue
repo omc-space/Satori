@@ -21,14 +21,14 @@ import { Dropdown as VDropdown } from 'floating-vue'
 
 <style lang="postcss">
 .v-popper--theme-dropdown .v-popper__inner {
-  padding: 8px;
+  padding: 4px;
 }
 .my-popover-theme .v-popper__wrapper {
   background-color: transparent;
 }
 .my-popover-theme .v-popper__inner {
   border: none;
-  background-color: rgba(255, 255, 255, 0.329);
+  background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
 }
 
@@ -51,9 +51,12 @@ import { Dropdown as VDropdown } from 'floating-vue'
 }
 
 .dark .my-popover-theme .v-popper__inner {
+  color: white;
   border: 1px solid hsla(240, 5%, 96%, 0.1);
 }
-
+.dark .my-popover-theme .v-popper__inner {
+  background-color: rgba(0, 0, 0, 0.212);
+}
 /**去除三角符号 */
 .v-popper--theme-dropdown .v-popper__arrow-inner {
   visibility: hidden;

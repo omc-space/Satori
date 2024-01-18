@@ -63,7 +63,7 @@ const spotlightStyle = computed(() => {
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"
     >
-      <CommonFloatPopover
+      <CommonPopoverMenu
         v-for="i in menus" :key="i.path"
         :delay="{ show: 0, hide: 50 }"
       >
@@ -82,19 +82,19 @@ const spotlightStyle = computed(() => {
           >
             <div
               v-if="selectIndex !== -1"
-              class="absolute inset-0 z--1 h-[36px] w-26 border rounded bg-gray-100 transition-300"
+              class="absolute inset-0 z--1 h-[36px] w-26 border rounded bg-gray-100 transition-300 dark:bg-[var(--dark-bg-color)]"
               :style="{ transform: `translate3d(0,${selectIndex * 36}px,0)` }"
             />
             <NuxtLink
               v-for="i, idx in 5" :key="i" to="/"
-              class="h-[36px] w-26 text-center lh-[36px] hover:color-[var(--primary-color)]"
+              class="h-[36px] w-26 text-center lh-[36px] transition hover:color-[var(--primary-color)]"
               @mouseenter="selectIndex = idx"
             >
               这是第{{ i }}项
             </NuxtLink>
           </div>
         </template>
-      </CommonFloatPopover>
+      </CommonPopoverMenu>
     </div>
   </nav>
 </template>
