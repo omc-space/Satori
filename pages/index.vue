@@ -42,10 +42,19 @@
           </p>
         </h1>
       </template>
-      <template #right>
-        <div class="flex-center flex-1 flex-col">
-          <PostCard v-for="i in 5" :key="i" />
-          <CommonLink to="/" class="my-10 text-x">
+      <template #right="{ visible }">
+        <div v-if="visible" class="max-w-135 flex-center flex-1 flex-col">
+          <Motion
+            v-for=" i in 5"
+            :key="i"
+            :initial="{ x: 50, opacity: 0 }"
+            :animate="{ x: 0, opacity: 1 }"
+            :transition="{ delay: (i + 1) * 0.15, easing: [.3, 1.02, .78, 1.0], duration: 1 }"
+            class="my-2 w-full"
+          >
+            <PostCard />
+          </Motion>
+          <CommonLink to="/" class="m-auto my-10 text-x">
             还有更多要不要看看?
           </CommonLink>
         </div>

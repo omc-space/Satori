@@ -1,8 +1,21 @@
 <script setup lang="ts">
 import { Motion } from '@oku-ui/motion'
 import { spring } from 'motion'
-import type { AnimationOptionsWithOverrides, VariantDefinition } from 'motion'
+import type {
+  AnimationOptionsWithOverrides,
+  KeyframeOptions,
+  SpringOptions,
+  VariantDefinition,
+} from 'motion'
 import { softBouncePreset } from '~/constants/spring'
+
+const props = defineProps<{
+  initial?: VariantDefinition
+  transition?: AnimationOptionsWithOverrides
+  animate?: VariantDefinition
+  spring?: SpringOptions
+  easing?: Pick<KeyframeOptions, 'easing'>
+}>()
 
 const initial: VariantDefinition = {
   y: 50,
@@ -22,9 +35,9 @@ const animate: VariantDefinition = {
 
 <template>
   <Motion
-    :initial="initial"
-    :animate="animate"
-    :transition="transition"
+    :initial="props.initial ?? initial"
+    :animate="props.animate ?? animate"
+    :transition="props.transition ?? transition"
   >
     <slot />
   </Motion>

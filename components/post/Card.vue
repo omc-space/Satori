@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/" class="group relative my-2 max-w-135 w-full border border-gray/20 rounded-md">
+  <NuxtLink to="/" class="group relative inline-block w-full border border-gray/20 rounded-md">
     <div class="rounded-md from-white to-transparent bg-gradient-to-r p-4">
       <h3 class="text-xl">
         Windows 11 全局替换微软雅黑到苹方
@@ -14,6 +14,6 @@
         </div>
       </div>
     </div>
-    <div class="absolute left-0 top-0 z--1 h-full w-full rounded-md bg-gray" />
+    <div class="absolute bottom-0 left-0 top-0 z--1 h-full w-full rounded-md bg-gray" />
   </NuxtLink>
 </template>
