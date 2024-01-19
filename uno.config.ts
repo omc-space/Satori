@@ -16,6 +16,7 @@ export default defineConfig({
     ['flex-center', 'flex items-center justify-center'],
     ['text-x', 'text-[14px]'],
     ['primary-color', 'color-[var(--primary-color)]'],
+    ['text-primary', 'color-[var(--primary-color)]'],
   ],
   presets: [
     presetUno(),

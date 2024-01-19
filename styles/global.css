@@ -5,6 +5,10 @@
   --spotlight-color-2: #faeae7;
   --dark-bg-color: #333;
   --dark-text-color: #fff;
+  --fallback-a: #089773;
+  --a: #089773;
+  --fallback-b1: #f9bfb7;
+  --b1: #f9bfb7;
 }
 
 /* 设置滚动条样式 */
@@ -19,4 +23,41 @@
 ::-webkit-scrollbar-thumb {
   background: #dcdcdc; /* 滚动条的滑块颜色 */
   border-radius: 3px;
+}
+
+.group-add-point>li{
+  position: relative;
+  margin-left: 1rem;
+}
+
+.group-add-point> li:first-child::before{
+  bottom: -50%;
+}
+
+.group-add-point>li::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -1rem;
+  height: 100%;
+  background-color: var(--fallback-a,oklch(var(--a)/1));
+  height: 100%;
+  width: 1px;
+}
+
+.group-add-point> li:last-child::before{
+  top: -50%;
+}
+
+.group-add-point>li::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -1.12rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
 }
