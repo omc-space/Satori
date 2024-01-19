@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'satori',
-      script: 'server.js',
+      script: './server/index.mjs',
       autorestart: true,
       watch: false,
       max_memory_restart: '180M',
