@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { Dropdown as VDropdown } from 'floating-vue'
+import { Tooltip as VTooltip } from 'floating-vue'
 </script>
 
 <template>
-  <VDropdown
+  <VTooltip
     :auto-hide="false"
-    distance="14"
+    distance="4"
     theme="menu"
     :delay="{ show: 0, hide: 50 }"
-    popper-class="my-popover-theme"
+    popper-class="my-tooltip-theme"
     compute-transform-origin
   >
     <slot />
@@ -16,23 +16,24 @@ import { Dropdown as VDropdown } from 'floating-vue'
     <template #popper>
       <slot name="popper" />
     </template>
-  </VDropdown>
+  </VTooltip>
 </template>
 
-<style lang="postcss">
-.my-popover-theme .v-popper__inner {
-  padding: 4px;
+<style>
+.my-tooltip-theme .v-popper__inner {
+  padding: 0.4rem 1rem;
+  border-radius: 1rem;
 }
-.my-popover-theme .v-popper__wrapper {
+.my-tooltip-theme .v-popper__wrapper {
   background-color: transparent;
 }
-.my-popover-theme .v-popper__inner {
+.my-tooltip-theme .v-popper__inner {
   border: none;
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
 }
 
-.my-popover-theme .v-popper__popper--hidden {
+.my-tooltip-theme .v-popper__popper--hidden {
   visibility: hidden;
   opacity: 0;
   transition:
@@ -40,32 +41,30 @@ import { Dropdown as VDropdown } from 'floating-vue'
     visibility 0.15s;
 }
 
-.my-popover-theme .v-popper__wrapper .v-popper__inner {
+.my-tooltip-theme .v-popper__wrapper .v-popper__inner {
   visibility: visible;
-  animation: spring-in 0.5s;
+  animation: fade-in 0.5s;
   transition: opacity 0.15s;
 }
 
-.my-popover-theme .v-popper__arrow-outer {
+.my-tooltip-theme .v-popper__arrow-outer {
   visibility: hidden;
 }
 
-.dark .my-popover-theme .v-popper__inner {
-  color: white;
-  border: 1px solid hsla(240, 5%, 96%, 0.1);
-}
-.dark .my-popover-theme .v-popper__inner {
-  background-color: rgba(0, 0, 0, 0.212);
-}
 /**去除三角符号 */
 .v-popper--theme-dropdown .v-popper__arrow-inner {
   visibility: hidden;
 }
 
-@keyframes spring-in {
+.dark .my-tooltip-theme .v-popper__inner {
+  color: white;
+  border: 1px solid hsla(240, 5%, 96%, 0.1);
+}
+
+@keyframes fade-in {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
   40% {
     opacity: 0.9;

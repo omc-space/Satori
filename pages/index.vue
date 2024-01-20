@@ -1,23 +1,51 @@
 <script setup lang="ts">
-
+const social = [
+  {
+    name: 'bilibili',
+    id: '1',
+  },
+  {
+    name: 'zhihu',
+    id: '2',
+  },
+  {
+    name: 'github',
+    id: '3',
+  },
+  {
+    name: 'twitter',
+    id: '4',
+  },
+  {
+    name: 'weibo',
+    id: '5',
+  },
+  {
+    name: 'netease',
+    id: '6',
+  },
+  {
+    name: 'mail',
+    id: '7',
+  },
+]
 </script>
 
 <template>
   <div class="px-4 lg:px-20 xl:px-40">
     <HomePageContainer>
       <template #left>
-        <div class="mt-20 flex-1 lg:mt-0">
-          <div>
-            <h1 class="mx-2 py-2 text-4xl font-medium">
-              Hi, I'm Innei👋。
-            </h1>
-            <h1 class="mx-2 py-2 text-4xl font-medium">
-              A NodeJS Full Stack &lt;Developer/&gt;
-            </h1>
-          </div>
-          <p class="mx-2 my-3">
+        <div class="mx-2 mt-20 flex flex-1 flex-col items-center lg:mt-0 lg:block">
+          <h1 class="py-2 text-4xl font-medium">
+            Hi, I'm Innei👋。
+          </h1>
+          <h1 class="py-2 text-4xl font-medium">
+            A NodeJS Full Stack &lt;Developer/&gt;
+          </h1>
+          <p class="mb-16 mt-3">
             An independent developer coding with love.
           </p>
+          <HomeSocialGroup :socials="social" />
         </div>
         <div class="absolute bottom-0 left-0 right-0 flex-center flex-col text-xs">
           <p>

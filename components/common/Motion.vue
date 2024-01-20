@@ -23,8 +23,8 @@ const initial: VariantDefinition = {
 }
 
 const transition: AnimationOptionsWithOverrides = {
-  delay: 0.2,
-  easing: spring(softBouncePreset),
+  easing: spring(props.spring ?? softBouncePreset),
+  ...props.transition,
 }
 
 const animate: VariantDefinition = {
@@ -37,7 +37,7 @@ const animate: VariantDefinition = {
   <Motion
     :initial="props.initial ?? initial"
     :animate="props.animate ?? animate"
-    :transition="props.transition ?? transition"
+    :transition="transition"
   >
     <slot />
   </Motion>

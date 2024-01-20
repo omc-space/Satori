@@ -16,8 +16,8 @@ export const microReboundPreset: SpringOptions = {
 }
 
 export const softSpringPreset: SpringOptions = {
-  stiffness: 120,
-  damping: 20,
+  stiffness: 180,
+  damping: 10,
 }
 
 export const softBouncePreset: SpringOptions = {
