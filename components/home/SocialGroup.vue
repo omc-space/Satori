@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { microDampingPreset } from '~/constants/spring'
-
 interface SocialType {
   name: string
   iconClass: string
