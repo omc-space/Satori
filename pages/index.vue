@@ -32,20 +32,23 @@ const social = [
 </script>
 
 <template>
-  <div class="px-4 lg:px-20 xl:px-40">
+  <!-- class=" lg:px-20 xl:px-40" -->
+  <div class="px-4">
     <HomePageContainer>
       <template #left>
-        <div class="mx-2 mt-20 flex flex-1 flex-col items-center lg:mt-0 lg:block">
+        <div class="my-5">
           <h1 class="py-2 text-4xl font-medium">
             Hi, I'm Innei👋。
           </h1>
           <h1 class="py-2 text-4xl font-medium">
             A NodeJS Full Stack &lt;Developer/&gt;
           </h1>
-          <p class="mb-16 mt-3">
+          <p class="mb-16 mt-3 text-black/50">
             An independent developer coding with love.
           </p>
-          <HomeSocialGroup :socials="social" />
+          <div class="flex-center lg:block">
+            <HomeSocialGroup :socials="social" class="lg:" />
+          </div>
         </div>
         <div class="absolute bottom-0 left-0 right-0 flex-center flex-col text-xs">
           <p>
@@ -55,7 +58,7 @@ const social = [
         </div>
       </template>
       <template #right>
-        <div class="flex-1">
+        <div class="my-5">
           <div class="m-auto h-60 w-60 rounded-full bg-gray-3" />
         </div>
       </template>
@@ -63,7 +66,7 @@ const social = [
 
     <HomePageContainer>
       <template #left>
-        <h1 class="m-auto flex-1 text-2xl font-medium">
+        <h1 class="text-2xl font-medium">
           <p class="pb-4">
             这里或许有那么一些对于生活的感慨<br>
             也或许有那么一些对于技术的记录。
@@ -71,17 +74,19 @@ const social = [
         </h1>
       </template>
       <template #right="{ visible }">
-        <div v-if="visible" class="max-w-135 flex-center flex-1 flex-col">
-          <Motion
+        <!-- TODO：fix 动画导致宽度异常 -->
+        <!-- 需要添加overflow-hiddeb修复动画导致的宽度异常问题 -->
+        <div v-if="visible" class="w-full flex-center flex-col overflow-hidden">
+          <CommonMotion
             v-for=" i in 5"
             :key="i"
             :initial="{ x: 50, opacity: 0 }"
             :animate="{ x: 0, opacity: 1 }"
-            :transition="{ delay: (i + 1) * 0.15, easing: [.3, 1.02, .78, 1.0], duration: 1 }"
-            class="my-2 w-full"
+            :transition="{ delay: (i + 1) * 0.2, easing: [.3, 1.02, .78, 1.0], duration: 0.8 }"
+            class="my-2 w-full flex-center"
           >
             <PostCard />
-          </Motion>
+          </CommonMotion>
           <CommonLink to="/" class="m-auto my-10 text-x">
             还有更多要不要看看?
           </CommonLink>
@@ -117,7 +122,7 @@ const social = [
               </li>
             </ul>
             <div class="my-10 text-center text-x">
-              <CommonLink to="/">
+              <CommonLink to="/" class="">
                 还有更多要不要看看?
               </CommonLink>
             </div>
@@ -133,25 +138,23 @@ const social = [
         </div>
       </template>
     </HomePageContainer>
-    <HomePageContainer>
-      <div>
-        <h1 class="text-center text-2xl font-medium">
-          这些是我珍视的人，他们陪伴我走过人生的每一段旅程。
-        </h1>
-        <div class="grid grid-cols-3 mt-10 max-w-5xl min-w-0 gap-10 p-4 lg:grid-cols-5 md:grid-cols-4 lg:p-0">
-          <div v-for="i in 10" :key="i" class="flex-center flex-col">
-            <div class="h-24 w-24 border border-gray/20 rounded-full" />
-            <div class="mt-4 text-center text-x">
-              Rikumi
-            </div>
+    <div class="flex-center flex-col">
+      <h1 class="text-center text-2xl font-medium">
+        这些是我珍视的人，他们陪伴我走过人生的每一段旅程。
+      </h1>
+      <div class="grid grid-cols-3 mt-10 max-w-5xl min-w-0 gap-10 p-4 lg:grid-cols-5 md:grid-cols-4 lg:p-0">
+        <div v-for="i in 10" :key="i" class="flex-center flex-col">
+          <div class="h-24 w-24 border border-gray/20 rounded-full" />
+          <div class="mt-4 text-center text-x">
+            Rikumi
           </div>
         </div>
-        <div class="my-20 text-center text-x">
-          <CommonLink to="/">
-            还有更多要不要看看?
-          </CommonLink>
-        </div>
       </div>
-    </HomePageContainer>
+      <div class="my-20 text-center text-x">
+        <CommonLink to="/">
+          还有更多要不要看看?
+        </CommonLink>
+      </div>
+    </div>
   </div>
 </template>

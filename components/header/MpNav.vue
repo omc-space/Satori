@@ -8,7 +8,7 @@ const { menus } = defineProps<{ menus: NavigationItem[] }>()
 <template>
   <div class="flex-center">
     <CommonDialog>
-      <button class="border border-gray/20 rounded-full p-2 shadow-lg shadow-zinc-800/8">
+      <button class="border border-gray/20 rounded-full p-2 shadow-lg shadow-zinc-800/5">
         <div class="i-tabler:menu-2" />
       </button>
 
@@ -20,22 +20,20 @@ const { menus } = defineProps<{ menus: NavigationItem[] }>()
             :spring="reboundPreset"
             :transition="{ delay: index * 0.15 }"
           >
-            <section>
-              <div class="mb-2 text-[16px]">
-                <NuxtLink :to="menu.path" class="flex items-center gap-1" @click="close">
-                  <div :class="menu.iconClass" />
-                  {{ menu.name }}
+            <div class="mb-2 text-[16px]">
+              <NuxtLink :to="menu.path" class="flex items-center gap-1" @click="close">
+                <div :class="menu.iconClass" />
+                {{ menu.name }}
+              </NuxtLink>
+            </div>
+            <ul class="grid grid-cols-2 text-x">
+              <li v-for="child in menu.children" :key="child.path" class="p-2">
+                <NuxtLink :to="child.path" class="flex items-center gap-1" @click="close">
+                  <div :class="child.iconClass" />
+                  <span>{{ child.name }}</span>
                 </NuxtLink>
-              </div>
-              <ul class="grid grid-cols-2 text-x">
-                <li v-for="child in menu.children" :key="child.path" class="p-2">
-                  <NuxtLink :to="child.path" class="flex items-center" @click="close">
-                    <div :class="child.iconClass" />
-                    <span>{{ child.name }}</span>
-                  </NuxtLink>
-                </li>
-              </ul>
-            </section>
+              </li>
+            </ul>
           </CommonMotion>
         </div>
       </template>

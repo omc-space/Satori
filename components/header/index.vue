@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { NavigationItem } from '~/types'
 
+const { y } = useWindowScroll()
 const menus = ref<NavigationItem[]>([
   {
     name: '首页',
@@ -79,12 +80,23 @@ const menus = ref<NavigationItem[]>([
     name: '更多',
     path: '/more',
     iconClass: 'i-tabler:alphabet-cyrillic',
+    children: [
+      {
+        name: '听音乐',
+        path: '/more/music',
+        iconClass: 'i-tabler:music',
+      },
+    ],
   },
 ])
+const showBg = computed(() => y.value > 50)
 </script>
 
 <template>
-  <header class="fixed left-0 right-0 top-0 z-10 h-16 w-full bg-white/80 shadow backdrop-blur-md">
+  <header
+    :class="showBg ? 'bg-white/80 shadow backdrop-blur-md' : ''"
+    class="fixed left-0 right-0 top-0 z-10 h-16 w-full transition duration-200"
+  >
     <div class="relative grid grid-cols-[4.5rem_auto_4.5rem] mx-auto h-full max-w-7xl min-h-0 lg:px-8">
       <HeaderMpNav :menus="menus" class="flex lg:hidden" />
       <div class="flex-center">
@@ -93,6 +105,11 @@ const menus = ref<NavigationItem[]>([
         </NuxtLink>
       </div>
       <HeaderNav :menus="menus" class="hidden lg:flex" />
+      <div class="flex-center">
+        <button class="border border-gray/20 rounded-full p-2 shadow-lg shadow-zinc-800/5">
+          <div class="i-tabler:user-plus" />
+        </button>
+      </div>
     </div>
   </header>
 </template>

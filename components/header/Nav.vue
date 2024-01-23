@@ -65,11 +65,12 @@ const spotlightStyle = computed(() => {
               :style="{ transform: `translate3d(0,${selectIndex * 36}px,0)` }"
             />
             <NuxtLink
-              v-for="i, idx in menu.children" :key="i.path" :to="i.path"
-              class="h-[36px] w-26 text-center lh-[36px] transition hover:color-[var(--primary-color)]"
+              v-for="child, idx in menu.children" :key="child.path" :to="child.path"
+              class="h-[36px] w-26 flex-center gap-1 text-center lh-[36px] transition hover:color-[var(--primary-color)]"
               @mouseenter="selectIndex = idx"
             >
-              {{ i.name }}
+              <div :class="child.iconClass" />
+              <span>{{ child.name }}</span>
             </NuxtLink>
           </div>
         </template>
