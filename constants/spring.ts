@@ -1,9 +1,9 @@
 import type { SpringOptions } from 'motion'
 
 export const reboundPreset: SpringOptions = {
-  mass: 10,
-  stiffness: 140,
-  damping: 8,
+  mass: 1,
+  stiffness: 120,
+  damping: 10,
 }
 
 export const microDampingPreset: SpringOptions = {
