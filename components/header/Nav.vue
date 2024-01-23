@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import type { NavigationItem } from '~/types'
+
+const { menus } = defineProps<{ menus: NavigationItem[] }>()
 const bgPosition = reactive({
   show: false,
   left: 0,
@@ -7,33 +10,6 @@ const bgPosition = reactive({
 const route = useRoute()
 const pathPrefix = computed(() => `/${route.path.split('/')[1]}`)
 const selectIndex = ref(-1)
-
-const menus = ref([
-  {
-    name: '首页',
-    path: '/',
-  },
-  {
-    name: '文稿',
-    path: '/post',
-  },
-  {
-    name: '手记',
-    path: '/note',
-  },
-  {
-    name: '速览',
-    path: '/overview',
-  },
-  {
-    name: '友链',
-    path: '/link',
-  },
-  {
-    name: '更多',
-    path: '/more',
-  },
-])
 
 const handleMouseMove = useThrottleFn((e: MouseEvent) => {
   bgPosition.show = true
@@ -64,16 +40,19 @@ const spotlightStyle = computed(() => {
       @mouseleave="handleMouseLeave"
     >
       <CommonPopoverMenu
-        v-for="i in menus" :key="i.path"
+        v-for="menu in menus" :key="menu.path"
         :delay="{ show: 0, hide: 50 }"
       >
         <NuxtLink
-          :to="i.path"
-          class="relative inline-block px-4 py-2 hover:primary-color"
-          :class="{ selected: pathPrefix === i.path }"
+          :to="menu.path"
+          class="relative flex-center gap-1 px-4 py-2 hover:primary-color"
+          :class="{ selected: pathPrefix === menu.path }"
         >
-          {{ i.name }}
-          <span class="absolute bottom-0 left-0 hidden h-[1px] w-full" />
+          <Transition name="icon">
+            <div v-show="pathPrefix === menu.path" :class="menu.iconClass" />
+          </Transition>
+          <span>{{ menu.name }}</span>
+          <span class="line absolute bottom-0 left-0 hidden h-[1px] w-full" />
         </NuxtLink>
         <template #popper>
           <div
@@ -86,11 +65,11 @@ const spotlightStyle = computed(() => {
               :style="{ transform: `translate3d(0,${selectIndex * 36}px,0)` }"
             />
             <NuxtLink
-              v-for="i, idx in 5" :key="i" to="/"
+              v-for="i, idx in menu.children" :key="i.path" :to="i.path"
               class="h-[36px] w-26 text-center lh-[36px] transition hover:color-[var(--primary-color)]"
               @mouseenter="selectIndex = idx"
             >
-              这是第{{ i }}项
+              {{ i.name }}
             </NuxtLink>
           </div>
         </template>
@@ -111,13 +90,27 @@ const spotlightStyle = computed(() => {
 }
 .selected {
   color: var(--primary-color);
-  span {
+  .line {
     display: block;
     background: radial-gradient(
-      circle at 25px 10px,
+      circle at 40px 10px,
       var(--primary-color) 0%,
       transparent 100%
     );
   }
+}
+.icon-enter-active {
+  visibility: hidden;
+}
+
+.icon-leave-active {
+  transition: all 1s cubic-bezier(0, 0.99, 0.41, 1.02);
+}
+.icon-enter-from {
+  visibility: unset;
+}
+.icon-leave-to {
+  transform: translate3d(70px, 0, 0);
+  opacity: 0;
 }
 </style>
