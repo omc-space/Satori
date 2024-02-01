@@ -16,10 +16,7 @@
   "dependencies": {
     "@iconify-json/tabler": "^1.1.104",
     "@oku-ui/motion-nuxt": "^0.2.0",
-    "@omc-space/api-client": "^0.0.3",
-    "@tiptap/pm": "^2.1.16",
-    "@tiptap/starter-kit": "^2.1.16",
-    "@tiptap/vue-3": "^2.1.16",
+    "@omc-space/api-client": "^0.0.4",
     "floating-vue": "^5.1.0",
     "motion": "^10.17.0"
   },

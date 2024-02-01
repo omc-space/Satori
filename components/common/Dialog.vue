@@ -1,16 +1,24 @@
 <script setup lang="ts">
+import { useLockScroll } from '~/composables/useLockScroll'
+
 const emit = defineEmits(['close'])
 const visible = ref(false)
-const toggle = () => (visible.value = !visible.value)
+const lockScroll = useLockScroll()
+
+function open() {
+  visible.value = true
+  lockScroll?.lock()
+}
 
 function handleClose() {
   visible.value = false
   emit('close')
+  lockScroll?.unlock()
 }
 </script>
 
 <template>
-  <div @click="toggle">
+  <div @click="open">
     <slot />
   </div>
   <Teleport to="body">

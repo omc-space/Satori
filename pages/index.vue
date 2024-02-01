@@ -85,7 +85,7 @@ const social = [
             :transition="{ delay: (i + 1) * 0.2, easing: [.3, 1.02, .78, 1.0], duration: 0.8 }"
             class="my-2 w-full flex-center"
           >
-            <PostCard />
+            <PostHomeCard />
           </CommonMotion>
           <CommonLink to="/" class="m-auto my-10 text-x">
             还有更多要不要看看?

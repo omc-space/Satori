@@ -17,6 +17,7 @@ export default defineConfig({
     ['text-x', 'text-[14px]'],
     ['primary-color', 'color-[var(--primary-color)]'],
     ['text-primary', 'color-[var(--primary-color)]'],
+    ['primary', 'var(--primary-color)'],
     ['text-omit', 'text-ellipsis text-nowrap overflow-hidden'],
   ],
   presets: [
@@ -34,6 +35,12 @@ export default defineConfig({
       },
     }),
   ],
+  theme: {
+    colors: {
+      primary: 'var(--primary-color)',
+      secondary: 'var(--secondary-color)',
+    },
+  },
   transformers: [
     transformerDirectives(),
     transformerVariantGroup(),
