@@ -16,7 +16,7 @@ const emit = defineEmits(['update:modelValue'])
       :value="props.modelValue"
       type="text"
       :placeholder="props.placeholder + (props.required ? ' *' : '')"
-      class="border rounded-md px-4 py-1.4 text-xs transition placeholder:text-gray/30 focus:outline-[var(--border-color)]"
+      class="base-bg w-full rounded-md px-4 py-1.5 text-xs placeholder:text-gray/80 focus:outline-[var(--border-color)]"
       @input="emit('update:modelValue')"
     >
   </div>
