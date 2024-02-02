@@ -113,8 +113,8 @@ const social = [
               </NuxtLink>
             </div>
             <p>这里还有一些历史回顾</p>
-            <ul class="group-add-point my-10">
-              <li v-for="i in 4" :key="i" class="group-item flex justify-between py-1 text-x">
+            <ul class="timeline-container my-10">
+              <li v-for="i in 4" :key="i" class="timeline-item flex justify-between py-1 text-x">
                 <CommonLink to="/">
                   2024 开年
                 </CommonLink>

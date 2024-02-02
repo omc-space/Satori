@@ -4,7 +4,7 @@ import { Dropdown as VDropdown } from 'floating-vue'
 
 <template>
   <VDropdown
-    :auto-hide="false"
+    :auto-hide="true"
     distance="14"
     theme="menu"
     :delay="{ show: 0, hide: 50 }"

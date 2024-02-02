@@ -45,19 +45,19 @@ const menus = ref<NavigationItem[]>([
     children: [
       {
         name: '文章',
-        path: '/post/article',
+        path: '/categories/article',
       },
       {
         name: '项目',
-        path: '/post/project',
+        path: '/categories/project',
       },
       {
         name: '友链',
-        path: '/post/link',
+        path: '/categories/link',
       },
       {
         name: '留言板',
-        path: '/post/message',
+        path: '/categories/message',
       },
     ],
   },

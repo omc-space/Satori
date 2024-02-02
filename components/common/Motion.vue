@@ -15,6 +15,7 @@ const props = defineProps<{
   animate?: VariantDefinition
   spring?: SpringOptions
   easing?: Pick<KeyframeOptions, 'easing'>
+  delay?: number
 }>()
 
 const initial: VariantDefinition = {
@@ -24,6 +25,7 @@ const initial: VariantDefinition = {
 
 const transition: AnimationOptionsWithOverrides = {
   easing: spring(props.spring ?? softBouncePreset),
+  delay: props.delay,
   ...props.transition,
 }
 
