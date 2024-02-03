@@ -115,7 +115,7 @@ const social = [
             <p>这里还有一些历史回顾</p>
             <ul class="timeline-container my-10">
               <li v-for="i in 4" :key="i" class="timeline-item flex justify-between py-1 text-x">
-                <CommonLink to="/">
+                <CommonLink :to="`/note/${i}`">
                   2024 开年
                 </CommonLink>
                 <span class="text-xs text-black/50">{{ i }}天前</span>

@@ -1,7 +1,7 @@
 <template>
   <div class="relative h-[100px] max-w-120 flex-1">
-    <NuxtLink to="/" class="group relative inline-block w-full border border-gray/20 rounded-md">
-      <div class="w-full rounded-md from-white to-transparent bg-gradient-to-r p-4">
+    <NuxtLink to="/post/:id()" class="group relative inline-block w-full border border-gray/20 rounded-md">
+      <div class="w-full rounded-md from-white to-transparent bg-gradient-to-r p-4 dark:from-black">
         <h3 class="text-omit text-[18px] lg:text-xl">
           Windows 11 全局替换微软雅黑到苹方
         </h3>
@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div class="absolute bottom-0 left-0 top-0 z--1 h-full w-full rounded-md bg-gray" />
+      <div class="absolute bottom-0 left-0 top-0 z--1 h-full w-full rounded-md bg-gray-500" />
     </NuxtLink>
   </div>
 </template>

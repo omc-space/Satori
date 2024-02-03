@@ -94,7 +94,7 @@ const showBg = computed(() => y.value > 50)
 
 <template>
   <header
-    :class="showBg ? 'bg-white/80 shadow backdrop-blur-md' : ''"
+    :class="showBg ? 'bg-white/80 dark:bg-black/50 dark:shadow-white/20 shadow backdrop-blur-md' : ''"
     class="fixed left-0 right-0 top-0 z-10 h-16 w-full transition duration-200"
   >
     <div class="relative grid grid-cols-[4.5rem_auto_4.5rem] mx-auto h-full max-w-7xl min-h-0 lg:px-8">
@@ -106,9 +106,9 @@ const showBg = computed(() => y.value > 50)
       </div>
       <HeaderNav :menus="menus" class="hidden lg:flex" />
       <div class="flex-center">
-        <button class="border border-gray/20 rounded-full p-2 shadow-lg shadow-zinc-800/5">
+        <CommonIconButton>
           <div class="i-tabler:user-plus" />
-        </button>
+        </CommonIconButton>
       </div>
     </div>
   </header>

@@ -13,7 +13,13 @@
   --fallback-b1: #f9bfb7;
   --b1: #f9bfb7;
 }
-
+.dark body{
+  color: rgba(255,255,255,0.8);
+  background-color: rgba(0,0,0,0.8);
+}
+body{
+  background-color: #f8f8f8;
+}
 /* 设置滚动条样式 */
 ::-webkit-scrollbar {
   width: 6px;

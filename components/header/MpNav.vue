@@ -8,10 +8,9 @@ const { menus } = defineProps<{ menus: NavigationItem[] }>()
 <template>
   <div class="flex-center">
     <CommonDialog>
-      <button class="border border-gray/20 rounded-full p-2 shadow-lg shadow-zinc-800/5">
+      <CommonIconButton>
         <div class="i-tabler:menu-2" />
-      </button>
-
+      </CommonIconButton>
       <template #content="{ close }">
         <div class="mt-10 h-full">
           <CommonMotion

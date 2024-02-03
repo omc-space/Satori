@@ -4,13 +4,17 @@ const fullPath = computed(() => window.location.href)
 
 <template>
   <NuxtLayout name="post" class="m-auto max-w-6xl">
-    <div>
+    <div h-400>
       content
+    </div>
+    <div>
       <section class="py-6 text-xs text-gray-600 lh-6">
         <div>文章标题：由一个钟表引发的思考</div>
         <div>文章作者：<span class="text-gray-500">Innei</span></div>
         <div>
-          <span>文章链接：<span class="text-gray-500">{{ fullPath }}</span></span>
+          <ClientOnly>
+            <span>文章链接：<span class="text-gray-500">{{ fullPath }}</span></span>
+          </ClientOnly>
           <button class="ml-1 select-none">
             [复制]
           </button>

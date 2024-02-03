@@ -23,7 +23,7 @@ function handleClose() {
   </div>
   <Teleport to="body">
     <Transition name="dialog">
-      <div v-if="visible" class="fixed inset-0 z-20 bg-white p-2">
+      <div v-if="visible" class="fixed inset-0 z-20 bg-white p-2 dark:bg-black">
         <slot name="content" :close="handleClose" />
         <button class="absolute right-0 top-0 p-8" @click="handleClose">
           <div class="i-carbon:close text-xl" />

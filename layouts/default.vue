@@ -5,7 +5,7 @@ const isRoot = computed(() => route.path === '/')
 
 <template>
   <Header />
-  <main :class="isRoot ? '' : 'pt-18'">
+  <main :class="isRoot ? '' : 'py-18'">
     <slot />
   </main>
   <Footer />
