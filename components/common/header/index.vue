@@ -63,7 +63,7 @@ const menus = ref<NavigationItem[]>([
   },
   {
     name: '手记',
-    path: '/note',
+    path: '/note/latest',
     iconClass: 'i-tabler:notebook',
   },
   {
@@ -98,13 +98,13 @@ const showBg = computed(() => y.value > 50)
     class="fixed left-0 right-0 top-0 z-10 h-16 w-full transition duration-200"
   >
     <div class="relative grid grid-cols-[4.5rem_auto_4.5rem] mx-auto h-full max-w-7xl min-h-0 lg:px-8">
-      <HeaderMpNav :menus="menus" class="flex lg:hidden" />
+      <CommonHeaderMpNav :menus="menus" class="flex lg:hidden" />
       <div class="flex-center">
         <NuxtLink to="/" class="flex-center">
           <img class="h-10 w-10 rounded-4 bg-gray-3 p-1" src="/nuxt.svg" alt="home">
         </NuxtLink>
       </div>
-      <HeaderNav :menus="menus" class="hidden lg:flex" />
+      <CommonHeaderNav :menus="menus" class="hidden lg:flex" />
       <div class="flex-center">
         <CommonIconButton>
           <div class="i-tabler:user-plus" />
