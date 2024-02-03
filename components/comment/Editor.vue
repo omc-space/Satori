@@ -11,7 +11,7 @@ const commentForm = reactive({
 </script>
 
 <template>
-  <form class="p-4">
+  <form>
     <div class="mb-4 flex flex-col gap-4 lg:flex-row">
       <CommonInput
         v-model="commentForm.author"
