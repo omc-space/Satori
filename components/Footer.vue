@@ -48,9 +48,9 @@ const links = [
 </script>
 
 <template>
-  <div flex-center border-t p-4 text-sm lh-8 lg:block dark:border-gray-200>
+  <div border-t p-4 text-sm lh-8 dark:border-gray-200>
     <div class="relative mx-auto max-w-7xl lg:px-8">
-      <div class="flex gap-4">
+      <div class="flex flex-col lg:flex-row lg:gap-4">
         <div v-for="i, idx in links" :key="idx" flex gap-2>
           <NuxtLink
             v-for="j in i"
@@ -72,24 +72,26 @@ const links = [
             </NuxtLink>
             <span>Stay hungry. Stay foolish.</span>
           </div>
-          <div>
-            <span>Powered by</span>
-            <NuxtLink class="satori-link--underline" target="_blank" to="https://github.com/omc-space" ml-1>
-              omc-space
-            </NuxtLink>
-            <span>.</span>
-            <NuxtLink class="satori-link--underline" target="_blank" to="https://github.com/omc-space/Satori">
-              Satori
-            </NuxtLink>
-            <NuxtLink class="satori-link--underline" target="_blank" to="https://github.com/omc-space/Satori" mx-2>
-              萌ICP备xxxxx
-            </NuxtLink>
-            <span>正在被 ? 人看爆</span>
+          <div class="flex flex-col lg:flex-row">
+            <div>
+              <span>Powered by</span>
+              <NuxtLink class="satori-link--underline" target="_blank" to="https://github.com/omc-space" ml-1>
+                omc-space
+              </NuxtLink>
+              <span>.</span>
+              <NuxtLink class="satori-link--underline" target="_blank" to="https://github.com/omc-space/Satori">
+                Satori
+              </NuxtLink>
+            </div>
+            <div>
+              <NuxtLink class="satori-link--underline" target="_blank" to="https://github.com/omc-space/Satori" mx-2>
+                萌ICP备xxxxx
+              </NuxtLink>
+              <span>正在被 ? 人看爆</span>
+            </div>
           </div>
         </div>
-        <div>
-          <DarkToggle />
-        </div>
+        <DarkToggle />
       </div>
     </div>
   </div>

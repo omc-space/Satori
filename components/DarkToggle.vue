@@ -10,15 +10,17 @@ useHead({
 </script>
 
 <template>
-  <div class="flex items-center border border-gray/50 rounded-full bg-white dark:bg-black">
-    <CommonIconButton :borderless="color.value !== 'light'" @click="color.value = 'light'">
-      <div class="i-carbon-sun" />
-    </CommonIconButton>
-    <CommonIconButton :borderless="color.value !== 'system'" @click="color.value = 'system'">
-      <div class="i-tabler:device-desktop" />
-    </CommonIconButton>
-    <CommonIconButton :borderless="color.value !== 'dark'" @click="color.value = 'dark'">
-      <div class="i-carbon-moon" />
-    </CommonIconButton>
-  </div>
+  <ClientOnly>
+    <div class="flex items-center border border-gray/50 rounded-full bg-white dark:bg-black">
+      <CommonIconButton :borderless="color.preference !== 'light'" @click="color.preference = 'light'">
+        <div class="i-carbon-sun" />
+      </CommonIconButton>
+      <CommonIconButton :borderless="color.preference !== 'system'" @click="color.preference = 'system'">
+        <div class="i-tabler:device-desktop" />
+      </CommonIconButton>
+      <CommonIconButton :borderless="color.preference !== 'dark'" @click="color.preference = 'dark'">
+        <div class="i-carbon-moon" />
+      </CommonIconButton>
+    </div>
+  </ClientOnly>
 </template>
