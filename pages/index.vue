@@ -87,7 +87,7 @@ const social = [
           >
             <PostHomeCard />
           </CommonMotion>
-          <CommonLink to="/" class="m-auto my-10 text-x">
+          <CommonLink to="/post" class="m-auto my-10 text-x">
             还有更多要不要看看?
           </CommonLink>
         </div>
@@ -122,7 +122,7 @@ const social = [
               </li>
             </ul>
             <div class="my-10 text-center text-x">
-              <CommonLink to="/" class="">
+              <CommonLink to="/note/latest" class="">
                 还有更多要不要看看?
               </CommonLink>
             </div>
@@ -151,7 +151,7 @@ const social = [
         </div>
       </div>
       <div class="my-20 text-center text-x">
-        <CommonLink to="/">
+        <CommonLink to="/friends">
           还有更多要不要看看?
         </CommonLink>
       </div>

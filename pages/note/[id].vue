@@ -7,7 +7,7 @@ const percentage = useScrollPercentage(articleRef)
 
 <template>
   <CommonMotion :spring="microDampingPreset">
-    <article ref="articleRef" class="border border-transparent rounded-md bg-slate-50 px-4 shadow-sm dark:border-neutral-800 md:border-zinc-200/70 dark:bg-zinc-900 lg:p-8 dark:shadow-[#333]">
+    <article ref="articleRef" class="border border-transparent rounded-md bg-slate-50 p-4 shadow-sm dark:border-neutral-800 md:border-zinc-200/70 dark:bg-zinc-900 lg:p-8 dark:shadow-[#333]">
       <header>
         <h1 class="text-3xl font-bold">
           穿越云南，穿梭银幕

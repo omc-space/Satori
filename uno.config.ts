@@ -19,7 +19,7 @@ export default defineConfig({
     ['text-primary', 'color-[var(--primary-color)]'],
     ['primary', 'var(--primary-color)'],
     ['text-omit', 'text-ellipsis text-nowrap overflow-hidden'],
-    ['base-min-h', 'min-h-[calc(100vh-8rem-4rem-24px)]'],
+    ['base-min-h', 'min-h-[calc(100vh-8rem-9rem-10px)]'],
     ['base-bg', 'transition dark:bg-zinc-800/50 bg-gray-200/50'],
   ],
   presets: [

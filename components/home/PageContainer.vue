@@ -14,12 +14,12 @@ const { stop } = useIntersectionObserver(
 </script>
 
 <template>
-  <div ref="target" class="relative h-screen min-h-200 flex-center flex-col lg:my-0 lg:flex-row">
-    <div class="flex-center lg:w-1/2">
+  <div ref="target" class="relative h-full min-h-200 flex flex-col justify-center lg:my-0 lg:h-screen lg:flex-row lg:items-center">
+    <div class="flex-center flex-1 lg:w-1/2">
       <slot name="left" :visible="targetIsVisible" />
     </div>
     <slot />
-    <div class="flex-center lg:w-1/2">
+    <div class="flex-1 lg:w-1/2">
       <slot name="right" :visible="targetIsVisible" />
     </div>
   </div>
