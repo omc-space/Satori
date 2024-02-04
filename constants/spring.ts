@@ -6,6 +6,12 @@ export const reboundPreset: SpringOptions = {
   damping: 10,
 }
 
+export const fastPreset: SpringOptions = {
+  mass: 2,
+  stiffness: 500,
+  damping: 20,
+}
+
 export const microDampingPreset: SpringOptions = {
   mass: 1,
   stiffness: 180,
@@ -13,7 +19,7 @@ export const microDampingPreset: SpringOptions = {
 }
 
 export const microReboundPreset: SpringOptions = {
-  stiffness: 300,
+  stiffness: 400,
   damping: 20,
 }
 

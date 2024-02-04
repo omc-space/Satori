@@ -40,6 +40,7 @@ const animate: VariantDefinition = {
     :initial="props.initial ?? initial"
     :animate="props.animate ?? animate"
     :transition="transition"
+    v-bind="$attrs"
   >
     <slot />
   </Motion>
