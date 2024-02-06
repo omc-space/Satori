@@ -68,18 +68,18 @@ const menus = ref<NavigationItem[]>([
   },
   {
     name: '速览',
-    path: '/overview',
+    path: '/timeline',
     iconClass: 'i-tabler:list-details',
   },
   {
     name: '友链',
-    path: '/link',
+    path: '/friends',
     iconClass: 'i-tabler:link',
   },
   {
     name: '更多',
-    path: '/more',
     iconClass: 'i-tabler:alphabet-cyrillic',
+    path: '/more',
     children: [
       {
         name: '听音乐',

@@ -21,7 +21,7 @@ definePageMeta({
       <CommonMotion
         v-for="i in 10"
         :key="i"
-        class="timeline-item flex justify-between py-1.5"
+        class="timeline-item flex justify-between"
         :delay="(i + 4) * 0.08"
       >
         <CommonLink to="/post/:id()">

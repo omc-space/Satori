@@ -8,7 +8,8 @@ const bgPosition = reactive({
   top: 0,
 })
 const route = useRoute()
-const pathPrefix = computed(() => `/${route.path.split('/')[1]}`)
+// TODO: 判断菜单选中 这里需要优化
+const pathPrefix = computed(() => route.path.split('/')[1])
 const selectIndex = ref(-1)
 
 const handleMouseMove = useThrottleFn((e: MouseEvent) => {
@@ -39,42 +40,58 @@ const spotlightStyle = computed(() => {
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"
     >
-      <CommonPopoverMenu
-        v-for="menu in menus" :key="menu.path"
-        :delay="{ show: 0, hide: 50 }"
-      >
-        <NuxtLink
-          :to="menu.path"
-          class="relative flex-center gap-1 px-4 py-2 hover:primary-color"
-          :class="{ selected: pathPrefix === menu.path }"
+      <template v-for="menu in menus" :key="menu.path">
+        <CommonPopoverMenu
+          v-if="menu.children?.length"
+          :delay="{ show: 0, hide: 50 }"
+          :disabled="menu.children?.length === 0"
         >
-          <Transition name="icon">
-            <div v-show="pathPrefix === menu.path" :class="menu.iconClass" />
-          </Transition>
-          <span>{{ menu.name }}</span>
-          <span class="line absolute bottom-0 left-0 hidden h-[1px] w-full" />
-        </NuxtLink>
-        <template #popper>
-          <div
-            class="relative flex flex-col text-sm"
-            @mouseleave="onMouseLeave"
+          <NuxtLink
+            :to="menu.path"
+            class="relative flex-center gap-1 px-4 py-2 hover:primary-color"
+            :class="{ selected: pathPrefix === menu.path.split('/')[1] }"
           >
+            <Transition name="icon">
+              <div v-show="pathPrefix === menu.path" :class="menu.iconClass" />
+            </Transition>
+            <span>{{ menu.name }}</span>
+            <span class="line absolute bottom-0 left-0 hidden h-[1px] w-full" />
+          </NuxtLink>
+          <template #popper>
             <div
-              v-if="selectIndex !== -1"
-              class="absolute inset-0 z--1 h-[36px] w-26 border rounded bg-gray-100 transition-300 dark:bg-[var(--dark-bg-color)]"
-              :style="{ transform: `translate3d(0,${selectIndex * 36}px,0)` }"
-            />
-            <NuxtLink
-              v-for="child, idx in menu.children" :key="child.path" :to="child.path"
-              class="h-[36px] w-26 flex-center gap-1 text-center lh-[36px] transition hover:color-[var(--primary-color)]"
-              @mouseenter="selectIndex = idx"
+              class="relative flex flex-col text-sm"
+              @mouseleave="onMouseLeave"
             >
-              <div :class="child.iconClass" />
-              <span>{{ child.name }}</span>
-            </NuxtLink>
-          </div>
-        </template>
-      </CommonPopoverMenu>
+              <div
+                v-if="selectIndex !== -1"
+                class="absolute inset-0 z--1 h-[36px] w-26 border rounded bg-gray-100 transition-300 dark:bg-[var(--dark-bg-color)]"
+                :style="{ transform: `translate3d(0,${selectIndex * 36}px,0)` }"
+              />
+              <NuxtLink
+                v-for="child, idx in menu.children" :key="child.path" :to="child.path"
+                class="h-[36px] w-26 flex-center gap-1 text-center lh-[36px] transition hover:color-[var(--primary-color)]"
+                @mouseenter="selectIndex = idx"
+              >
+                <div :class="child.iconClass" />
+                <span>{{ child.name }}</span>
+              </NuxtLink>
+            </div>
+          </template>
+        </CommonPopoverMenu>
+        <div v-else>
+          <NuxtLink
+            :to="menu.path"
+            class="relative flex-center gap-1 px-4 py-2 hover:primary-color"
+            :class="{ selected: pathPrefix === menu.path.split('/')[1] }"
+          >
+            <Transition name="icon">
+              <div v-show="pathPrefix === menu.path" :class="menu.iconClass" />
+            </Transition>
+            <span>{{ menu.name }}</span>
+            <span class="line absolute bottom-0 left-0 hidden h-[1px] w-full" />
+          </NuxtLink>
+        </div>
+      </template>
     </div>
   </nav>
 </template>

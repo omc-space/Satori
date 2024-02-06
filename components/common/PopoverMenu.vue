@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { Dropdown as VDropdown } from 'floating-vue'
+
+const props = defineProps<{
+  disabled?: boolean
+}>()
 </script>
 
 <template>
@@ -10,6 +14,7 @@ import { Dropdown as VDropdown } from 'floating-vue'
     :delay="{ show: 0, hide: 50 }"
     popper-class="my-popover-theme"
     compute-transform-origin
+    :disabled="props.disabled"
   >
     <slot />
 
