@@ -5,14 +5,13 @@ const content = ref<HTMLElement | null>(null)
 const percentage = useScrollPercentage(content)
 
 const fullPath = computed(() => window.location.href)
+const { data } = useFetch('https://api.dvaren.xyz/blog/note/1636665132207751170')
 </script>
 
 <template>
   <NuxtLayout name="post" class="m-auto max-w-6xl">
     <CommonMotion :spring="microDampingPreset">
-      <div h-400>
-        content
-      </div>
+      <MarkdownViewer :value="data.data.content " />
     </CommonMotion>
     <div>
       <section ref="content" class="py-6 text-xs text-gray-600 lh-6">
