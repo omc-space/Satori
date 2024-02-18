@@ -1,17 +1,26 @@
-import type { MaybeComputedElementRef, MaybeElement } from '@vueuse/core'
+export function useScrollPercentage(el: Ref<HTMLElement | null | undefined>) {
+  const percentage = ref(0)
 
-export function useScrollPercentage(el: MaybeComputedElementRef<MaybeElement>) {
-  const { top, height } = useElementBounding(el)
-  const bodyHeight = useWindowSize().height
-  const percentage = computed(() => {
-    if (bodyHeight.value === Number.POSITIVE_INFINITY)
-      return 0
-    const p = Math.round(-top.value / (height.value - bodyHeight.value) * 100)
+  const calculatePercentage = useThrottleFn(() => {
+    if (!el.value)
+      return
+
+    const { offsetTop } = el.value
+    const p = Math.floor(window.scrollY / offsetTop * 100) || 0
     if (p < 0)
-      return 0
-    if (p > 100)
-      return 100
-    return p
+      percentage.value = 0
+    else if (p > 100)
+      percentage.value = 100
+    else
+      percentage.value = p
+  }, 20)
+
+  onMounted(() => {
+    window.addEventListener('scroll', calculatePercentage)
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('scroll', calculatePercentage)
   })
 
   return percentage

@@ -1,6 +1,4 @@
 <script setup>
-import { apiClient } from '~/composables/requests'
-
 definePageMeta({
   layout: 'base',
 })
