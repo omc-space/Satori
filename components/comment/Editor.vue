@@ -1,19 +1,37 @@
 <script lang="ts" setup>
 import { fastPreset } from '~/constants/spring'
+import type { CommentDto } from '~/types'
 
-const commentForm = reactive({
+const props = defineProps<{
+  onSubmit?: (comment: CommentDto) => void
+}>()
+
+const user = useLocalStorage('user', {
   author: '',
-  text: '',
   mail: '',
   url: '',
-  source: 'github',
-  avatar: '',
-  is_secret: false,
 })
+const commentForm = reactive<CommentDto>({
+  author: user.value.author,
+  text: '',
+  mail: user.value.mail,
+  url: user.value.url,
+  source: 'github',
+  // avatar: '',
+  isWhispers: false,
+})
+
 const maxLength = 500
 
-function onSubmit() {
+async function onSubmit() {
   // TODO: 提交评论
+  // await sendComment(props.id, commentForm, props.type)
+  user.value.author = commentForm.author
+  user.value.mail = commentForm.mail
+  user.value.url = commentForm.url || ''
+  props.onSubmit && props.onSubmit(commentForm)
+
+  commentForm.text = ''
 }
 function handleKeyDown(e: KeyboardEvent) {
   if (e.ctrlKey && e.key === 'Enter')
@@ -67,9 +85,9 @@ function handleKeyDown(e: KeyboardEvent) {
             <div class="text-[8px] text-gray">
               {{ commentForm.text.length }}/{{ maxLength }}
             </div>
-            <button type="button" class="flex-center" @click="commentForm.is_secret = !commentForm.is_secret">
-              <div v-show="!commentForm.is_secret" i-tabler:circle text-xl />
-              <div v-show="commentForm.is_secret" i-tabler:circle-check text-xl />
+            <button type="button" class="flex-center" @click="commentForm.isWhispers = !commentForm.isWhispers">
+              <div v-show="!commentForm.isWhispers" i-tabler:circle text-xl />
+              <div v-show="commentForm.isWhispers" i-tabler:circle-check text-xl />
               <div ml-1>
                 悄悄话
               </div>

@@ -16,8 +16,8 @@ const emit = defineEmits(['update:modelValue'])
       :value="props.modelValue"
       type="text"
       :placeholder="props.placeholder + (props.required ? ' *' : '')"
-      class="base-bg w-full rounded-md px-4 py-1.5 text-xs placeholder:text-gray/80 focus:outline-[var(--border-color)]"
-      @input="emit('update:modelValue')"
+      class="w-full rounded-md px-4 py-1.5 text-xs base-bg placeholder:text-gray/80 focus:outline-[var(--border-color)]"
+      @input="(e) => emit('update:modelValue', (e.target! as HTMLInputElement).value)"
     >
   </div>
 </template>

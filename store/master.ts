@@ -1,7 +1,8 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { UserModel } from '@omc-space/api-client'
+import type { UserModel } from '../types/apiModles'
+import { getMasterInfo } from '~/composables/api'
 
-export const useMasterStore = defineStore('master', async () => {
+export const useMasterStore = defineStore('master', () => {
   const masterInfo = reactive<UserModel>({
     id: '',
     avatar: '',
@@ -12,14 +13,13 @@ export const useMasterStore = defineStore('master', async () => {
     username: '',
     created: '',
     lastLoginTime: '',
-    modified: '',
-    postID: '',
     url: '',
-    v: 0,
     lastLoginIp: '',
+    apiToken: '',
   })
-  const master = await apiClient.master.getMasterInfo()
-  Object.assign(masterInfo, master)
+  getMasterInfo().then((master) => {
+    Object.assign(masterInfo, master)
+  })
   return {
     masterInfo,
   }

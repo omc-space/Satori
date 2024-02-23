@@ -1,20 +1,30 @@
 import { http } from './fetch-request'
 import type {
+  CollectionRefTypes,
   CommentDto,
   CommentModel,
   ImageModel,
   LinkModel,
   NoteModel,
+  NoteResponse,
   PagerDto,
   PaginateResult,
   PostModel,
   SayModel,
+  UserModel,
 } from '~/types'
+
+export function getMasterInfo() {
+  return http<PaginateResult<UserModel>>('/master')
+}
 
 export function getPosts(pager?: PagerDto) {
   return http<PaginateResult<PostModel>>('/posts', {
     query: pager,
   })
+}
+export function getPostById(id: string) {
+  return http<PostModel>(`/posts/${id}`)
 }
 
 export function getNoteList(pager?: PagerDto) {
@@ -23,8 +33,12 @@ export function getNoteList(pager?: PagerDto) {
   })
 }
 
-export function getNoteById(nid: string) {
-  return http<NoteModel>(`/notes/${nid}`)
+export function getLastNote() {
+  return http<NoteResponse>(`/notes/latest`)
+}
+
+export function getNoteByNid(nid: string) {
+  return http<NoteResponse>(`/notes/nid/${nid}`)
 }
 
 export function getSayList(pager?: PagerDto) {
@@ -55,15 +69,16 @@ export function getCommentList(ref: string, pager?: PagerDto) {
   })
 }
 
-export function sendComment(id: string, comment: CommentDto) {
+export function sendComment(id: string, comment: CommentDto, ref: CollectionRefTypes) {
   return http<PaginateResult<CommentModel>>(`/comment/${id}`, {
     method: 'post',
     body: comment,
+    query: { ref },
   })
 }
 
-export function replayComment(id: string, comment: CommentDto) {
-  return http<PaginateResult<CommentModel>>(`/comment/${id}`, {
+export function replyComment(id: string, comment: CommentDto) {
+  return http<PaginateResult<CommentModel>>(`/comment/reply/${id}`, {
     method: 'post',
     body: comment,
   })

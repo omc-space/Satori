@@ -233,3 +233,14 @@ export interface CommentDto {
   source?: string
   avatar?: string
 }
+
+export enum CollectionRefTypes {
+  Post = 'posts',
+  Note = 'notes',
+}
+
+export interface NoteResponse {
+  data: NoteModel
+  next: NoteModel
+  prev: NoteModel
+}

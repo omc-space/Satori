@@ -1,16 +1,25 @@
 <script lang="ts" setup>
 import { microDampingPreset } from '~/constants/spring'
+import { getNoteByNid } from '~/composables/api'
+import { CollectionRefTypes, type NoteModel } from '~/types'
 
+const route = useRoute<'note-id'>()
 const articleRef = ref<HTMLElement>()
 const percentage = useScrollPercentage(articleRef)
+const note = ref<NoteModel>()
+
+if (route.params.id === 'latest')
+  getLastNote().then(res => note.value = res.data)
+else
+  getNoteByNid(route.params.id).then(res => note.value = res.data)
 </script>
 
 <template>
-  <CommonMotion :spring="microDampingPreset">
+  <CommonMotion v-if="note" :spring="microDampingPreset">
     <article ref="articleRef" class="border border-transparent rounded-md bg-slate-50 p-4 shadow-sm dark:border-neutral-800 md:border-zinc-200/70 dark:bg-zinc-900 lg:p-8 dark:shadow-[#333]">
       <header>
         <h1 class="text-3xl font-bold">
-          穿越云南，穿梭银幕
+          {{ note.title }}
         </h1>
         <div class="mt-8 flex items-center text-xs text-zinc-400">
           <div i-tabler:clock />
@@ -34,8 +43,8 @@ const percentage = useScrollPercentage(articleRef)
         content
       </div>
     </article>
-    <div class="p-4">
-      <Comment />
+    <div v-if="note" class="p-4">
+      <Comment :data="note" :type="CollectionRefTypes.Note" />
     </div>
   </CommonMotion>
   <div class="sticky top-[120px] mt-[120px] hidden h-[calc(100vh-6rem-4.5rem-150px-120px)] pl-4 xl:block">

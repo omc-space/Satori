@@ -50,11 +50,17 @@ const socialList: Record<string, SocialType> = {
     color: '#e6162d',
     iconClass: 'i-tabler:brand-weibo',
   },
-  twitter: {
-    name: 'Twitter',
+  x: {
+    name: 'X',
     url: (id: string) => `https://twitter.com/${id}`,
     color: '#1da1f2',
     iconClass: 'i-tabler:brand-twitter',
+  },
+  qq: {
+    name: 'QQ',
+    url: (id: string) => `tencent://message/?uin=${id}&Site=&Menu=yes`,
+    color: '#1296db',
+    iconClass: 'i-tabler:brand-qq',
   },
   default: {
     name: 'default',
@@ -77,20 +83,20 @@ const socialList: Record<string, SocialType> = {
         :transition="{ delay: idx * 0.15 }"
       >
         <NuxtLink
-          :to="socialList[social.name ?? 'default'].url(social.id ?? '')"
+          :to="socialList[social.name ?? 'default']?.url(social.id ?? '')"
           target="_blank"
-          :style="{ backgroundColor: socialList[social.name ?? 'default'].color }"
+          :style="{ backgroundColor: socialList[social.name ?? 'default']?.color }"
           class="inline-block rounded-full p-1.8 text-4.5 text-white hover:scale-102"
         >
           <div
-            :class="socialList[social.name ?? 'default'].iconClass"
+            :class="socialList[social.name ?? 'default']?.iconClass"
           />
         </NuxtLink>
       </CommonMotion>
 
       <template #popper>
         <div class="text-x">
-          {{ socialList[social.name ?? 'default'].name }}
+          {{ socialList[social.name ?? 'default']?.name }}
         </div>
       </template>
     </CommonTooltip>

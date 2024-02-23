@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useMasterStore } from '~/store/master'
 import type { NavigationItem } from '~/types'
 
 const { y } = useWindowScroll()
@@ -90,6 +91,8 @@ const menus = ref<NavigationItem[]>([
   },
 ])
 const showBg = computed(() => y.value > 50)
+
+const masterStore = useMasterStore()
 </script>
 
 <template>
@@ -101,7 +104,7 @@ const showBg = computed(() => y.value > 50)
       <CommonHeaderMpNav :menus="menus" class="flex lg:hidden" />
       <div class="flex-center">
         <NuxtLink to="/" class="flex-center">
-          <img class="h-10 w-10 rounded-4 bg-gray-3 p-1" src="/nuxt.svg" alt="home">
+          <img class="h-10 w-10 rounded-4 bg-gray-3" :src="masterStore.masterInfo.avatar" alt="home">
         </NuxtLink>
       </div>
       <CommonHeaderNav :menus="menus" class="hidden lg:flex" />

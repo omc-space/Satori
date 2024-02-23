@@ -2,7 +2,7 @@
 definePageMeta({
   layout: 'base',
 })
-const { data: posts } = useAsyncData(() => apiClient.post.getList())
+const { data: posts } = useAsyncData(() => getPosts())
 </script>
 
 <template>

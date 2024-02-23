@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { microDampingPreset } from '~/constants/spring'
+import { getPostById } from '~/composables/api'
 
 const route = useRoute<'post-id'>()
 
@@ -7,7 +8,7 @@ const content = ref<HTMLElement | null>(null)
 const percentage = useScrollPercentage(content)
 
 const fullPath = computed(() => window.location.href)
-const { data: post } = useAsyncData(() => apiClient.post.getPost(route.params.id))
+const { data: post } = useAsyncData(() => getPostById(route.params.id))
 </script>
 
 <template>

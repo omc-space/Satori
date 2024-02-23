@@ -1,37 +1,22 @@
 <script setup lang="ts">
 import { useMasterStore } from '@/store/master'
+import { formateRelativeTime } from '~/composables/date'
 
-const master = useMasterStore()
-const social = [
-  {
-    name: 'bilibili',
-    id: '1',
-  },
-  {
-    name: 'zhihu',
-    id: '2',
-  },
-  {
-    name: 'github',
-    id: '3',
-  },
-  {
-    name: 'twitter',
-    id: '4',
-  },
-  {
-    name: 'weibo',
-    id: '5',
-  },
-  {
-    name: 'netease',
-    id: '6',
-  },
-  {
-    name: 'mail',
-    id: '7',
-  },
-]
+const { masterInfo } = useMasterStore()
+const socials = computed(() => {
+  if (!masterInfo.socialIds)
+    return []
+
+  return Object.keys(masterInfo.socialIds).map((key) => {
+    return {
+      name: key,
+      id: masterInfo.socialIds[key],
+    }
+  })
+})
+
+const { data: posts } = useAsyncData(() => getPosts({ page: 1, size: 5 }))
+const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
 </script>
 
 <template>
@@ -50,7 +35,7 @@ const social = [
             An independent developer coding with love.
           </p>
           <div class="flex-center lg:block">
-            <HomeSocialGroup :socials="social" class="lg:" />
+            <HomeSocialGroup :socials="socials" />
           </div>
         </div>
         <div class="absolute bottom-0 left-0 right-0 flex-center flex-col text-xs">
@@ -62,7 +47,7 @@ const social = [
       </template>
       <template #right>
         <div class="my-5">
-          <div class="m-auto h-60 w-60 rounded-full bg-gray-3" />
+          <img :src="masterInfo.avatar" class="m-auto h-60 w-60 rounded-full bg-gray-3">
         </div>
       </template>
     </HomePageContainer>
@@ -81,14 +66,14 @@ const social = [
         <!-- 需要添加overflow-hiddeb修复动画导致的宽度异常问题 -->
         <div v-if="visible" class="w-full flex-center flex-col overflow-hidden">
           <CommonMotion
-            v-for=" i in 5"
-            :key="i"
+            v-for="i, idx in posts?.data"
+            :key="i.id"
             :initial="{ x: 50, opacity: 0 }"
             :animate="{ x: 0, opacity: 1 }"
-            :transition="{ delay: (i + 1) * 0.2, easing: [.3, 1.02, .78, 1.0], duration: 0.8 }"
+            :transition="{ delay: (idx + 1) * 0.2, easing: [.3, 1.02, .78, 1.0], duration: 0.8 }"
             class="my-2 w-full flex-center"
           >
-            <PostHomeCard />
+            <PostHomeCard :post="i" />
           </CommonMotion>
           <CommonLink to="/post" class="m-auto my-10 text-x">
             还有更多要不要看看?
@@ -104,24 +89,24 @@ const social = [
               看看我的近况，我的所思所想、所作所为
             </h1>
             <div class="my-6">
-              <NuxtLink to="/">
+              <NuxtLink :to="`/note/${notes?.data[0].id}`">
                 <div class="border rounded bg-gray/20 p-4 text-right shadow">
                   <div class="pt-14">
-                    穿越云南，穿梭荧幕
+                    {{ notes?.data[0].title }}
                   </div>
                   <div class="mt-1 text-xs">
-                    5天前
+                    {{ formateRelativeTime(notes?.data[0].created) }}
                   </div>
                 </div>
               </NuxtLink>
             </div>
             <p>这里还有一些历史回顾</p>
             <ul class="timeline-container my-10">
-              <li v-for="i in 4" :key="i" class="timeline-item flex justify-between text-x">
-                <CommonLink :to="`/note/${i}`">
-                  2024 开年
+              <li v-for="i in notes?.data.slice(1, 5)" :key="i.id" class="timeline-item flex justify-between text-x">
+                <CommonLink :to="`/note/${i.id}`">
+                  {{ i.title }}
                 </CommonLink>
-                <span class="text-xs text-black/50">{{ i }}天前</span>
+                <span class="text-xs text-black/50">{{ formateRelativeTime(i.created) }}</span>
               </li>
             </ul>
             <div class="my-10 text-center text-x">
