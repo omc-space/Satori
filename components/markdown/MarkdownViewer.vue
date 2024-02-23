@@ -17,7 +17,7 @@ import toc from './plugin-toc'
 // TODO: copy完成提示
 // import Message from '~/composables/message'
 
-const { value } = defineProps<{ value: string }>()
+const { value } = defineProps<{ value: string | undefined }>()
 
 const plugins: BytemdPlugin[] = [
   gfm(),

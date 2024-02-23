@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useMasterStore } from '@/store/master'
+
+const master = useMasterStore()
 const social = [
   {
     name: 'bilibili',

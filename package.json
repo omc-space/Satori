@@ -23,7 +23,6 @@
     "@iconify-json/tabler": "^1.1.104",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@oku-ui/motion-nuxt": "^0.2.0",
-    "@omc-space/api-client": "^0.0.4",
     "@uvdream/bytemd-plugin-code-copy": "^0.1.0",
     "floating-vue": "^5.1.0",
     "motion": "^10.17.0",
