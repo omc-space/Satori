@@ -18,13 +18,13 @@ const props = withDefaults(defineProps<{ socials: Social[], initDelay?: number }
 const socialList: Record<string, SocialType> = {
   bilibili: {
     name: 'bilibili',
-    url: (id: string) => `https://www.bilibili.com/${id}`,
+    url: (id: string) => `https://space.bilibili.com/${id}`,
     color: '#00a1d6',
     iconClass: 'i-tabler:brand-bilibili',
   },
   netease: {
     name: '网易云音乐',
-    url: (id: string) => `https://music.163.com/#/song?id=${id}`,
+    url: (id: string) => `https://music.163.com/#/user?id=${id}`,
     color: '#c10d0c',
     iconClass: 'i-tabler:brand-netease-music',
   },
@@ -48,13 +48,13 @@ const socialList: Record<string, SocialType> = {
   },
   weibo: {
     name: '微博',
-    url: (id: string) => `https://weibo.com/${id}`,
+    url: (id: string) => `https://weibo.com/u/${id}`,
     color: '#e6162d',
     iconClass: 'i-tabler:brand-weibo',
   },
   x: {
     name: 'X',
-    url: (id: string) => `https://twitter.com/${id}`,
+    url: (id: string) => `https://x.com/${id}`,
     color: '#1da1f2',
     iconClass: 'i-tabler:brand-twitter',
   },

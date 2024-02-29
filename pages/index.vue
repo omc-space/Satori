@@ -7,13 +7,17 @@ const { masterInfo } = useMasterStore()
 const socials = computed(() => {
   if (!masterInfo.socialIds)
     return []
-
-  return Object.keys(masterInfo.socialIds).map((key) => {
+  const ids = Object.keys(masterInfo.socialIds).map((key) => {
     return {
       name: key,
       id: masterInfo.socialIds[key],
     }
   })
+  ids.push({
+    name: 'mail',
+    id: masterInfo.mail,
+  })
+  return ids
 })
 
 const { data: posts } = useAsyncData(() => getPosts({ page: 1, size: 5 }))
