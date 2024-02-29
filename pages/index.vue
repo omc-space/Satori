@@ -89,7 +89,7 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
             <h1 class="text-xl">
               看看我的近况，我的所思所想、所作所为
             </h1>
-            <div class="my-6">
+            <div v-if="notes?.data.length" class="my-6">
               <NuxtLink :to="`/note/${notes?.data[0].id}`">
                 <div class="border rounded bg-gray/20 p-4 text-right shadow">
                   <div class="pt-14">
