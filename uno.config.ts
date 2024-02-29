@@ -19,8 +19,9 @@ export default defineConfig({
     ['text-primary', 'color-[var(--primary-color)]'],
     ['primary', 'var(--primary-color)'],
     ['text-omit', 'text-ellipsis text-nowrap overflow-hidden'],
-    ['base-min-h', 'min-h-[calc(100vh-8rem-5rem-6px)]'],
+    ['base-min-h', 'min-h-[calc(100vh-8rem-13rem-6px)]'],
     ['base-bg', 'transition dark:bg-zinc-800/50 bg-gray-200/50'],
+    ['base-container', 'mx-auto mt-14 base-min-h max-w-3xl px-2 [&_header.prose]:mb-[80px] lg:mt-[80px] 2xl:max-w-4xl lg:px-0'],
   ],
   presets: [
     presetUno(),

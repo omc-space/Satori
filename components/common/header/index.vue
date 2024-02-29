@@ -104,7 +104,7 @@ const masterStore = useMasterStore()
       <CommonHeaderMpNav :menus="menus" class="flex lg:hidden" />
       <div class="flex-center">
         <NuxtLink to="/" class="flex-center">
-          <img class="h-10 w-10 rounded-4 bg-gray-3" :src="masterStore.masterInfo.avatar" alt="home">
+          <CommonLazyLoadImage class="h-10 w-10 rounded-4 bg-gray-3" :src="masterStore.masterInfo.avatar" alt="home" />
         </NuxtLink>
       </div>
       <CommonHeaderNav :menus="menus" class="hidden lg:flex" />

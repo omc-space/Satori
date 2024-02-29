@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { microDampingPreset } from '~/constants/spring'
 import { getPostById } from '~/composables/api'
+import { CollectionRefTypes } from '~/types'
 
 const route = useRoute<'post-id'>()
 
@@ -27,11 +28,11 @@ const { data: post } = useAsyncData(() => getPostById(route.params.id))
               [复制]
             </button>
           </div>
-          <div>最后修改时间: {{ post.modified ?? post.created }}</div>
+          <div>最后修改时间: {{ formateDate(post.modified ?? post.created) }}</div>
           <CommonDivider />
           <div>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</div>
         </section>
-        <Comment class="mt-8" />
+        <Comment class="mt-8" :data="post" :type="CollectionRefTypes.Post" />
       </div>
       <template #aside>
         <div>

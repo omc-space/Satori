@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PostModel } from '@omc-space/api-client'
+import type { PostModel } from '~/types'
 
 const { post } = defineProps<{ post: PostModel }>()
 </script>
@@ -16,7 +16,7 @@ const { post } = defineProps<{ post: PostModel }>()
         </div>
         <div class="mt-2 flex flex-1 items-center justify-between text-xs">
           <div>
-            <span>{{ post.created }}（已编辑）</span>
+            <span>{{ formateDate(post.created) }}{{ post.modified ? '（已编辑）' : '' }}</span>
             <span v-for="tag in post.tags" :key="tag" class="satori-link--underline mx-1"># {{ tag }}</span>
           </div>
           <div class="text-x text-primary">

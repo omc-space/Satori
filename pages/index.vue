@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useMasterStore } from '@/store/master'
 import { formateRelativeTime } from '~/composables/date'
+import { microDampingPreset } from '~/constants/spring'
 
 const { masterInfo } = useMasterStore()
 const socials = computed(() => {
@@ -24,9 +25,9 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
   <div class="px-4">
     <HomePageContainer>
       <template #left>
-        <div class="my-5">
+        <CommonMotion :spring="microDampingPreset" class="my-5">
           <h1 class="py-2 text-4xl font-medium">
-            Hi, I'm Innei👋。
+            Hi, I'm {{ masterInfo.name }}👋。
           </h1>
           <h1 class="py-2 text-4xl font-medium">
             A NodeJS Full Stack &lt;Developer/&gt;
@@ -35,19 +36,19 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
             An independent developer coding with love.
           </p>
           <div class="flex-center lg:block">
-            <HomeSocialGroup :socials="socials" />
+            <HomeSocialGroup :socials="socials" :init-delay="0.5" />
           </div>
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 flex-center flex-col text-xs">
+        </CommonMotion>
+        <CommonMotion :spring="microDampingPreset" class="absolute bottom-0 left-0 right-0 flex-center flex-col text-xs">
           <p>
             当第一颗卫星飞向大气层外，我们便以为自己终有一日会征服宇宙。
           </p>
           <div class="i-carbon:chevron-sort-down m-2 animate-bounce text-xl" />
-        </div>
+        </CommonMotion>
       </template>
       <template #right>
         <div class="my-5">
-          <img :src="masterInfo.avatar" class="m-auto h-60 w-60 rounded-full bg-gray-3">
+          <CommonLazyLoadImage :src="masterInfo.avatar" class="m-auto h-60 w-60 rounded-full bg-gray-3" />
         </div>
       </template>
     </HomePageContainer>

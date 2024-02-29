@@ -11,7 +11,9 @@ interface Social {
   social?: SocialType
 }
 
-const props = defineProps<{ socials: Social[] }>()
+const props = withDefaults(defineProps<{ socials: Social[], initDelay?: number }>(), {
+  initDelay: 0,
+})
 
 const socialList: Record<string, SocialType> = {
   bilibili: {
@@ -80,7 +82,7 @@ const socialList: Record<string, SocialType> = {
       <CommonMotion
         :initial="{ y: 60, opacity: 0 }"
         :animate="{ y: 0, opacity: 1 }"
-        :transition="{ delay: idx * 0.15 }"
+        :transition="{ delay: idx * 0.15 + props.initDelay }"
       >
         <NuxtLink
           :to="socialList[social.name ?? 'default']?.url(social.id ?? '')"

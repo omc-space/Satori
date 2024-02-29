@@ -40,14 +40,14 @@ else
         </div>
       </header>
       <div class="mt-8 min-h-120">
-        content
+        <MarkdownViewer :value="note.text" />
       </div>
     </article>
     <div v-if="note" class="p-4">
       <Comment :data="note" :type="CollectionRefTypes.Note" />
     </div>
   </CommonMotion>
-  <div class="sticky top-[120px] mt-[120px] hidden h-[calc(100vh-6rem-4.5rem-150px-120px)] pl-4 xl:block">
+  <div v-if="note" class="sticky top-[120px] mt-[120px] hidden h-[calc(100vh-6rem-4.5rem-150px-120px)] pl-4 xl:block">
     <div class="text-secondary">
       {{ percentage }}%
     </div>

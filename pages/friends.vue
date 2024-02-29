@@ -1,11 +1,9 @@
 <script setup>
-definePageMeta({
-  layout: 'base',
-})
+
 </script>
 
 <template>
-  <div>
+  <NuxtLayout name="base">
     <header class="mb-16">
       <h1 class="mb-6 text-3xl">
         朋友们
@@ -15,5 +13,5 @@ definePageMeta({
     <div class="grid grid-cols-2 gap-2 md:grid-cols-3">
       <FriendsCard v-for="i in 6" :key="i" />
     </div>
-  </div>
+  </NuxtLayout>
 </template>

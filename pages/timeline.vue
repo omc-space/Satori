@@ -1,11 +1,22 @@
 <script lang="ts" setup>
-definePageMeta({
-  layout: 'base',
+import { getOutOfDate, getOutOfYear } from '~/composables/date'
+import BaseLayout from '~/layouts/base.vue'
+
+const outOfTime = ref<string | number>(0)
+
+let timer: any
+onMounted(() => {
+  timer = setInterval(() => {
+    outOfTime.value = getOutOfDate(new Date()).toFixed(8)
+  }, 10)
+})
+onBeforeMount(() => {
+  clearInterval(timer)
 })
 </script>
 
 <template>
-  <div class="mb-16 prose">
+  <div class="base-container mb-16 prose">
     <header class="mb-18">
       <h1>时间线</h1>
       <div class="mt-8 font-bold">
@@ -13,14 +24,20 @@ definePageMeta({
       </div>
       <CommonDivider w-20 />
       <div class="text-sm">
-        <p>今天是 2024 年的第37天</p>
-        <p>今年已过 10.109290%</p>
-        <p>今天已过 39.755003%</p>
+        <p>今天是 {{ dateFns().year() }} 年的第 {{ dateFns().dayOfYear() }} 天</p>
+        <p>今年已过 {{ getOutOfYear() }}%</p>
+        <p>今天已过 {{ outOfTime }}%</p>
         <p>活在当下，珍惜眼下</p>
       </div>
     </header>
     <div>
-      <Motion v-for="o in 2" :key="o" :initial="{ scale: 0.95, opacity: 0 }" :animate="{ scale: 1, opacity: 1 }">
+      <CommonMotion
+        v-for="o, idx in 2"
+        :key="idx"
+        :initial="{ scale: 0.95, opacity: 0 }"
+        :animate="{ scale: 1, opacity: 1 }"
+        :transition="{ delay: (idx + 1) * 0.15 }"
+      >
         <div class="pre-line">
           202{{ o }}(6)
         </div>
@@ -41,7 +58,7 @@ definePageMeta({
             </div>
           </li>
         </ul>
-      </Motion>
+      </CommonMotion>
     </div>
   </div>
 </template>

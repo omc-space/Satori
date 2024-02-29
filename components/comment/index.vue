@@ -14,7 +14,7 @@ async function onSubmit(comment: CommentDto) {
 </script>
 
 <template>
-  <div>
+  <div v-bind="$attrs">
     <CommentEditor :id="props.data.id" :type="props.type" :on-submit="onSubmit" />
     <div class="mt-12">
       <template v-for="comment in comments?.data" :key="comment.id">
