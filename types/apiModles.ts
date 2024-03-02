@@ -244,3 +244,15 @@ export interface NoteResponse {
   next: NoteModel
   prev: NoteModel
 }
+
+export interface CategoryModel extends BaseModel {
+  name: string
+  type: CategoryType
+  slug?: string
+}
+
+export interface CategoryQueryDto {
+  ids?: string[]
+  joint?: boolean
+  type?: CategoryType
+}

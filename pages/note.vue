@@ -4,26 +4,29 @@ import { reboundPreset } from '~/constants/spring'
 const route = useRoute<'note-id'>()
 const id = computed(() => route.params.id)
 const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
-const selectId = ref(1)
+const selectId = ref(Number(route.params.id))
 </script>
 
 <template>
   <NuxtLayout name="note">
     <template #left>
       <ul class="group max-w-[200px] text-x">
-        <li
+        <CommonMotion
           v-for="i, idx in notes?.data"
           :key="i.id"
+          :initial="{ opacity: 0, x: -20 }"
+          :transition="{ delay: 0.15 * idx + 1 }"
+          :animate="{ opacity: 1, x: 0 }"
           class="my-1"
         >
           <NuxtLink
             :to="`/note/${i.nid}`"
             class="block flex items-center text-gray-400 transition-colors duration-300 hover:text-gray-600"
-            :class="{ 'text-gray-800': selectId === idx }"
-            @click="selectId = idx"
+            :class="{ 'text-gray-800': selectId === i.nid }"
+            @click="selectId = i.nid"
           >
             <CommonMotion
-              v-if="selectId === idx"
+              v-if="selectId === i.nid"
               :spring="reboundPreset"
               :initial="{ x: -20 }"
               :animate="{ x: 0 }"
@@ -34,7 +37,7 @@ const selectId = ref(1)
               {{ i.title }}
             </div>
           </NuxtLink>
-        </li>
+        </CommonMotion>
       </ul>
     </template>
 

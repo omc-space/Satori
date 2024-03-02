@@ -26,7 +26,7 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
 
 <template>
   <!-- class=" lg:px-20 xl:px-40" -->
-  <div class="px-4">
+  <div class="mt-22 px-4 md:mt-0">
     <HomePageContainer>
       <template #left>
         <CommonMotion :spring="microDampingPreset" class="my-5">
@@ -36,7 +36,7 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
           <h1 class="py-2 text-4xl font-medium">
             A NodeJS Full Stack &lt;Developer/&gt;
           </h1>
-          <p class="mb-16 mt-3 text-black/50">
+          <p class="mb-8 mt-3 text-black/50 md:mb-14">
             An independent developer coding with love.
           </p>
           <div class="flex-center lg:block">

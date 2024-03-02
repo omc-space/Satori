@@ -16,13 +16,16 @@ async function onSubmit(comment: CommentDto) {
 <template>
   <div v-bind="$attrs">
     <CommentEditor :id="props.data.id" :type="props.type" :on-submit="onSubmit" />
-    <div class="mt-12">
+    <div v-if="comments?.data" class="mt-12">
       <template v-for="comment in comments?.data" :key="comment.id">
         <CommentItem :comment="comment" />
         <div ml-8>
           <CommentItem v-for="i in comment.children" :key="i.id" :comment="i" />
         </div>
       </template>
+      <div v-if="!comments.data.length" text="x center">
+        还没有人踏及此处，留下足迹吧
+      </div>
     </div>
   </div>
 </template>

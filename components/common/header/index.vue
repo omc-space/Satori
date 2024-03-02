@@ -33,10 +33,6 @@ const menus = ref<NavigationItem[]>([
         name: '留言板',
         path: '/message',
       },
-      {
-        name: '留言板',
-        path: '/message',
-      },
     ],
   },
   {

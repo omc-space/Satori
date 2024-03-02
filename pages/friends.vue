@@ -4,8 +4,8 @@
 
 <template>
   <NuxtLayout name="base">
-    <header class="mb-16">
-      <h1 class="mb-6 text-3xl">
+    <header class="mb-16 prose">
+      <h1 class="mb-6">
         朋友们
       </h1>
       <b>海内存知己，天涯若比邻</b>

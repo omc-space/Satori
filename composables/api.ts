@@ -1,5 +1,7 @@
 import { http } from './fetch-request'
 import type {
+  CategoryModel,
+  CategoryQueryDto,
   CollectionRefTypes,
   CommentDto,
   CommentModel,
@@ -81,5 +83,21 @@ export function replyComment(id: string, comment: CommentDto) {
   return http<PaginateResult<CommentModel>>(`/comment/reply/${id}`, {
     method: 'post',
     body: comment,
+  })
+}
+
+export function getCategories(query?: CategoryQueryDto) {
+  return http<Record<string, CategoryModel & { children: PostModel[] }>>('/categories', {
+    method: 'get',
+    query,
+  })
+}
+
+export function getPostsByCategoryId(ids: string[]) {
+  return http<Array<CategoryModel>>('/categories', {
+    method: 'get',
+    query: {
+      ids,
+    },
   })
 }

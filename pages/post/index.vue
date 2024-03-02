@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { microDampingPreset } from '~/constants/spring'
 
-const { data: posts } = useAsyncData(() => getPosts())
+const { data: posts, pending } = useAsyncData(() => getPosts())
 </script>
 
 <template>
-  <div v-if="posts" class="base-container m-auto max-w-3xl pt-16">
+  <CommonLoading :loading="pending" />
+  <div v-if="posts" class="m-auto max-w-3xl pt-16 base-container">
     <CommonMotion
       v-for="post, idx in posts.data"
       :key="post.id"
@@ -28,5 +29,6 @@ const { data: posts } = useAsyncData(() => getPosts())
     >
       下一页
     </button>
+    <CommonEmpty v-if="!posts?.data.length" />
   </div>
 </template>

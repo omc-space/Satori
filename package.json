@@ -6,6 +6,7 @@
     "build": "nuxi build",
     "dev:pwa": "VITE_PLUGIN_PWA=true nuxi dev",
     "dev": "nuxi dev",
+    "prod": "nuxi dev --mode prod",
     "generate": "nuxi generate",
     "postinstall": "nuxi prepare",
     "start": "node .output/server/index.mjs",

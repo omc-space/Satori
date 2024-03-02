@@ -5,7 +5,7 @@ const isRoot = computed(() => route.path === '/')
 
 <template>
   <CommonHeader />
-  <main :class="isRoot ? '' : 'py-16'">
+  <main :class="isRoot ? '' : 'py-16'" class="base-min-h">
     <slot />
   </main>
   <Footer />

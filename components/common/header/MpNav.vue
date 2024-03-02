@@ -17,7 +17,7 @@ const { menus } = defineProps<{ menus: NavigationItem[] }>()
             v-for="(menu, index) in menus" :key="index" class="mb-4"
             :initial="{ y: 20, opacity: 0 }"
             :spring="reboundPreset"
-            :transition="{ delay: index * 0.15 }"
+            :transition="{ delay: index * 0.05 }"
           >
             <div class="mb-2 text-[16px]">
               <NuxtLink :to="menu.path" class="flex items-center gap-1" @click="close">

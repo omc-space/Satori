@@ -11,7 +11,7 @@ const { post } = defineProps<{ post: PostModel }>()
         <h3 class="text-omit text-[18px] text-black lg:text-xl dark:text-white">
           {{ post.title }}
         </h3>
-        <div class="mt-6 text-sm">
+        <div class="line-clamp-4 mt-6 text-sm">
           {{ post.text }}
         </div>
         <div class="mt-2 flex flex-1 items-center justify-between text-xs">
