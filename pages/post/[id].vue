@@ -18,6 +18,9 @@ const masterStore = useMasterStore()
   <CommonLoading :loading="pending" />
   <NuxtLayout v-if="post" name="post" class="m-auto max-w-6xl">
     <CommonMotion :spring="microDampingPreset">
+      <section>
+        title
+      </section>
       <MarkdownViewer :value="post.text" />
       <div>
         <section ref="content" class="py-6 text-xs text-gray-600 lh-6">

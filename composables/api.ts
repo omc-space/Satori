@@ -7,6 +7,8 @@ import type {
   CommentModel,
   ImageModel,
   LinkModel,
+  MenuModel,
+  NavigationItem,
   NoteModel,
   NoteResponse,
   PagerDto,
@@ -99,5 +101,11 @@ export function getPostsByCategoryId(ids: string[]) {
     query: {
       ids,
     },
+  })
+}
+
+export function getMenus() {
+  return http<{ data: Array<NavigationItem> }>('/system/keys/header', {
+    method: 'get',
   })
 }

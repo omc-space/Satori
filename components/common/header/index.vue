@@ -3,35 +3,25 @@ import { useMasterStore } from '~/store/master'
 import type { NavigationItem } from '~/types'
 
 const { y } = useWindowScroll()
-const menus = ref<NavigationItem[]>([
+const { data: menus } = useAsyncData(() => getMenus())
+
+const defaultMenus = ref<NavigationItem[]>([
   {
     name: '首页',
     path: '/',
     iconClass: 'i-tabler:alpha',
     children: [
       {
-        name: '关于我',
+        name: '自述',
         path: '/about',
       },
       {
-        name: '留言板',
+        name: '留言',
         path: '/message',
       },
       {
-        name: '时间轴',
+        name: '时间线',
         path: '/timeline',
-      },
-      {
-        name: '资源导航',
-        path: '/navigation',
-      },
-      {
-        name: '实验室',
-        path: '/lab',
-      },
-      {
-        name: '留言板',
-        path: '/message',
       },
     ],
   },
@@ -41,20 +31,12 @@ const menus = ref<NavigationItem[]>([
     iconClass: 'i-tabler:file-description',
     children: [
       {
-        name: '文章',
-        path: '/categories/article',
+        name: '读书',
+        path: '/categories/read',
       },
       {
-        name: '项目',
-        path: '/categories/project',
-      },
-      {
-        name: '友链',
-        path: '/categories/link',
-      },
-      {
-        name: '留言板',
-        path: '/categories/message',
+        name: '笔记',
+        path: '/categories/note',
       },
     ],
   },
@@ -79,6 +61,11 @@ const menus = ref<NavigationItem[]>([
     path: '/more',
     children: [
       {
+        name: '一言',
+        path: '/more/say',
+        iconClass: 'i-tabler:music',
+      },
+      {
         name: '听音乐',
         path: '/more/music',
         iconClass: 'i-tabler:music',
@@ -93,17 +80,18 @@ const masterStore = useMasterStore()
 
 <template>
   <header
+    v-if="menus"
     :class="showBg ? 'bg-white/80 dark:bg-black/50 dark:shadow-white/20 shadow backdrop-blur-md' : ''"
     class="fixed left-0 right-0 top-0 z-10 h-16 w-full transition duration-200"
   >
     <div class="relative grid grid-cols-[4.5rem_auto_4.5rem] mx-auto h-full max-w-7xl min-h-0 lg:px-8">
-      <CommonHeaderMpNav :menus="menus" class="flex lg:hidden" />
+      <CommonHeaderMpNav :menus="menus.data" class="flex lg:hidden" />
       <div class="flex-center">
         <NuxtLink to="/" class="flex-center">
           <CommonLazyLoadImage class="h-10 w-10 rounded-4 bg-gray-3" :src="masterStore.masterInfo.avatar" alt="home" />
         </NuxtLink>
       </div>
-      <CommonHeaderNav :menus="menus" class="hidden lg:flex" />
+      <CommonHeaderNav :menus="menus.data" class="hidden lg:flex" />
       <div class="flex-center">
         <CommonIconButton>
           <div class="i-tabler:user-plus" />

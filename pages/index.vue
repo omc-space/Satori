@@ -94,7 +94,7 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
               看看我的近况，我的所思所想、所作所为
             </h1>
             <div v-if="notes?.data.length" class="my-6">
-              <NuxtLink :to="`/note/${notes?.data[0].id}`">
+              <NuxtLink :to="`/note/${notes?.data[0].nid}`">
                 <div class="border rounded bg-gray/20 p-4 text-right shadow">
                   <div class="pt-14">
                     {{ notes?.data[0].title }}
@@ -115,7 +115,7 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
               </li>
             </ul>
             <div class="my-10 text-center text-x">
-              <CommonLink to="/note/latest" class="">
+              <CommonLink to="/timeline?type=notes" class="">
                 还有更多要不要看看?
               </CommonLink>
             </div>
