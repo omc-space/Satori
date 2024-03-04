@@ -18,8 +18,26 @@ const masterStore = useMasterStore()
   <CommonLoading :loading="pending" />
   <NuxtLayout v-if="post" name="post" class="m-auto max-w-6xl">
     <CommonMotion :spring="microDampingPreset">
-      <section>
-        title
+      <section class="flex-center flex-col">
+        <h1 class="text-2xl font-bold md:text-3xl">
+          {{ post.title }}
+        </h1>
+        <div class="my-8 flex items-center gap-2 text-xs text-zinc-400">
+          <div flex-center gap-1>
+            <div i-tabler:clock />
+            <span>{{ dateFns(post.created).fromNow() }}{{ post.modified ? '（已编辑）' : '' }}</span>
+          </div>
+          <div># {{ post.category.name }}</div>
+          <div flex-center gap-1>
+            <div i-tabler:book />
+            <span>{{ post.count.read }}</span>
+          </div>
+          <div flex-center gap-1>
+            <div i-tabler:thumb-up />
+            <span>{{ post.count.like }}</span>
+          </div>
+          <div v-if="post.copyright" i-tabler:copyright />
+        </div>
       </section>
       <MarkdownViewer :value="post.text" />
       <div>

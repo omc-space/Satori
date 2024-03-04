@@ -45,7 +45,7 @@ function getWeather() {
     <CommonMotion v-if="note" :spring="microDampingPreset">
       <article ref="articleRef" class="border border-transparent rounded-md bg-slate-50 p-4 shadow-sm dark:border-neutral-800 md:border-zinc-200/70 dark:bg-zinc-900 lg:p-8 dark:shadow-[#333]">
         <header class="mt-6 select-none">
-          <h1 class="text-3xl font-bold">
+          <h1 class="text-2xl font-bold md:text-3xl">
             {{ note.data.title }}
           </h1>
           <div class="mt-8 flex items-center text-xs text-zinc-400">
@@ -67,7 +67,7 @@ function getWeather() {
             <div i-tabler:copyright />
           </div>
         </header>
-        <div class="mt-8 min-h-120">
+        <div class="mt-10 min-h-120">
           <MarkdownViewer :value="note.data.text" />
           <section class="relative text-sm">
             <div class="flex justify-between">
