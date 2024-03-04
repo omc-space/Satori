@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { UserModel } from '../types/apiModles'
-import { getMasterInfo } from '~/composables/api'
+import { getConfig, getMasterInfo } from '~/composables/api'
 
 export const useMasterStore = defineStore('master', () => {
   const masterInfo = reactive<UserModel>({
@@ -17,11 +17,21 @@ export const useMasterStore = defineStore('master', () => {
     lastLoginIp: '',
     apiToken: '',
   })
+
+  const headerInfo = reactive({
+    show: false,
+    subtitle: '',
+    title: '',
+  })
   getMasterInfo().then((master) => {
     Object.assign(masterInfo, master)
   })
+  // getConfig('seo').then((res) => {
+  //   console.log(seo)
+  // })
   return {
     masterInfo,
+    headerInfo,
   }
 })
 

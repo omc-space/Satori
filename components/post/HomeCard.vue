@@ -13,7 +13,8 @@ const { post } = defineProps<{ post: PostModel }>()
         </h3>
         <div class="mt-6 flex flex-1 items-center justify-between text-xs">
           <div>
-            <span>{{ dateFns(post.created).format('YY 年MM 月DD 日') }}{{ post.modified ? '（已编辑）' : '' }}</span>
+            <span class="tracking-[1px]">{{ dateFns(post.created).format('YY年MM月DD日') }}</span>
+            <span>{{ post.modified ? '（已编辑）' : '' }}</span>
             <span v-for="i in post.tags" :key="i" class="satori-link--underline"># {{ i }}</span>
           </div>
           <div class="text-x text-primary op-0 transition group-hover:opacity-100">

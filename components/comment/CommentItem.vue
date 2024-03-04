@@ -1,14 +1,18 @@
 <script lang="ts" setup>
+import { md5 } from 'js-md5'
 import type { CommentDto, CommentModel } from '~/types'
 import { replyComment } from '~/composables/api'
 
 const { comment } = defineProps<{
   comment: CommentModel
+  onReplay: () => void
 }>()
 const [showReplay, toggleReplay] = useToggle()
 
 async function onSubmit(data: CommentDto) {
+  data.source = comment.id
   await replyComment(comment.id, data)
+  toggleReplay()
 }
 </script>
 
@@ -16,7 +20,10 @@ async function onSubmit(data: CommentDto) {
   <div v-if="comment">
     <div class="group my-4 flex items-end gap-4">
       <div class="flex">
-        <div class="h-10 w-10 rounded-full bg-gray/30" />
+        <CommonLazyLoadImage
+          :src="`https://cravatar.cn/avatar/${md5(comment.mail)}?d=monsterid`"
+          class="h-10 w-10 rounded-full"
+        />
       </div>
       <div>
         <div class="p-1 pb-2 text-[10px] text-gray/90">
@@ -25,8 +32,8 @@ async function onSubmit(data: CommentDto) {
           </NuxtLink>
           <span class="select-none">
             <span class="ml-2">{{ dateFns(comment.created).format('YY年MM月DD日') }}</span>
-            <span class="ml-2">#3</span>
-            <span class="ml-2">来自：江西赣州</span>
+            <span class="ml-2">{{ comment.key }}</span>
+            <span class="ml-2">{{ comment.ip }}</span>
           </span>
         </div>
         <div class="relative">

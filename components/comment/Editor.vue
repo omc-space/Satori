@@ -16,7 +16,7 @@ const commentForm = reactive<CommentDto>({
   text: '',
   mail: user.value.mail,
   url: user.value.url,
-  source: 'github',
+  source: '',
   // avatar: '',
   isWhispers: false,
 })
@@ -26,11 +26,11 @@ const maxLength = 500
 async function onSubmit() {
   // TODO: 提交评论
   // await sendComment(props.id, commentForm, props.type)
+
+  props.onSubmit && await props.onSubmit(commentForm)
   user.value.author = commentForm.author
   user.value.mail = commentForm.mail
   user.value.url = commentForm.url || ''
-  props.onSubmit && props.onSubmit(commentForm)
-
   commentForm.text = ''
 }
 function handleKeyDown(e: KeyboardEvent) {

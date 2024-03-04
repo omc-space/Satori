@@ -1,26 +1,28 @@
 <script lang="ts" setup>
 import { microDampingPreset } from '~/constants/spring'
 import { getNoteByNid } from '~/composables/api'
-import { CollectionRefTypes, type NoteModel, type NoteResponse } from '~/types'
+import { CollectionRefTypes } from '~/types'
+import { useMasterStore } from '~/store/master'
 
+const masterStore = useMasterStore()
 const route = useRoute<'note-id'>()
 const articleRef = ref<HTMLElement>()
 const percentage = useScrollPercentage(articleRef)
-const note = ref<NoteResponse>()
-const loading = ref(true)
 
-if (route.params.id === 'latest') {
-  getLastNote().then((res) => {
-    note.value = res
-    loading.value = false
+const { data: note, pending } = useAsyncData(async () => {
+  const res = await getNoteByNid(route.params.id)
+  masterStore.headerInfo.subtitle = `手记 / ${res.data.mood}`
+  masterStore.headerInfo.title = res.data.title
+  masterStore.headerInfo.show = true
+  useHead({
+    title: res.data.title,
   })
-}
-else {
-  getNoteByNid(route.params.id).then((res) => {
-    note.value = res
-    loading.value = false
-  })
-}
+  return res
+})
+
+onBeforeUnmount(() => {
+  masterStore.headerInfo.show = false
+})
 
 function getWeather() {
   if (!note.value || !note.value.data.weather)
@@ -40,8 +42,8 @@ function getWeather() {
 </script>
 
 <template>
-  <CommonLoading :loading="loading" />
-  <div v-if="!loading">
+  <CommonLoading :loading="pending" />
+  <div v-if="!pending">
     <CommonMotion v-if="note" :spring="microDampingPreset">
       <article ref="articleRef" class="border border-transparent rounded-md bg-slate-50 p-4 shadow-sm dark:border-neutral-800 md:border-zinc-200/70 dark:bg-zinc-900 lg:p-8 dark:shadow-[#333]">
         <header class="mt-6 select-none">

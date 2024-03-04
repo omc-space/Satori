@@ -5,13 +5,25 @@ import { CollectionRefTypes } from '~/types'
 import { useMasterStore } from '~/store/master'
 
 const route = useRoute<'post-id'>()
-
+const masterStore = useMasterStore()
 const content = ref<HTMLElement | null>(null)
 const percentage = useScrollPercentage(content)
 
 const fullPath = computed(() => window.location.href)
-const { data: post, pending } = useAsyncData(() => getPostById(route.params.id))
-const masterStore = useMasterStore()
+const { data: post, pending } = useAsyncData(async () => {
+  const res = await getPostById(route.params.id)
+  masterStore.headerInfo.subtitle = res.category.name
+  masterStore.headerInfo.title = res.title
+  masterStore.headerInfo.show = true
+  useHead({
+    title: res.title,
+  })
+  return res
+})
+
+onBeforeUnmount(() => {
+  masterStore.headerInfo.show = false
+})
 </script>
 
 <template>

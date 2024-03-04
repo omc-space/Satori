@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { getAggregate } from './composables/api'
 import { appName } from '~/constants'
 
+getAggregate().then((res) => {
+  useHead({
+    title: `${res.url.title} • ${res.url.description}`,
+  })
+})
 useHead({
   title: appName,
 })

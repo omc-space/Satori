@@ -1,6 +1,7 @@
 import { http } from './fetch-request'
 import type {
   CategoryModel,
+  CategoryPostResult,
   CategoryQueryDto,
   CollectionRefTypes,
   CommentDto,
@@ -15,6 +16,8 @@ import type {
   PaginateResult,
   PostModel,
   SayModel,
+  TimelineQueryDto,
+  TimelineResult,
   UserModel,
 } from '~/types'
 
@@ -42,7 +45,10 @@ export function getLastNote() {
 }
 
 export function getNoteByNid(nid: string) {
-  return http<NoteResponse>(`/notes/nid/${nid}`)
+  let path = '/notes'
+  if (nid !== 'latest')
+    path += '/nid'
+  return http<NoteResponse>(`${path}/${nid}`)
 }
 
 export function getSayList(pager?: PagerDto) {
@@ -104,8 +110,42 @@ export function getPostsByCategoryId(ids: string[]) {
   })
 }
 
+export function getPostsByCategorySlug(slug: string) {
+  return http<Array<PostModel>>('/categories', {
+    method: 'get',
+    query: {
+      slug,
+    },
+  })
+}
+
 export function getMenus() {
   return http<{ data: Array<NavigationItem> }>('/system/keys/header', {
+    method: 'get',
+  })
+}
+
+export function getConfig(key: string) {
+  return http<{ data: Array<NavigationItem> }>(`/config/${key}`, {
+    method: 'get',
+  })
+}
+
+export function getPostByCategory(category: string) {
+  return http<{ data: CategoryPostResult }>(`/categories/${category}`, {
+    method: 'get',
+  })
+}
+
+export function getTimeline(timelineQueryDto?: TimelineQueryDto) {
+  return http<{ data: TimelineResult }>(`/aggregate/timeline`, {
+    method: 'get',
+    query: timelineQueryDto,
+  })
+}
+
+export function getAggregate() {
+  return http<{ url: { title: string, description: string, keywords: string[] } }>(`/aggregate`, {
     method: 'get',
   })
 }

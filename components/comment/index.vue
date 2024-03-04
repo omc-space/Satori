@@ -18,9 +18,9 @@ async function onSubmit(comment: CommentDto) {
     <CommentEditor :id="props.data.id" :type="props.type" :on-submit="onSubmit" />
     <div v-if="comments?.data" class="mt-12">
       <template v-for="comment in comments?.data" :key="comment.id">
-        <CommentItem :comment="comment" />
+        <CommentItem :comment="comment" :on-replay="refresh" />
         <div ml-8>
-          <CommentItem v-for="i in comment.children" :key="i.id" :comment="i" />
+          <CommentItem v-for="i in comment.children" :key="i.id" :comment="i" :on-replay="refresh" />
         </div>
       </template>
       <div v-if="!comments.data.length" text="x center">

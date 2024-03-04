@@ -263,3 +263,45 @@ export interface MenuModel {
   icon?: string
   children?: MenuModel[]
 }
+
+export interface CategoryPostResult extends CategoryModel {
+  children?: PostModel[]
+}
+
+export enum TimelineType {
+  Post,
+  Note,
+}
+
+export interface TimelineQueryDto {
+  sort?: 1 | -1
+  year?: number
+  type?: TimelineType
+}
+
+interface TimelinePostResult {
+  _id: string
+  title: string
+  slug: string
+  created: string
+  modified: string
+  category: CategoryModel
+  url: string
+}
+
+interface TimelineNoteResult {
+  _id: string
+  created: string
+  title: string
+  modified?: any
+  mood: string
+  weather: string
+  hasMemory: boolean
+  nid: number
+  id: string
+}
+
+export interface TimelineResult {
+  notes: TimelinePostResult[]
+  posts: TimelineNoteResult[]
+}

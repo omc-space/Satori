@@ -12,6 +12,7 @@ import { softBouncePreset } from '~/constants/spring'
 const props = defineProps<{
   initial?: VariantDefinition
   transition?: AnimationOptionsWithOverrides
+  exit?: VariantDefinition 
   animate?: VariantDefinition
   spring?: SpringOptions
   easing?: Pick<KeyframeOptions, 'easing'>
@@ -40,6 +41,7 @@ const animate: VariantDefinition = {
     :initial="props.initial ?? initial"
     :animate="props.animate ?? animate"
     :transition="transition"
+    :exit="props.exit"
     v-bind="$attrs"
   >
     <slot />

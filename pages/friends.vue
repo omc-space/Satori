@@ -1,5 +1,7 @@
 <script setup>
-
+useHead({
+  title: '友链',
+})
 </script>
 
 <template>

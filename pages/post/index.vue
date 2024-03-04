@@ -2,6 +2,9 @@
 import { microDampingPreset } from '~/constants/spring'
 
 const { data: posts, pending } = useAsyncData(() => getPosts())
+useHead({
+  title: '文稿',
+})
 </script>
 
 <template>

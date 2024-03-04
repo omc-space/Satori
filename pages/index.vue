@@ -3,6 +3,9 @@ import { useMasterStore } from '@/store/master'
 import { formateRelativeTime } from '~/composables/date'
 import { microDampingPreset } from '~/constants/spring'
 
+useHead({
+  title: '首页',
+})
 const { masterInfo } = useMasterStore()
 const socials = computed(() => {
   if (!masterInfo.socialIds)
@@ -94,13 +97,13 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
               看看我的近况，我的所思所想、所作所为
             </h1>
             <div v-if="notes?.data.length" class="my-6">
-              <NuxtLink :to="`/note/${notes?.data[0].nid}`">
+              <NuxtLink :to="`/note/${notes.data[0].nid}`">
                 <div class="border rounded bg-gray/20 p-4 text-right shadow">
                   <div class="pt-14">
-                    {{ notes?.data[0].title }}
+                    {{ notes.data[0].title }}
                   </div>
                   <div class="mt-1 text-xs">
-                    {{ formateRelativeTime(notes?.data[0].created) }}
+                    {{ formateRelativeTime(notes.data[0].created) }}
                   </div>
                 </div>
               </NuxtLink>
@@ -108,7 +111,7 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
             <p>这里还有一些历史回顾</p>
             <ul class="timeline-container my-10">
               <li v-for="i in notes?.data.slice(1, 5)" :key="i.id" class="timeline-item flex justify-between text-x">
-                <CommonLink :to="`/note/${i.id}`">
+                <CommonLink :to="`/note/${i.nid}`">
                   {{ i.title }}
                 </CommonLink>
                 <span class="text-xs text-black/50">{{ formateRelativeTime(i.created) }}</span>
@@ -137,7 +140,7 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
       </h1>
       <div class="grid grid-cols-3 mt-10 max-w-5xl min-w-0 gap-10 p-4 lg:grid-cols-5 md:grid-cols-4 lg:p-0">
         <div v-for="i in 10" :key="i" class="flex-center flex-col">
-          <div class="h-24 w-24 border border-gray/20 rounded-full" />
+          <div class="h-24 w-24 border border-gray/20 rounded-full bg-gray-100" />
           <div class="mt-4 text-center text-x">
             Rikumi
           </div>
