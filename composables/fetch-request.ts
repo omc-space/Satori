@@ -2,7 +2,7 @@ interface Options {
   params?: any
   body?: any
   query?: any
-  method?: 'get' | 'post' | 'delete' | 'put'
+  method?: 'get' | 'post' | 'delete' | 'put' | 'patch'
 }
 
 function createClient() {

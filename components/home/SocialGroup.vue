@@ -74,16 +74,15 @@ const socialList: Record<string, SocialType> = {
 </script>
 
 <template>
-  <div class="flex gap-3">
-    <CommonTooltip
+  <div class="flex gap-3" v-if="props.socials">
+    <CommonMotion
       v-for="social, idx in props.socials"
       :key="social.name"
-    >
-      <CommonMotion
         :initial="{ y: 60, opacity: 0 }"
         :animate="{ y: 0, opacity: 1 }"
         :transition="{ delay: idx * 0.15 + props.initDelay }"
       >
+    <CommonTooltip>
         <NuxtLink
           :to="socialList[social.name ?? 'default']?.url(social.id ?? '')"
           target="_blank"
@@ -94,13 +93,13 @@ const socialList: Record<string, SocialType> = {
             :class="socialList[social.name ?? 'default']?.iconClass"
           />
         </NuxtLink>
-      </CommonMotion>
-
-      <template #popper>
-        <div class="text-x">
-          {{ socialList[social.name ?? 'default']?.name }}
-        </div>
-      </template>
-    </CommonTooltip>
+        
+        <template #popper>
+          <div class="text-x">
+            {{ socialList[social.name ?? 'default']?.name }}
+          </div>
+        </template>
+      </CommonTooltip>
+    </CommonMotion>
   </div>
 </template>

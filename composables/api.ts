@@ -7,6 +7,7 @@ import type {
   CommentDto,
   CommentModel,
   ImageModel,
+  LinkApplyDto,
   LinkModel,
   MenuModel,
   NavigationItem,
@@ -20,6 +21,11 @@ import type {
   TimelineResult,
   UserModel,
 } from '~/types'
+
+interface PageQueryDto {
+  size?: number
+  page?: number
+}
 
 export function getMasterInfo() {
   return http<PaginateResult<UserModel>>('/master')
@@ -52,13 +58,13 @@ export function getNoteByNid(nid: string) {
 }
 
 export function getSayList(pager?: PagerDto) {
-  return http<PaginateResult<SayModel>>('/says', {
+  return http<PaginateResult<SayModel>>('/say', {
     query: pager,
   })
 }
 
 export function getSayById(id: string) {
-  return http<PaginateResult<SayModel>>(`/says/${id}`)
+  return http<PaginateResult<SayModel>>(`/say/${id}`)
 }
 
 export function getImageList(pager?: PagerDto) {
@@ -149,3 +155,24 @@ export function getAggregate() {
     method: 'get',
   })
 }
+
+export function getLinks(query?: PageQueryDto) {
+  return http<PaginateResult<LinkModel>>(`/links/all`, {
+    method: 'get',
+    query,
+  })
+}
+
+export function canApplyLink() {
+  return http<{ can: boolean }>(`/links/audit`, {
+    method: 'get',
+  })
+}
+
+export function applyLink(data: LinkApplyDto) {
+  return http(`/links/audit`, {
+    method: 'post',
+    body: data,
+  })
+}
+

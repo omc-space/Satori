@@ -2,26 +2,30 @@
 import { getImageSizeFromUrl } from '~/composables/utils'
 
 const props = defineProps<{
-  src: string
+  src?: string
   lazy?: boolean
   blur?: boolean
 }>()
 const image = ref<HTMLImageElement>()
-
-const data_url = ref('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+Pr1638ACaED3/nOThIAAAAASUVORK5CYII=')
+const defaultImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+Pr1638ACaED3/nOThIAAAAASUVORK5CYII='
+const data_url = ref(defaultImage)
 const loadingState = ref('')
 const aspectRatio = ref<string | number>('auto')
 
 function loadImage() {
   // data_url.value = resizeImgUrl(props.src, 48)
   return new Promise<void>((resolve, _reject) => {
+    if(!props.src) return resolve()
     loadingState.value = 'loading'
     const img = new Image()
     img.src = props.src
     img.onload = () => {
-      data_url.value = props.src
+      data_url.value = props.src || defaultImage
       loadingState.value = 'loaded'
       resolve()
+    }
+    img.onerror = () => {
+      data_url.value = defaultImage
     }
   })
 }

@@ -1,5 +1,7 @@
 export function useScrollPercentage(el: Ref<HTMLElement | null | undefined>) {
   const percentage = ref(0)
+  if(!process.client)
+    return percentage
 
   const calculatePercentage = useThrottleFn(() => {
     if (!el.value)
@@ -15,13 +17,13 @@ export function useScrollPercentage(el: Ref<HTMLElement | null | undefined>) {
       percentage.value = p
   }, 20)
 
-  onMounted(() => {
-    window.addEventListener('scroll', calculatePercentage)
-  })
+  // onMounted(() => {
+  //   window.addEventListener('scroll', calculatePercentage)
+  // })
 
-  onBeforeUnmount(() => {
-    window.removeEventListener('scroll', calculatePercentage)
-  })
+  // onBeforeUnmount(() => {
+  //   window.removeEventListener('scroll', calculatePercentage)
+  // })
 
   return percentage
 }

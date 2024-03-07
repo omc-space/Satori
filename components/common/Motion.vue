@@ -7,7 +7,7 @@ import type {
   SpringOptions,
   VariantDefinition,
 } from 'motion'
-import { softBouncePreset } from '~/constants/spring'
+import { softSpringPreset } from '~/constants/spring'
 
 const props = defineProps<{
   initial?: VariantDefinition
@@ -25,7 +25,7 @@ const initial: VariantDefinition = {
 }
 
 const transition: AnimationOptionsWithOverrides = {
-  easing: spring(props.spring ?? softBouncePreset),
+  easing: spring(props.spring ?? softSpringPreset),
   delay: props.delay,
   ...props.transition,
 }

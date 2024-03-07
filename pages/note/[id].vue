@@ -14,8 +14,10 @@ const { data: note, pending } = useAsyncData(async () => {
   masterStore.headerInfo.subtitle = `手记 / ${res.data.mood}`
   masterStore.headerInfo.title = res.data.title
   masterStore.headerInfo.show = true
-  useHead({
-    title: res.data.title,
+  nextTick(()=>{
+    useHead({
+      title: res.data.title,
+    })
   })
   return res
 })

@@ -15,8 +15,10 @@ const { data: post, pending } = useAsyncData(async () => {
   masterStore.headerInfo.subtitle = res.category.name
   masterStore.headerInfo.title = res.title
   masterStore.headerInfo.show = true
-  useHead({
-    title: res.title,
+  nextTick(() => {
+    useHead({
+      title: res.title,
+    })
   })
   return res
 })

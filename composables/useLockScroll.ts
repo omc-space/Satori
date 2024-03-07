@@ -3,9 +3,9 @@ export function useLockScroll(el?: HTMLElement) {
     return
 
   let originalOverflow: string
-  el = el ?? document.body
 
   function lock() {
+    el = el ?? document.body
     originalOverflow = el.style.overflow
     el.style.overflow = 'hidden'
   }

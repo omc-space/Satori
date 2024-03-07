@@ -25,6 +25,7 @@ const socials = computed(() => {
 
 const { data: posts } = useAsyncData(() => getPosts({ page: 1, size: 5 }))
 const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
+const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
 </script>
 
 <template>
@@ -139,10 +140,10 @@ const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
         这些是我珍视的人，他们陪伴我走过人生的每一段旅程。
       </h1>
       <div class="grid grid-cols-3 mt-10 max-w-5xl min-w-0 gap-10 p-4 lg:grid-cols-5 md:grid-cols-4 lg:p-0">
-        <div v-for="i in 10" :key="i" class="flex-center flex-col">
-          <div class="h-24 w-24 border border-gray/20 rounded-full bg-gray-100" />
+        <div v-for="i in links?.data" :key="i.id" class="flex-center flex-col">
+          <CommonLazyLoadImage :src="i.avatar" class="h-24 w-24 border border-gray/20 rounded-full bg-gray-100" />
           <div class="mt-4 text-center text-x">
-            Rikumi
+            {{ i.name }}
           </div>
         </div>
       </div>

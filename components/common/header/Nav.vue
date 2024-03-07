@@ -49,7 +49,7 @@ const spotlightStyle = computed(() => {
           <NuxtLink
             :to="menu.path"
             class="relative flex-center gap-1 px-4 py-2 hover:primary-color"
-            :class="{ selected: pathPrefix === menu.path.split('/')[1] }"
+            :class="{ selected: pathPrefix === menu.path?.split('/')[1] }"
           >
             <Transition name="icon">
               <div v-show="pathPrefix === menu.path" :class="menu.iconClass" />
@@ -82,7 +82,7 @@ const spotlightStyle = computed(() => {
           <NuxtLink
             :to="menu.path"
             class="relative flex-center gap-1 px-4 py-2 hover:primary-color"
-            :class="{ selected: pathPrefix === menu.path.split('/')[1] }"
+            :class="{ selected: pathPrefix === menu.path?.split('/')[1] }"
           >
             <Transition name="icon">
               <div v-show="pathPrefix === menu.path" :class="menu.iconClass" />

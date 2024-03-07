@@ -170,6 +170,16 @@ export interface LinkModel {
   created: string
 }
 
+export interface LinkApplyDto {
+  name: string
+  url: string
+  avatar?: string
+  type?: LinkType
+  description?: string
+  email?: string
+  author: string
+}
+
 export interface BaseUserModel {
   introduce: string
   mail: string
@@ -279,7 +289,7 @@ export interface TimelineQueryDto {
   type?: TimelineType
 }
 
-interface TimelinePostResult {
+export interface TimelinePostResult {
   _id: string
   title: string
   slug: string
@@ -289,7 +299,7 @@ interface TimelinePostResult {
   url: string
 }
 
-interface TimelineNoteResult {
+export interface TimelineNoteResult {
   _id: string
   created: string
   title: string
