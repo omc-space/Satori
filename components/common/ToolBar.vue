@@ -5,11 +5,11 @@ const { y } = useWindowScroll({behavior: 'smooth'})
 
 <template>
   <Teleport to="body">
-    <div fixed right-4 bottom-8>
+    <div fixed right-4 bottom-8 z-60>
       <Transition name="fade">
         <button 
           v-if="y>300"
-          class="z-90 p-2 rounded-xl shadow-xl border text-x bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700"
+          class="p-2 rounded-xl shadow-xl border text-x bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700"
           @click="y=0"
         >
           <div i-tabler:arrow-bar-to-up></div>
