@@ -1,21 +1,22 @@
 <script lang="ts" setup>
 import { reboundPreset } from '~/constants/spring'
+import PostContainer from '~/layouts/note.vue'
 
 const route = useRoute<'note-id'>()
 const id = computed(() => route.params.id)
-const { data: notes } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
-const selectId = ref(Number(route.params.id))
+const { data: notes, pending } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
+const selectId = ref(Number(route.params.id === 'latest'? notes?.value?.data[0]?.nid: route.params.id))
 </script>
 
 <template>
-  <NuxtLayout name="note">
+  <PostContainer>
     <template #left>
-      <ul class="group max-w-[200px] text-x">
+      <ul class="group max-w-[200px] text-x" v-if="!pending">
         <CommonMotion
           v-for="i, idx in notes?.data"
           :key="i.id"
           :initial="{ opacity: 0, x: -20 }"
-          :transition="{ delay: 0.15 * idx + 1 }"
+          :transition="{ delay: 0.1 * idx + 0.5 }"
           :animate="{ opacity: 1, x: 0 }"
           class="my-1"
         >
@@ -31,7 +32,7 @@ const selectId = ref(Number(route.params.id))
               :initial="{ x: -20 }"
               :animate="{ x: 0 }"
             >
-              <div class="transition-colors" i-tabler:circle-dot mr-1 text-black group-hover:text-red />
+              <div class="transition-colors" i-tabler:circle-dot mr-1 text-black group-hover:text-primary />
             </CommonMotion>
             <div class="text-omit">
               {{ i.title }}
@@ -42,5 +43,5 @@ const selectId = ref(Number(route.params.id))
     </template>
 
     <NuxtPage :page-key="id" />
-  </NuxtLayout>
+  </PostContainer>
 </template>

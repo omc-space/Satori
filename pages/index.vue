@@ -35,17 +35,21 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
       <template #left>
         <CommonMotion :spring="microDampingPreset" class="my-5">
           <h1 class="py-2 text-4xl font-medium">
-            Hi, I'm {{ masterInfo.name }}👋。
+            <CommonTextAnimate :text="`Hi, I'm ${masterInfo.name}👋。`"/>
           </h1>
           <h1 class="py-2 text-4xl font-medium">
-            A NodeJS Full Stack &lt;Developer/&gt;
+            <CommonTextAnimate text="A NodeJS Full Stack &lt;Developer/&gt" :delay="1"/>
           </h1>
-          <p class="mb-8 mt-3 text-black/50 md:mb-14">
-            An independent developer coding with love.
-          </p>
-          <div class="flex-center lg:block">
-            <HomeSocialGroup :socials="socials" :init-delay="0.5" />
-          </div>
+          <CommonMotion :spring="microDampingPreset" :transition="{delay: 2.8}">
+            <p class="mb-8 mt-3 text-black/50 md:mb-14">
+                An independent developer coding with love.
+            </p>
+            <div class="flex-center lg:block">
+              <ClientOnly>
+                <HomeSocialGroup :socials="socials" :init-delay="3" />
+              </ClientOnly>
+            </div>
+          </CommonMotion>
         </CommonMotion>
         <CommonMotion :spring="microDampingPreset" class="absolute bottom-0 left-0 right-0 flex-center flex-col text-xs">
           <p>
@@ -65,15 +69,15 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
       <template #left>
         <h1 class="text-2xl font-medium">
           <p class="pb-4">
-            这里或许有那么一些对于生活的感慨<br>
-            也或许有那么一些对于技术的记录。
+            <p py-2>这里或许有那么一些对于生活的感慨</p>
+            <p py-2>也或许有那么一些对于技术的记录。</p>
           </p>
         </h1>
       </template>
       <template #right="{ visible }">
         <!-- TODO：fix 动画导致宽度异常 -->
         <!-- 需要添加overflow-hiddeb修复动画导致的宽度异常问题 -->
-        <div v-if="visible" class="w-full flex-center flex-col overflow-hidden">
+        <div v-if="visible" class="w-full flex-center flex-col">
           <CommonMotion
             v-for="i, idx in posts?.data"
             :key="i.id"
@@ -129,8 +133,8 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
       <template #right>
         <div class="flex-1 text-2xl font-medium">
           <p class="m-auto max-w-100 pb-4">
-            而在这里，你会看到一个不同的我，
-            一个在生活中发现美，感受痛苦，洞察人性的我。
+            <p>而在这里，你会看到一个不同的我，</p>
+            <p>一个在生活中发现美，感受痛苦，洞察人性的我。</p>
           </p>
         </div>
       </template>
@@ -140,12 +144,18 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
         这些是我珍视的人，他们陪伴我走过人生的每一段旅程。
       </h1>
       <div class="grid grid-cols-3 mt-10 max-w-5xl min-w-0 gap-10 p-4 lg:grid-cols-5 md:grid-cols-4 lg:p-0">
-        <div v-for="i in links?.data" :key="i.id" class="flex-center flex-col">
+        <NuxtLink 
+        v-for="i in links?.data"
+        :key="i.id"
+        :to="i.url"
+        target="_blank"
+        class="flex-center flex-col"
+        >
           <CommonLazyLoadImage :src="i.avatar" class="h-24 w-24 border border-gray/20 rounded-full bg-gray-100" />
           <div class="mt-4 text-center text-x">
             {{ i.name }}
           </div>
-        </div>
+        </NuxtLink>
       </div>
       <div class="my-20 text-center text-x">
         <CommonLink to="/friends">

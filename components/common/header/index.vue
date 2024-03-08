@@ -26,7 +26,7 @@ const isMiniSize = computed(() => useWindowSize().width.value < 768)
         </NuxtLink>
       </div>
       <div relative flex-center>
-        <Presence :exit-before-enter="false" :initial="false">
+        <Presence :exit-before-enter="false" :initial="true">
           <CommonMotion
             v-if="headerInfo.show && showBg"
             class="absolute left-0 w-full flex flex-row justify-between text-omit px-2 md:px-8"

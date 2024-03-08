@@ -54,7 +54,7 @@ const spotlightStyle = computed(() => {
             <Transition name="icon">
               <div v-show="pathPrefix === menu.path" :class="menu.iconClass" />
             </Transition>
-            <span>{{ menu.name }}</span>
+            <span select-none>{{ menu.name }}</span>
             <span class="line absolute bottom-0 left-0 hidden h-[1px] w-full" />
           </NuxtLink>
           <template #popper>

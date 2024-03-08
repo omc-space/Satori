@@ -1,11 +1,20 @@
 <script lang="ts" setup>
-const { loading = true } = defineProps<{ loading?: boolean }>()
+const props = defineProps<{ loading?: boolean, delay?: number }>()
+const load = ref(false)
+
+watch(()=> props.loading, (newValue) => {
+  if(newValue === true)
+    setTimeout(()=>{
+      load.value = true
+    }, props.delay ?? 200)
+},{immediate: true})
 </script>
 
 <template>
-  <div v-if="loading" class="loading">
-    <div class="ball-container">
-      <div class="ball" />
+  <div v-if="props.loading" class="loading">
+    <div class="ball-container" :class="load?'op-100': 'op-0'">
+      <LoadBall text-4xl/>
+      <div text-x>放宽心，不急躁</div>
     </div>
   </div>
 </template>
@@ -18,26 +27,12 @@ const { loading = true } = defineProps<{ loading?: boolean }>()
 }
 .ball-container{
   position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-}
-.ball{
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  background-color: #105D67;
-  animation: loading alternate infinite 0.6s ease-in;
-  transform: scale(0.2);
-}
-@keyframes loading {
-  0%{
-    transform: translateY(0) scale(0.2);
-  }
-  80%{
-    transform: translateY(60px) scale(0.4);
-  }
-  100%{
-    transform: translateY(80px) scale(1);
-  }
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 </style>

@@ -7,13 +7,14 @@ const { data, pending } = useAsyncData(async () => {
   const res = await getSayList()
   return res.data
 })
+
 </script>
 
 <template>
   <CommonLoading :loading="pending" />
   <div class="base-container">
     <ClientOnly>
-      <SayList v-if="data" :data="data" />
+      <SayList v-if="data && !pending" :data="data" />
     </ClientOnly>
   </div>
 </template>

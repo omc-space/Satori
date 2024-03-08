@@ -71,8 +71,8 @@ function getWeather() {
             <div i-tabler:copyright />
           </div>
         </header>
-        <div class="mt-10 min-h-120">
-          <MarkdownViewer :value="note.data.text" />
+        <div class="mt-10">
+          <MarkdownViewer min-h-120 :value="note.data.text" />
           <section class="relative text-sm">
             <div class="flex justify-between">
               <div>

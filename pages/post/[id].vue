@@ -30,7 +30,7 @@ onBeforeUnmount(() => {
 
 <template>
   <CommonLoading :loading="pending" />
-  <NuxtLayout v-if="post" name="post" class="m-auto max-w-6xl">
+  <NuxtLayout v-if="post && !pending" name="post" class="m-auto max-w-6xl">
     <CommonMotion :spring="microDampingPreset">
       <section class="flex-center flex-col">
         <h1 class="text-2xl font-bold md:text-3xl">
@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
           </div>
           <div>最后修改时间: {{ formateDate(post.modified ?? post.created) }}</div>
           <CommonDivider />
-          <div>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</div>
+          <div v-if="post.copyright">版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</div>
         </section>
         <Comment class="mt-8" :data="post" :type="CollectionRefTypes.Post" />
       </div>

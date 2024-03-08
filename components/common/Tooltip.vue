@@ -4,7 +4,6 @@ import { Tooltip as VTooltip } from 'floating-vue'
 
 <template>
   <VTooltip
-    :auto-hide="false"
     distance="4"
     theme="menu"
     :delay="{ show: 0, hide: 50 }"

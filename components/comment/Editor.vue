@@ -24,9 +24,8 @@ const commentForm = reactive<CommentDto>({
 const maxLength = 500
 
 async function onSubmit() {
-  // TODO: 提交评论
-  // await sendComment(props.id, commentForm, props.type)
-
+  if(commentForm.url?.trim() === '')
+    commentForm.url = undefined
   props.onSubmit && await props.onSubmit(commentForm)
   user.value.author = commentForm.author
   user.value.mail = commentForm.mail

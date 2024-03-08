@@ -8,13 +8,13 @@ const props = defineProps<{
 
 <template>
   <VDropdown
-    :auto-hide="true"
     distance="14"
     theme="menu"
     :delay="{ show: 0, hide: 50 }"
     popper-class="my-popover-theme"
     compute-transform-origin
     :disabled="props.disabled"
+    :triggers="['hover']"
   >
     <slot />
 

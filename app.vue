@@ -17,6 +17,7 @@ useHead({
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <CommonToolBar />
 </template>
 
 <style>

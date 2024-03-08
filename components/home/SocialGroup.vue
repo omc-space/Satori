@@ -78,7 +78,7 @@ const socialList: Record<string, SocialType> = {
     <CommonMotion
       v-for="social, idx in props.socials"
       :key="social.name"
-        :initial="{ y: 60, opacity: 0 }"
+        :initial="{ y: 36, opacity: 0 }"
         :animate="{ y: 0, opacity: 1 }"
         :transition="{ delay: idx * 0.15 + props.initDelay }"
       >
