@@ -40,7 +40,7 @@ function handleKeyDown(e: KeyboardEvent) {
 
 <template>
   <div>
-    <div class="mb-4 flex flex-col gap-4 lg:flex-row">
+    <div class="mb-4 flex flex-col gap-2 lg:flex-row">
       <CommonInput
         v-model="commentForm.author"
         required

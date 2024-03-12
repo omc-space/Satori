@@ -30,18 +30,17 @@ export enum CategoryType {
   Tag,
 }
 
-export interface CategoryModel {
+export interface CategoryModel extends BaseModel{
   type: CategoryType
   count: number
-  id: string
-  created: string
   slug?: string
   name: string
   modified: string
 }
-export class BaseModel {
-  created?: Date
-  id?: string
+export interface BaseModel {
+  created: Date
+  id: string
+  updated?: Date
 }
 
 export interface PagerDto {
@@ -101,20 +100,18 @@ export interface NoteModel {
   meta?: any
 }
 
-export interface PostModel {
+export interface PostModel extends BaseModel {
   commentsIndex: number
   allowComment: boolean
   copyright: boolean
   tags: string[]
   count: Count
-  id: string
   text: string
   title: string
   slug: string
   categoryId: string
   images: Image[]
   modified: string
-  created: string
   category: CategoryModel
   pin?: string
   pinOrder?: number
@@ -126,7 +123,6 @@ export interface SayModel extends BaseModel {
   text: string
   author?: string
   source?: string
-  updated: string
 }
 
 export interface TopicModel extends BaseModel {
@@ -253,12 +249,6 @@ export interface NoteResponse {
   data: NoteModel
   next: NoteModel
   prev: NoteModel
-}
-
-export interface CategoryModel extends BaseModel {
-  name: string
-  type: CategoryType
-  slug?: string
 }
 
 export interface CategoryQueryDto {

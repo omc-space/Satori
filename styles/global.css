@@ -1,6 +1,5 @@
 :root {
   --primary-color: #089773;
-  --primary-color: #089773;
   --primary-color-2: #f9bfb7;
   --secondary-color: #09090bcc;
   --spotlight-color: #e6f7f3;
@@ -23,7 +22,7 @@ body{
 /* 设置滚动条样式 */
 ::-webkit-scrollbar {
   width: 6px;
-  /* 宽度 */
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {

@@ -9,7 +9,7 @@ useHead({
 
 <template>
   <CommonLoading :loading="pending" />
-  <div v-if="posts" class="m-auto max-w-3xl pt-16 base-container">
+  <div v-if="posts && !pending" class="m-auto max-w-3xl pt-16 base-container">
     <CommonMotion
       v-for="post, idx in posts.data"
       :key="post.id"

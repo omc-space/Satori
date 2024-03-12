@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getPostByCategory } from '~/composables/api'
+import { microDampingPreset } from '~/constants/spring';
 
 const route = useRoute<'categories-slug'>()
 const { data, pending } = useAsyncData(async () => {
@@ -12,8 +13,8 @@ const { data, pending } = useAsyncData(async () => {
 </script>
 
 <template>
-  <!-- <CommonLoading :loading="pending" /> -->
-  <div v-if="data" class="base-container">
+  <CommonLoading :loading="pending" />
+  <div v-if="data && !pending" class="base-container">
     <CommonMotion
       v-if="data"
       :initial="{ scale: 0.95, y: 5, opacity: 0 }"
@@ -31,7 +32,8 @@ const { data, pending } = useAsyncData(async () => {
         v-for="i, idx in data.children"
         :key="i.id"
         class="timeline-item flex justify-between"
-        :delay="(idx + 4) * 0.08"
+        :delay="idx * 0.06 + 0.4"
+        :spring="microDampingPreset"
       >
         <CommonLink :to="`/post/${i.id}`">
           {{ i.title }}

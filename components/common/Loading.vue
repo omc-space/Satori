@@ -24,6 +24,7 @@ watch(()=> props.loading, (newValue) => {
   position: relative;
   width: 100%;
   height: 200px;
+  min-height: calc(100vh - 8rem);
 }
 .ball-container{
   position: absolute;

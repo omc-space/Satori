@@ -38,13 +38,19 @@ const { data, refresh, pending } = useAsyncData(async () => {
       type: 'post',
     })
   })
+  const keys = Object.keys(result).sort((a, b) => Number(b) - Number(a))
   let count = 0
-  Object.keys(result).forEach((key) => {
+  const sortResult: Array<{data: Array<any>, year: string}> = []
+  keys.forEach((key) => {
     count += result[key].length
     result[key].sort((a, b) => dateFns(a.created).isBefore(b.created))
+    sortResult.push({
+      data: result[key],
+      year: key,
+    })
   })
   len.value = count
-  return result
+  return sortResult
 })
 
 watch(type, () => {
@@ -79,18 +85,19 @@ onBeforeMount(() => {
     </header>
     <div v-if="!pending">
       <CommonMotion
-        v-for="v, k, idx of data"
-        :key="k"
+        v-for="item, idx of data"
+        :key="item.year"
         :initial="{ scale: 0.95, opacity: 0 }"
         :animate="{ scale: 1, opacity: 1 }"
         :transition="{ delay: (idx + 1) * 0.15 }"
       >
-        <div class="pre-line">
-          {{ k }}({{ v.length }})
+        <div class="pre-line ">
+          <span>{{ item.year }}</span>
+          <span  ml-1 text-x text-gray-800>({{ item.data.length }})</span>
         </div>
         <ul class="timeline-container text-sm">
           <li
-            v-for="i in v"
+            v-for="i in item.data"
             :key="i.id"
             class="timeline-item flex items-center justify-between gap-2 text-gray-600"
           >

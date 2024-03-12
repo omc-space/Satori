@@ -14,7 +14,11 @@ dayjs.extend(dayOfYear)
 export const dateFns = dayjs
 
 export function formateDate(date: Date | string | null) {
-  return dayjs(date).format('YYYY年 M月 D日 HH:mm')
+  return dayjs(date).format('YYYY 年 M 月 D 日 HH:mm')
+}
+
+export function formateJustDate(date: Date | string) {
+  return dayjs(date).format('YYYY 年 M 月 D 日')
 }
 
 export function formateRelativeTime(date: Date | string | null | undefined) {

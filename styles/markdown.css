@@ -26,6 +26,7 @@
   #2861B8 #F6E2FD #707C9F
 
 */
+
 .markdown-body {
   min-height: 40vh;
   color: var(--text-color);
@@ -41,10 +42,6 @@
 .dark .markdown-body{
   color: rgb(223, 215, 215);
   background-color: #222;
-}
-.markdown-body ::selection {
-  color: #fff;
-  background-color: var(--color-4);
 }
 .markdown-body h1,
 .markdown-body h2,
@@ -266,13 +263,12 @@
 /* 代码块滚动条样式 */
 /* .markdown-body pre > code::-webkit-scrollbar {
   height: 6px;
-  background-color: var(--color-3);
 }
 .markdown-body pre > code::-webkit-scrollbar-thumb {
-  background-color: var(--color-4);
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 } */
+
 .markdown-body hr {
   margin: 2em 0;
   border-top: 1px solid var(--color-1);
