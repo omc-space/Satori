@@ -5,7 +5,7 @@ const { post } = defineProps<{ post: PostModel }>()
 </script>
 
 <template>
-  <div class="relative h-[100px] max-w-120 flex-1">
+  <div class="relative h-[100px] max-w-120 flex-1 min-w-0">
     <NuxtLink :to="`/post/${post.id}`" class="group relative inline-block w-full border border-gray/20 rounded-md">
       <div class="w-full rounded-md from-white to-transparent bg-gradient-to-r p-4 dark:from-black">
         <h3 class="text-omit text-[18px] lg:text-xl">
