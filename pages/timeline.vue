@@ -101,9 +101,9 @@ onBeforeMount(() => {
             :key="i.id"
             class="timeline-item flex items-center justify-between gap-2 text-gray-600"
           >
-            <div class="flex-center">
+            <div class="flex-center min-w-0">
               <span mr-2>{{ dateFns(i.created).format('MM/DD') }}</span>
-              <CommonLink :to="`/${i.type}/${i.nid ?? i._id}`" class="flex-1 text-omit">
+              <CommonLink :to="`/${i.type}/${i.nid ?? i._id}`" class="min-w-0 flex-1 text-omit">
                 {{ i.title }}
               </CommonLink>
               <div v-if="i.hasMemory" i-tabler:bookmark-filled text-red />

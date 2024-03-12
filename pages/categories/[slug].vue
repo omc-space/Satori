@@ -37,7 +37,7 @@ onMounted(()=>{
         :delay="idx * 0.06 + 0.4"
         :spring="microDampingPreset"
       >
-        <CommonLink :to="`/post/${i.id}`">
+        <CommonLink :to="`/post/${i.id}`" class="min-w-0 text-omit">
           {{ i.title }}
         </CommonLink>
         <div>{{ dateFns(i.created).format('MM/DD/YYYY') }}</div>

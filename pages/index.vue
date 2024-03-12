@@ -75,16 +75,14 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
         </h1>
       </template>
       <template #right="{ visible }">
-        <!-- TODO：fix 动画导致宽度异常 -->
-        <!-- 需要添加overflow-hiddeb修复动画导致的宽度异常问题 -->
-        <div v-if="visible" class="w-full flex-center flex-col">
+        <div v-if="visible" class="w-full flex-center flex-col overflow-hidden">
           <CommonMotion
             v-for="i, idx in posts?.data"
             :key="i.id"
             :initial="{ x: 50, opacity: 0 }"
             :animate="{ x: 0, opacity: 1 }"
             :transition="{ delay: (idx + 1) * 0.2, easing: [.3, 1.02, .78, 1.0], duration: 0.8 }"
-            class="my-2 w-full flex-center"
+            class="min-w-0 my-2 w-full flex-center"
           >
             <PostHomeCard :post="i" />
           </CommonMotion>
