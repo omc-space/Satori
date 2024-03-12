@@ -2,13 +2,16 @@
 import { getAggregate } from './composables/api'
 import { appName } from '~/constants'
 
-getAggregate().then((res) => {
-  useHead({
-    title: `${res.url.title} • ${res.url.description}`,
-  })
-})
+const { data } = useAsyncData(()=> getAggregate())
+
 useHead({
-  title: appName,
+  titleTemplate: (s) => {
+    // if (s && s.length > 6)
+    //   s = `${s.slice(0, 30)}...`
+    const siteTitle = data.value?.url.title || '灰色と青 · 不虚光阴'
+    return s ? `${s} - ${siteTitle}` : siteTitle
+  },
+  title: ()=> `${data.value?.url.title} • ${data.value?.url.description}`,
 })
 </script>
 

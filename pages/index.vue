@@ -3,9 +3,9 @@ import { useMasterStore } from '@/store/master'
 import { formateRelativeTime } from '~/composables/date'
 import { microDampingPreset } from '~/constants/spring'
 
-useHead({
-  title: '首页',
-})
+// useHead({
+//   title: '首页',
+// })
 const { masterInfo } = useMasterStore()
 const socials = computed(() => {
   if (!masterInfo.socialIds)

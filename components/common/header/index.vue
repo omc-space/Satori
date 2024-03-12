@@ -39,7 +39,7 @@ const isMiniSize = computed(() => useWindowSize().width.value < 768)
               <div class="mb-1 text-xs text-zinc">
                 {{ headerInfo.subtitle }}
               </div>
-              <div>
+              <div class="text-omit">
                 {{ headerInfo.title }}
               </div>
             </div>

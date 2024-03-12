@@ -5,10 +5,12 @@ import { microDampingPreset } from '~/constants/spring';
 const route = useRoute<'categories-slug'>()
 const { data, pending } = useAsyncData(async () => {
   const res = await getPostByCategory(route.params.slug)
-  useHead({
-    title: `分类 - ${res.data.name}`,
-  })
   return res.data
+})
+onMounted(()=>{
+  useHead({
+    title: `分类 - ${data.value?.name}`,
+  })
 })
 </script>
 
