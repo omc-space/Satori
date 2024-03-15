@@ -57,10 +57,10 @@ onBeforeUnmount(() => {
       <div>
         <section ref="content" class="py-6 text-xs text-gray-600 lh-6">
           <div>文章标题：{{ post.title }}</div>
-          <div>文章作者：<span class="text-gray-500">{{ masterStore.masterInfo.name }}</span></div>
+          <div>文章作者：{{ masterStore.masterInfo.name }}</div>
           <div>
             <ClientOnly>
-              <span>文章链接：<span class="text-gray-500">{{ fullPath }}</span></span>
+              <span>文章链接：{{ fullPath }}</span>
             </ClientOnly>
             <button class="ml-1 select-none">
               [复制]

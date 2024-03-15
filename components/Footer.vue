@@ -63,7 +63,7 @@ const links = [
           </NuxtLink>
         </div>
       </div>
-      <div flex flex-col items-center justify-between op-80 lg:flex-row>
+      <div flex flex-col items-center justify-between op-80 lg:flex-row gap-2>
         <div class="text-center lg:text-left">
           <div>
             <span>© 2020-2024</span>

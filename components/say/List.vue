@@ -49,7 +49,7 @@ const shuffle = (array:Array<any>) => {
     const s = {
       ...say,
       color: randomArray[idx % randomArray.length],
-      delay: idx * 0.06,
+      delay: idx * 0.05,
     }
     if (idx % 2 === 0)
       list1.value.push(s)

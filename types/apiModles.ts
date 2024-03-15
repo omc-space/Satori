@@ -47,6 +47,10 @@ export interface PagerDto {
   size?: number
   page?: number
   state?: number
+  sortBy?: string
+  sortOrder?: 1 | -1
+  year?: number
+  select?: string
 }
 
 export interface ImageModel {

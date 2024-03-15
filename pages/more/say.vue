@@ -4,7 +4,7 @@ useHead({
   title: '说说',
 })
 const { data, pending } = useAsyncData(async () => {
-  const res = await getSayList()
+  const res = await getSayList({page: 1,size: 50})
   return res.data
 })
 
