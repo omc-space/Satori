@@ -61,7 +61,7 @@ export interface ImageModel {
   path?: string
   tag?: string[]
   title?: string
-  url: string
+  src: string
   width?: number
   created: string
   updated: string
@@ -100,7 +100,7 @@ export interface NoteModel {
   topicId?: string
   topic?: TopicModel
   coordinates?: Coordinate
-
+  images?: ImageModel[]
   meta?: any
 }
 

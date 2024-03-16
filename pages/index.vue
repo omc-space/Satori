@@ -93,7 +93,7 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
       </template>
     </HomePageContainer>
     <HomePageContainer>
-      <template #left>
+      <template #left="{ visible }">
         <div class="flex-center flex-1">
           <div class="max-w-100 flex-1">
             <h1 class="text-xl">
@@ -101,24 +101,32 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
             </h1>
             <div v-if="notes?.data.length" class="my-6">
               <NuxtLink :to="`/note/${notes.data[0].nid}`">
-                <div class="border rounded bg-gray/20 p-4 text-right shadow">
+                <div class="from-transparent m-1 to-white bg-gradient-to-r border rounded relative p-4 text-right shadow overflow-hidden">
                   <div class="pt-14">
                     {{ notes.data[0].title }}
                   </div>
                   <div class="mt-1 text-xs">
                     {{ formateRelativeTime(notes.data[0].created) }}
                   </div>
+                  <div class="absolute top-0 left-0 z--1 rounded -translate-y-50">
+                    <CommonLazyLoadImage v-if="notes.data[0].images" :src="notes.data[0].images[0].src" />
+                  </div>
                 </div>
               </NuxtLink>
             </div>
             <p>这里还有一些历史回顾</p>
-            <ul class="timeline-container my-10">
-              <li v-for="i in notes?.data.slice(1, 5)" :key="i.id" class="timeline-item flex justify-between text-x">
+            <ul class="timeline-container my-10" v-if="visible">
+              <CommonMotion
+                v-for="i,idx in notes?.data.slice(1, 5)"
+                :key="i.id"
+                :delay="idx * 0.1 + 0.3"
+                :spring="microDampingPreset"
+                class="timeline-item flex justify-between text-x">
                 <CommonLink :to="`/note/${i.nid}`">
                   {{ i.title }}
                 </CommonLink>
                 <span class="text-xs text-black/50">{{ formateRelativeTime(i.created) }}</span>
-              </li>
+              </CommonMotion>
             </ul>
             <div class="my-10 text-center text-x">
               <CommonLink to="/timeline?type=notes" class="">

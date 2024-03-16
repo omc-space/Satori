@@ -1,5 +1,4 @@
 import { loadEnv } from 'vite'
-import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
 
 // interface VITE_ENV_CONFIG {
@@ -72,9 +71,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  pwa,
-
   devtools: {
     enabled: false,
   },
