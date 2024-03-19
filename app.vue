@@ -22,7 +22,7 @@ useHead({
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <!-- <CommonToolbar /> -->
+  <CommonToolbar />
 </template>
 
 <style>

@@ -14,9 +14,9 @@ const isMiniSize = computed(() => useWindowSize().width.value < 768)
 
 <template>
   <header
-  v-if="menus"
-  :class="showBg ? 'bg-white/80 dark:bg-black/50 dark:shadow-white/20 shadow backdrop-blur-md' : ''"
-  class="fixed left-0 right-0 top-0 z-10 h-16 w-full transition duration-200"
+    v-if="menus"
+    :class="showBg ? 'bg-white/80 dark:bg-black/50 dark:shadow-white/20 shadow backdrop-blur-md' : ''"
+    class="fixed left-0 right-0 top-0 z-10 h-16 w-full transition duration-200"
   >
     <div class="relative grid grid-cols-[4.5rem_auto_4.5rem] mx-auto h-full max-w-7xl min-h-0 lg:px-8">
       <div class="flex-center">
@@ -55,11 +55,13 @@ const isMiniSize = computed(() => useWindowSize().width.value < 768)
             </CommonMotion>
           </Presence>
         </div>
-        <Transition name="fade">
-          <NuxtLink to="/" v-show="(!showBg || !headerInfo.show) && isMiniSize" class="absolute left-1/2 flex-center -translate-x-1/2">
-            <CommonLazyLoadImage class="h-10 w-10 rounded-4 bg-gray-3" :src="masterStore.masterInfo.avatar" alt="home" />
-          </NuxtLink>
-        </Transition>
+        <div class="absolute left-1/2 flex-center -translate-x-1/2" v-if="isMiniSize">
+          <Transition name="fade">
+            <NuxtLink to="/" v-if="(!showBg || !headerInfo.show)">
+              <CommonLazyLoadImage class="h-10 w-10 rounded-4 bg-gray-3" :src="masterStore.masterInfo.avatar" alt="home" />
+            </NuxtLink>
+          </Transition>
+        </div>
         <Transition name="fade" flex-center>
           <CommonHeaderNav v-if="(!showBg || !headerInfo.show) && !isMiniSize" :menus="menus.data" class="hidden lg:flex" />
         </Transition>
