@@ -9,7 +9,6 @@ import type {
   ImageModel,
   LinkApplyDto,
   LinkModel,
-  MenuModel,
   NavigationItem,
   NoteModel,
   NoteResponse,
@@ -176,3 +175,14 @@ export function applyLink(data: LinkApplyDto) {
   })
 }
 
+export function getSystemKeys() {
+  return http<Record<string, any>>('/system/keys/', {
+    method: 'get',
+  })
+}
+
+export function getSystemKey(key: string) {
+  return http<Record<string, any>>(`/system/keys/${key}`, {
+    method: 'get',
+  })
+}

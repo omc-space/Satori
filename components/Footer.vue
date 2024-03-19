@@ -45,6 +45,7 @@ const links = [
     },
   ],
 ]
+const {data: otherKeys} = useAsyncData(()=> getSystemKey('other'))
 </script>
 
 <template>
@@ -84,8 +85,8 @@ const links = [
               </NuxtLink>
             </div>
             <div>
-              <NuxtLink class="satori-link--underline" target="_blank" to="https://github.com/omc-space/Satori" mx-2>
-                萌ICP备xxxxx
+              <NuxtLink v-if="otherKeys?.icp" class="satori-link--underline" target="_blank" to="http://beian.miit.gov.cn/" mx-2>
+                {{ otherKeys.icp }}
               </NuxtLink>
               <span>正在被 ? 人看爆</span>
             </div>
