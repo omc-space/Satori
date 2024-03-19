@@ -13,7 +13,7 @@ import './styles/figure.css'
 import { clearEffect, init } from './looper'
 import notice from './plugin-notice'
 import toc from './plugin-toc'
-
+import '~/styles/markdown.css'
 // TODO: copy完成提示
 // import Message from '~/composables/message'
 

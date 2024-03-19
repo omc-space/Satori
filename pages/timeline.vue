@@ -9,9 +9,9 @@ const route = useRoute()
 const outOfTime = ref<string | number>(0)
 const len = ref(0)
 const type = computed(() => {
-  if (route.query.type === 'note')
-    return { type: 0 }
   if (route.query.type === 'post')
+    return { type: 0 }
+  if (route.query.type === 'note')
     return { type: 1 }
   return {}
 })

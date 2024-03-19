@@ -1,29 +1,30 @@
 <script lang="ts" setup>
-// import { useCatalog } from '~/hooks/useCatalog'
+import { useCatalogState } from '~/composables/state';
+import { useCatalog } from '~/composables/useCatalog'
 
-// const { anchor, active, show, parse } = useCatalog()
-// const index = ref(0)
-// const router = useRouter()
-// const catelog = useCatelogState()
+const { anchor, active, show, parse } = useCatalog()
+const index = ref(0)
+const router = useRouter()
+const catelog = useCatalogState()
 
-// onMounted(() => {
-//   parse()
-// })
+onMounted(() => {
+  parse()
+})
 
-// onBeforeUnmount(() => {
-//   catelog.value.data = []
-//   document.body.onscroll = null
-// })
-// watch(active, () => {
-//   index.value = Number(active.value.split('-')[1]) || 0
-// })
-// function handleClick(id: string, idx: number) {
-//   router.replace(id)
-// }
+onBeforeUnmount(() => {
+  catelog.value.data = []
+  document.body.onscroll = null
+})
+watch(active, () => {
+  index.value = Number(active.value.split('-')[1]) || 0
+})
+function handleClick(id: string, idx: number) {
+  router.replace(id)
+}
 </script>
 
 <template>
-  <!-- <div v-if="anchor.length" class="catalog">
+  <div v-if="anchor.length" class="catalog">
     <div class="items" :style="`--top:${26 * index}px`">
       <div v-for="i, idx in anchor" :key="i.id" class="catalog-item" :class="i.type">
         <a :class="{ active: i.id === active }" @click="handleClick(i.id, idx)">
@@ -31,7 +32,7 @@
         </a>
       </div>
     </div>
-    <Drawer v-model="catelog.show" direction="bottom">
+    <CommonDrawer v-model="catelog.show" direction="bottom">
       <template #title>
         目录
       </template>
@@ -42,8 +43,8 @@
           </a>
         </div>
       </div>
-    </Drawer>
-  </div> -->
+    </CommonDrawer>
+  </div>
 </template>
 
 <style scoped>
@@ -100,4 +101,4 @@
   margin-left: -0.25rem;
 }
 </style>
-~~/hooks/useCatalog
+~~/hooks/useCatalog~/composables/useCatalog

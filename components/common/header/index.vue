@@ -10,6 +10,7 @@ const masterStore = useMasterStore()
 const headerInfo = masterStore.headerInfo
 const route = useRoute()
 const isMiniSize = computed(() => useWindowSize().width.value < 768)
+
 </script>
 
 <template>

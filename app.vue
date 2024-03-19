@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { getAggregate } from './composables/api'
-import { appName } from '~/constants'
 
 const { data } = useAsyncData(()=> getAggregate())
-
+onMounted(()=>{
+  onBeforeRouteUpdate(()=> {
+    document.body.scrollTo({top: 0})
+  })
+})
 useHead({
   titleTemplate: (s) => {
     // if (s && s.length > 6)
@@ -16,11 +19,10 @@ useHead({
 </script>
 
 <template>
-  <VitePwaManifest />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <CommonToolBar />
+  <CommonToolbar />
 </template>
 
 <style>

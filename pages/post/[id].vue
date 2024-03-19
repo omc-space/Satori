@@ -75,9 +75,7 @@ onBeforeUnmount(() => {
     </CommonMotion>
     <template #aside>
       <div>
-        <NuxtLink to="/">
-          Home
-        </NuxtLink>
+        <MarkdownCatalog/>
         <CommonDivider />
         <div class="text-secondary">
           {{ percentage }}%

@@ -35,7 +35,7 @@ async function handleApplyLink(){
         <FriendsCard v-for="i in links.data" :key="i.id" :data="i"/>
       </div>
       <div text="center x" v-if="links.data.length === 0">这里还没有人，来和我做朋友</div>
-      <div v-if="canApply" mt-16>
+      <div v-if="canApply?.can" mt-16>
         <div class="pre-line">友链申请：</div>
         <div class="text-x mt-6 flex-1">
           <div>站点名称<span text-red>*</span> ：</div>
@@ -51,7 +51,7 @@ async function handleApplyLink(){
           <button class="btn mt-4" w-full @click="handleApplyLink">提交</button>
         </div>
       </div>
-      <div v-if="!canApply" text-center>主人禁止了友链申请</div>
+      <div v-if="!canApply?.can" text-center>主人禁止了友链申请</div>
     </CommonMotion>
   </div>  
 </template>
