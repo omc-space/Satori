@@ -10,6 +10,10 @@ const masterStore = useMasterStore()
 const headerInfo = masterStore.headerInfo
 const route = useRoute()
 const isMiniSize = computed(() => useWindowSize().width.value < 768)
+
+function handleClick(){
+  notification.success('点击了')
+}
 </script>
 
 <template>
@@ -31,9 +35,9 @@ const isMiniSize = computed(() => useWindowSize().width.value < 768)
             <CommonMotion
               v-if="headerInfo.show && showBg"
               class="flex flex-row justify-between text-omit px-2 md:px-8"
-              :initial="{ opacity: 0, y: 20 }"
+              :initial="{ opacity: 0.001, y: 20 }"
               :animate="{ opacity: 1, y: 0 }"
-              :exit="{ opacity: 0, y: 20 }"
+              :exit="{ opacity: 0.001, y: 20 }"
               :spring="{ stiffness: 400, damping: 20 }"
             >
               <div>
@@ -67,7 +71,7 @@ const isMiniSize = computed(() => useWindowSize().width.value < 768)
         </Transition>
       </div>
       <div class="flex-center">
-        <CommonIconButton>
+        <CommonIconButton @click="handleClick">
           <div class="i-tabler:user-plus" />
         </CommonIconButton>
       </div>

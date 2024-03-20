@@ -15,7 +15,7 @@ const { menus } = defineProps<{ menus: NavigationItem[] }>()
         <div class="mt-10 h-full">
           <CommonMotion
             v-for="(menu, index) in menus" :key="index" class="mb-4"
-            :initial="{ y: 20, opacity: 0 }"
+            :initial="{ y: 20, opacity: 0.001 }"
             :spring="reboundPreset"
             :transition="{ delay: index * 0.05 }"
           >

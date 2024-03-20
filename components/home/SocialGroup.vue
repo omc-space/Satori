@@ -78,10 +78,9 @@ const socialList: Record<string, SocialType> = {
     <CommonMotion
       v-for="social, idx in props.socials"
       :key="social.name"
-        :initial="{ y: 36, opacity: 0 }"
-        :animate="{ y: 0, opacity: 1 }"
-        :transition="{ delay: idx * 0.15 + props.initDelay }"
-      >
+      :initial="{ opacity: 0.001, y: 20 }"
+      :transition="{ delay: idx * 0.15 + props.initDelay }"
+    >
     <CommonTooltip>
         <NuxtLink
           :to="socialList[social.name ?? 'default']?.url(social.id ?? '')"

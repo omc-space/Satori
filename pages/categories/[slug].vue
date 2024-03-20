@@ -19,9 +19,9 @@ watchEffect(()=>{
   <div v-if="data && !pending" class="base-container">
     <CommonMotion
       v-if="data"
-      :initial="{ scale: 0.95, y: 5, opacity: 0 }"
+      :initial="{ scale: 0.95, y: 5, opacity: 0.001 }"
       :animate="{ scale: 1, y: 0, opacity: 1 }"
-      :transition="{ delay: 0.15 }"
+      :transition="{ delay: 0.08 }"
     >
       <h1 class="text-3xl font-bold">
         分类 - {{ data.name }}
@@ -35,7 +35,7 @@ watchEffect(()=>{
         v-for="i, idx in data.children"
         :key="i.id"
         class="timeline-item flex justify-between"
-        :delay="idx * 0.06 + 0.5"
+        :delay="idx * 0.06 + 0.45"
         :spring="microDampingPreset"
       >
         <CommonLink :to="`/post/${i.id}`" class="min-w-0 text-omit">

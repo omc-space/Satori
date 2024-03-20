@@ -14,8 +14,6 @@ import { clearEffect, init } from './looper'
 import notice from './plugin-notice'
 import toc from './plugin-toc'
 import '~/styles/markdown.css'
-// TODO: copy完成提示
-// import Message from '~/composables/message'
 
 const { value } = defineProps<{ value: string | undefined }>()
 
@@ -31,11 +29,11 @@ const plugins: BytemdPlugin[] = [
     copyText: 'COPY',
     copyIcon: 'copyLight',
     copySuccess: (text: string) => {
-      // Message.success('COPIED')
+      notification.success('COPIED')
       return text
     },
     copyError: () => {
-      // Message.error('COPY ERROR')
+      notification.success('COPY ERROR')
       return {}
     },
   }),

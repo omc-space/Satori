@@ -18,7 +18,7 @@ const transition = {
 
 <template>
   <CommonMotion 
-    :initial="{ opacity: 0, y: 20 }"
+    :initial="{ opacity: 0.001, y: 20 }"
     :animate="{ opacity: 1, y: 0 }"
     :transition="transition"
     :style="`--color:${data.color};--bg:${data.color}1a;`"

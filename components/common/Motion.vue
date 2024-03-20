@@ -21,7 +21,7 @@ const props = defineProps<{
 
 const initial: VariantDefinition = {
   y: 50,
-  opacity: 0,
+  opacity: 0.001,
 }
 
 const transition: AnimationOptionsWithOverrides = {

@@ -14,7 +14,7 @@ const textArray = computed(()=>{
   <Motion
     v-for="char, idx in textArray" 
     :key="idx" class="char" 
-    :initial="{ opacity: 0, y: 20 }"
+    :initial="{ opacity: 0.001, y: 20 }"
     :animate="{ opacity: 2, y: 0 }"
     :transition="{ delay: idx * 0.04 + (delay ?? 0), easing: spring({mass: 1.5, stiffness: 300, damping: 20})}"
   >

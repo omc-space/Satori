@@ -16,13 +16,15 @@ function createClient() {
       },
       onResponse: ({ request: _request, response, options: _options }) => {
         const { status, _data } = response
-        if (status !== 200)
-        // console.log(_data)
+        if (status === 422 || status === 400){
+          notification.error(_data.message[0])
+        }
 
         // showError({ statusCode: status, message: _data.message })
           return response._data
       },
       onRequestError: ({ request: _request, options: _options, error }) => {
+        console.log(error)
         // eslint-disable-next-line no-console
         console.log('FetchError=>', error)
         showError({ statusCode: 500, message: '服务器错误' })
