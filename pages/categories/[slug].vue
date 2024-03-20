@@ -7,7 +7,7 @@ const { data, pending } = useAsyncData(async () => {
   const res = await getPostByCategory(route.params.slug)
   return res.data
 })
-onMounted(()=>{
+watchEffect(()=>{
   useHead({
     title: `分类 - ${data.value?.name}`,
   })
@@ -21,6 +21,7 @@ onMounted(()=>{
       v-if="data"
       :initial="{ scale: 0.95, y: 5, opacity: 0 }"
       :animate="{ scale: 1, y: 0, opacity: 1 }"
+      :transition="{ delay: 0.15 }"
     >
       <h1 class="text-3xl font-bold">
         分类 - {{ data.name }}
@@ -34,7 +35,7 @@ onMounted(()=>{
         v-for="i, idx in data.children"
         :key="i.id"
         class="timeline-item flex justify-between"
-        :delay="idx * 0.06 + 0.4"
+        :delay="idx * 0.06 + 0.5"
         :spring="microDampingPreset"
       >
         <CommonLink :to="`/post/${i.id}`" class="min-w-0 text-omit">
@@ -43,8 +44,8 @@ onMounted(()=>{
         <div>{{ dateFns(i.created).format('MM/DD/YYYY') }}</div>
       </CommonMotion>
     </ul>
-    <CommonEmpty v-if="!data" h-full>
-      分类不存在该分类下没有文章
+    <CommonEmpty v-if="!data?.children?.length" h-full>
+      该分类下没有文章
     </CommonEmpty>
   </div>
 </template>

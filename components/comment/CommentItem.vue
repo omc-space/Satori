@@ -21,7 +21,7 @@ async function onSubmit(data: CommentDto) {
     <div class="group my-4 flex items-end gap-4">
       <div class="flex">
         <CommonLazyLoadImage
-          :src="`https://cravatar.cn/avatar/${md5(comment.mail)}?d=monsterid`"
+          :src="comment.avatar || `https://cravatar.cn/avatar/${md5(comment.mail)}?d=monsterid`"
           class="h-10 w-10 rounded-full"
         />
       </div>

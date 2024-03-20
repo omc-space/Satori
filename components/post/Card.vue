@@ -22,7 +22,7 @@ const { post } = defineProps<{ post: PostModel }>()
             <span v-for="tag in post.tags" :key="tag" class="satori-link--underline mx-1"># {{ tag }}</span>
           </div>
           <div class="text-x text-primary">
-            阅读全文->
+            阅读全文⇢
           </div>
         </div>
       </div>

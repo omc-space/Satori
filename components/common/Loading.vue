@@ -6,7 +6,7 @@ watch(()=> props.loading, (newValue) => {
   if(newValue === true)
     setTimeout(()=>{
       load.value = true
-    }, props.delay ?? 200)
+    }, props.delay ?? 300)
 },{immediate: true})
 </script>
 

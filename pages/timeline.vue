@@ -84,45 +84,48 @@ onBeforeMount(() => {
       </div>
     </header>
     <div v-if="!pending">
-      <CommonMotion
+      <div
         v-for="item, idx of data"
         :key="item.year"
-        :initial="{ scale: 0.95, opacity: 0 }"
-        :animate="{ scale: 1, opacity: 1 }"
-        :transition="{ delay: (idx + 1) * 0.15 }"
       >
-        <div class="pre-line ">
-          <span>{{ item.year }}</span>
-          <span  ml-1 text-x text-gray-800>({{ item.data.length }})</span>
-        </div>
-        <ul class="timeline-container text-sm">
-          <li
-            v-for="i in item.data"
-            :key="i.id"
-            class="timeline-item flex items-center justify-between gap-2 text-gray-600"
-          >
-            <div class="flex-center min-w-0">
-              <span mr-2>{{ dateFns(i.created).format('MM/DD') }}</span>
-              <CommonLink :to="`/${i.type}/${i.nid ?? i._id}`" class="min-w-0 flex-1 text-omit">
-                {{ i.title }}
-              </CommonLink>
-              <div v-if="i.hasMemory" i-tabler:bookmark-filled text-red />
-            </div>
-            <div class="hidden text-xs md:flex">
-              <div v-if="i.type === 'post'">
-                <span>{{ i?.category?.name }}</span>
+        <Motion
+          :initial="{ opacity: 0,scale: 0.95 }"
+          :animate="{ scale: 1, opacity: 1 }"
+          :transition="{ delay: idx * 0.15 + 0.2 }"
+        >
+          <div class="pre-line ">
+            <span>{{ item.year }}</span>
+            <span  ml-1 text-x text-gray-800>({{ item.data.length }})</span>
+          </div>
+          <ul class="timeline-container text-sm">
+            <li
+              v-for="i in item.data"
+              :key="i.id"
+              class="timeline-item flex items-center justify-between gap-2 text-gray-600"
+            >
+              <div class="flex-center min-w-0">
+                <span mr-2>{{ dateFns(i.created).format('MM/DD') }}</span>
+                <CommonLink :to="`/${i.type}/${i.nid ?? i._id}`" class="min-w-0 flex-1 text-omit">
+                  {{ i.title }}
+                </CommonLink>
+                <div v-if="i.hasMemory" i-tabler:bookmark-filled text-red />
               </div>
-              <div v-else flex>
-                <span>心情：{{ i.mood }}</span>
+              <div class="hidden text-xs md:flex">
+                <div v-if="i.type === 'post'">
+                  <span>{{ i?.category?.name }}</span>
+                </div>
+                <div v-else flex>
+                  <span>心情：{{ i.mood }}</span>
+                  <span>/</span>
+                  <span>天气：{{ i.weather }}</span>
+                </div>
                 <span>/</span>
-                <span>天气：{{ i.weather }}</span>
+                <span>{{ i.type === 'post' ? '博文' : '手记' }}</span>
               </div>
-              <span>/</span>
-              <span>{{ i.type === 'post' ? '博文' : '手记' }}</span>
-            </div>
-          </li>
-        </ul>
-      </CommonMotion>
+            </li>
+          </ul>
+        </Motion>
+      </div>
     </div>
   </div>
 </template>
