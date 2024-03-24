@@ -86,7 +86,7 @@ const socialList: Record<string, SocialType> = {
           :to="socialList[social.name ?? 'default']?.url(social.id ?? '')"
           target="_blank"
           :style="{ backgroundColor: socialList[social.name ?? 'default']?.color }"
-          class="inline-block rounded-full p-1.8 text-4.5 text-white hover:scale-102"
+          class="border border-white/20 inline-block rounded-full p-1.8 text-4.5 text-white hover:scale-102"
         >
           <div
             :class="socialList[social.name ?? 'default']?.iconClass"

@@ -35,7 +35,7 @@ const spotlightStyle = computed(() => {
 <template>
   <nav class="flex-center px-4">
     <div
-      class="spotlight flex-center cursor-default rounded-full px-4 text-x shadow backdrop-blur-md transition"
+      class="spotlight border border-gray/10 dark:border-white/25 flex-center cursor-default rounded-full px-4 text-x shadow backdrop-blur-md transition"
       :style="spotlightStyle"
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"

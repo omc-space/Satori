@@ -101,7 +101,7 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
             </h1>
             <div v-if="notes?.data.length" class="my-6">
               <NuxtLink :to="`/note/${notes.data[0].nid}`">
-                <div class="from-transparent m-1 to-white bg-gradient-to-r border rounded relative p-4 text-right shadow overflow-hidden">
+                <div class="from-transparent to-white bg-gradient-to-r border rounded relative p-4 text-right shadow overflow-hidden dark:to-black/10">
                   <div class="pt-14">
                     {{ notes.data[0].title }}
                   </div>
