@@ -22,6 +22,7 @@ export const useMasterStore = defineStore('master', () => {
     show: false,
     subtitle: '',
     title: '',
+    read: 0,
   })
   getMasterInfo().then((master) => {
     Object.assign(masterInfo, master)

@@ -14,6 +14,7 @@ const { data: post, pending } = useAsyncData(async () => {
   const res = await getPostById(route.params.id)
   masterStore.headerInfo.subtitle = res.category.name
   masterStore.headerInfo.title = res.title
+  masterStore.headerInfo.read = res.count.read
   masterStore.headerInfo.show = true
   nextTick(() => {
     useHead({
@@ -26,6 +27,11 @@ const { data: post, pending } = useAsyncData(async () => {
 onBeforeUnmount(() => {
   masterStore.headerInfo.show = false
 })
+
+function copyText(){
+  window.navigator.clipboard.writeText(fullPath.value)
+  notification.success('复制成功')
+}
 </script>
 
 <template>
@@ -62,23 +68,29 @@ onBeforeUnmount(() => {
             <ClientOnly>
               <span>文章链接：{{ fullPath }}</span>
             </ClientOnly>
-            <button class="ml-1 select-none">
+            <button class="ml-1 select-none" @click="copyText()">
               [复制]
             </button>
           </div>
           <div>最后修改时间: {{ formateDate(post.modified ?? post.created) }}</div>
           <CommonDivider />
           <div v-if="post.copyright">版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</div>
+          <div class="flex-center my-4 lg:hidden">
+            <CommonPostAction :vertical="false" type="post"/>
+          </div>
         </section>
         <Comment class="mt-8" :data="post" :type="CollectionRefTypes.Post" />
       </div>
     </CommonMotion>
     <template #aside>
-      <div>
+      <div class="relative h-full">
         <MarkdownCatalog/>
         <CommonDivider />
         <div class="text-secondary">
           {{ percentage }}%
+        </div>
+        <div class="absolute bottom-2">
+          <CommonPostAction type="post"/>
         </div>
       </div>
     </template>

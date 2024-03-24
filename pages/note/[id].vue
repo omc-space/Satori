@@ -13,6 +13,7 @@ const { data: note, pending } = useAsyncData(async () => {
   const res = await getNoteByNid(route.params.id)
   masterStore.headerInfo.subtitle = `手记 / ${res.data.mood}`
   masterStore.headerInfo.title = res.data.title
+  masterStore.headerInfo.read = res.data.count.read
   masterStore.headerInfo.show = true
   nextTick(()=>{
     useHead({
@@ -71,9 +72,12 @@ function getWeather() {
             <div i-tabler:copyright />
           </div>
         </header>
-        <div class="mt-10">
+        <div class="mt-8">
           <MarkdownViewer min-h-120 :value="note.data.text" />
-          <section ref="articleRef" class="relative text-sm">
+          <div class="my-4 flex-center lg:hidden">
+            <CommonPostAction :vertical="false" type="note" :title="note.data.title"/>
+          </div>
+          <section ref="articleRef" class="relative text-sm mt-6">
             <div class="flex justify-between">
               <div>
                 <NuxtLink v-if="note.prev" :to="`/note/${note.prev.nid}`" class="flex-center">
@@ -88,7 +92,7 @@ function getWeather() {
                 </NuxtLink>
               </div>
             </div>
-            <NuxtLink to="/timeline?type=notes" class="absolute left-1/2 top-0 flex-center text-primary -translate-x-1/2">
+            <NuxtLink to="/timeline?type=notes" class=" absolute left-1/2 top-0 flex-center text-primary -translate-x-1/2">
               <div>时间线</div>
               <div i-tabler:clock ml-2 />
             </NuxtLink>
@@ -102,9 +106,12 @@ function getWeather() {
     <CommonEmpty v-if="!note" />
   </div>
 
-  <div v-if="note" class="sticky top-[120px] mt-[120px] hidden h-[calc(100vh-6rem-4.5rem-150px-120px)] pl-4 xl:block">
+  <div v-if="note" class="relative sticky top-[120px] mt-[120px] hidden hidden h-[calc(100vh-4rem-150px-120px)] pl-4 xl:block">
     <div class="text-secondary">
       {{ percentage }}%
+    </div>
+    <div class="absolute bottom-2">
+      <CommonPostAction type="note" :title="note.data.title"/>
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <div class="base-min-h min-w-0">
       <slot />
     </div>
-    <aside class="sticky top-[120px] mt-[120px] hidden h-[calc(100vh-6rem-4.5rem-150px-120px)] pl-4 lg:block">
+    <aside class="sticky top-[120px] mt-[120px] hidden h-[calc(100vh-4rem-150px-120px)] pl-4 lg:block">
       <slot name="aside" />
     </aside>
   </div>

@@ -49,7 +49,7 @@ function handleClick(id: string, idx: number) {
 
 <style scoped>
 .catalog {
-  max-height: 500px;
+  max-height: 350px;
   max-width: 16rem;
   overflow-y: scroll;
 }

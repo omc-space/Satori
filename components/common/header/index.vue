@@ -8,7 +8,6 @@ const showBg = computed(() => y.value > 50)
 
 const masterStore = useMasterStore()
 const headerInfo = masterStore.headerInfo
-const route = useRoute()
 const isMiniSize = computed(() => useWindowSize().width.value < 768)
 
 function handleClick(){
@@ -50,7 +49,7 @@ function handleClick(){
               </div>
               <div v-if="!isMiniSize">
                 <div class="mb-1 text-xs text-zinc">
-                  {{ route.path.split('/')[-1] }}
+                  {{ masterStore.headerInfo.read }}
                 </div>
                 <div class="text-x">
                   {{ masterStore.masterInfo.name }}

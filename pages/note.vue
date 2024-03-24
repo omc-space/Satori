@@ -15,9 +15,11 @@ const selectId = ref(Number(route.params.id === 'latest'? notes?.value?.data[0]?
         <CommonMotion
           v-for="i, idx in notes?.data"
           :key="i.id"
-          :initial="{ opacity: 0.001, x: -20 }"
+          :initial="{ opacity: 0.001, x: -24 }"
           :transition="{ delay: 0.1 * idx + 0.5 }"
           :animate="{ opacity: 1, x: 0 }"
+          :spring="reboundPreset"
+          :delay="0.1 * idx + 0.5"
           class="my-1"
         >
           <NuxtLink
