@@ -41,7 +41,7 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
             <CommonTextAnimate text="A NodeJS Full Stack &lt;Developer/&gt" :delay="1"/>
           </h1>
           <CommonMotion :spring="microDampingPreset" :transition="{delay: 2.8}">
-            <p class="mb-8 mt-3 text-black/50 md:mb-14">
+            <p class="mb-8 mt-3 text-black/50 md:mb-14 dark:text-white/50">
                 An independent developer coding with love.
             </p>
             <div class="flex-center lg:block">
@@ -108,7 +108,7 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
                   <div class="mt-1 text-xs">
                     {{ formateRelativeTime(notes.data[0].created) }}
                   </div>
-                  <div class="absolute top-0 left-0 z--1 rounded -translate-y-50">
+                  <div class="absolute top-0 left-0 z--1 rounded">
                     <CommonLazyLoadImage v-if="notes.data[0].images" :src="notes.data[0].images[0].src" />
                   </div>
                 </div>

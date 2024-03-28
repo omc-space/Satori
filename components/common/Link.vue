@@ -14,14 +14,11 @@ const props = defineProps<{ to: string }>()
 .satori-timeline a {
   color: currentColor;
   background-image: linear-gradient(
-    var(--fallback-a, oklch(var(--a) / 1)),
-    var(--fallback-a, oklch(var(--a) / 1))
+    var(--primary-color, oklch(var(--primary-color) / 1)),
+    var(--primary-color, oklch(var(--primary-color) / 1))
   );
   background-size: 0 1.5px;
   background-repeat: no-repeat;
-  /* text-shadow:
-    0.05em 0 var(--fallback-b1, oklch(var(--b1) / 1)),
-    -0.05em 0 var(--fallback-b1, oklch(var(--b1) / 1)); */
   transition: all 0.5s ease;
   border-width: 0;
   text-decoration-line: none;

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getAggregate } from './composables/api'
+import { themes } from './constants';
 
 const { data } = useAsyncData(()=> getAggregate())
 onMounted(()=>{
@@ -16,6 +17,14 @@ useHead({
   },
   title: ()=> `${data.value?.url.title} • ${data.value?.url.description}`,
 })
+
+function initTheme(){
+    if(!process.client) return
+    const theme = themes[Math.floor(Math.random() * themes.length)]
+    document.documentElement.style.setProperty('--primary-color', theme.primary)
+    document.documentElement.style.setProperty('--spotlight-color', theme.spotlight)
+  }
+  initTheme()
 </script>
 
 <template>

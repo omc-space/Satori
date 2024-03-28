@@ -1,9 +1,25 @@
 <script setup lang="ts">
 import { microDampingPreset } from '~/constants/spring'
 
-const { data: posts, pending } = useAsyncData(() => getPosts())
+const route = useRoute()
+const router = useRouter()
+const page = computed(()=> Number(route.query.page || 1))
+const { data: posts, pending,refresh } = useAsyncData(() => getPosts({page: page.value}))
 useHead({
   title: '文稿',
+})
+
+const changePage = (page: 1 | -1) => {
+  router.push({
+    path: '/post',
+    query: {
+      page: posts.value!.pagination.currentPage + page,
+    }
+  })
+}
+watch(page, async () => {
+  window.scrollTo({top: 0})
+  refresh()
 })
 </script>
 
@@ -18,20 +34,26 @@ useHead({
     >
       <PostCard :post="post" />
     </CommonMotion>
-    <div class="text-right">
-      <button
-        v-if="posts.pagination.hasPrevPage"
-        class="mr-4 border-[2px] border-primary rounded-md px-4 py-2 text-sm text-primary transition-colors hover:border-primary"
-      >
-        上一页
-      </button>
+    <div class="flex justify-between">
+      <div class="text-right">
+        <button
+          v-if="posts.pagination.hasPrevPage"
+          @click="changePage(-1)"
+          class="mr-4 border-[2px] border-primary rounded-md px-4 py-1 text-sm text-primary transition-colors hover:border-primary"
+        >
+          上一页
+        </button>
+      </div>
+      <div>
+        <button
+          v-if="posts.pagination.hasNextPage"
+          @click="changePage(1)"
+          class="mr-4 border-[2px] border-primary rounded-md px-4 py-1 text-sm text-primary transition-colors hover:border-primary"
+        >
+          下一页
+        </button>
+      </div>
     </div>
-    <button
-      v-if="posts.pagination.hasNextPage"
-      class="mr-4 border-[2px] border-primary rounded-md px-4 py-2 text-sm text-primary transition-colors hover:border-primary"
-    >
-      下一页
-    </button>
     <CommonEmpty v-if="!posts?.data.length" />
   </div>
 </template>

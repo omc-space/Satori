@@ -9,7 +9,9 @@ function createClient() {
   return function<T>(url: string, options?: Options): Promise<T> {
     const reqHeaders = useRequestHeaders()
     const env = useRuntimeConfig()
-    const baseUrl = env.public.VITE_REQUEST_BASE_URL as string
+    let baseUrl = env.public.VITE_REQUEST_BASE_URL as string
+    if(!process.client)
+      baseUrl = env.public.VITE_REQUEST_BASE_URL_SERVER as string
     return $fetch(url, {
       onRequest: ({ request: _request, options }) => {
         options.baseURL = options.baseURL === '/' ? baseUrl : options.baseURL

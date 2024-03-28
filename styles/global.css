@@ -5,16 +5,13 @@
   --spotlight-color: #e6f7f3;
   --border-color: #c7e4dd;
   --spotlight-color-2: #faeae7;
-  --dark-bg-color: #333;
+  --dark-bg-color: rgba(0,0,0,0.8);
   --dark-text-color: #fff;
   --fallback-a: #089773;
-  --a: #089773;
-  --fallback-b1: #f9bfb7;
-  --b1: #f9bfb7;
 }
 .dark body{
-  color: rgba(255,255,255,0.8);
-  background-color: rgba(0,0,0,0.8);
+  color: var(--dark-text-color);
+  background-color: var(--dark-bg-color);
 }
 body{
   background-color: #fcfcfc;
@@ -53,7 +50,7 @@ body{
   bottom: 0;
   left: -1rem;
   height: 100%;
-  background-color: var(--fallback-a, oklch(var(--a) / 1));
+  background-color: var(--primary-color, oklch(var(--primary-color) / 1));
   height: 100%;
   width: 1px;
   bottom: -50%;

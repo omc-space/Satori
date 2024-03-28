@@ -88,7 +88,7 @@ const {data: otherKeys} = useAsyncData(()=> getSystemKey('other'))
               <NuxtLink v-if="otherKeys?.icp" class="satori-link--underline" target="_blank" to="http://beian.miit.gov.cn/" mx-2>
                 {{ otherKeys.icp }}
               </NuxtLink>
-              <span>正在被 ? 人看爆</span>
+              <spa mx-1>正在被 ? 人看爆</spa>
             </div>
           </div>
         </div>

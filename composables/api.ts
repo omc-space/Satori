@@ -186,3 +186,9 @@ export function getSystemKey(key: string) {
     method: 'get',
   })
 }
+
+export function getTheme() {
+  return http<{primary: string, spotlight: string}>('/system/theme', {
+    method: 'get',
+  })
+}
