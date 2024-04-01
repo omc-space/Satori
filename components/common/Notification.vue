@@ -1,12 +1,19 @@
 <script lang="ts" setup>
 import { microReboundPreset } from '~/constants/spring';
 
+const types = {
+  success: 'i-carbon:checkmark-filled text-green text-4',
+  warning: 'i-carbon:warning-filled text-orange text-4',
+  error: 'i-carbon:close-filled text-red text-4',
+}
+
 const props = defineProps({
   msg: {
     type: String,
   },
   type: {
-    type: String,
+    type: String as PropType<keyof typeof types>,
+    required:true
   },
   onClose: {
     type: Function,
@@ -51,10 +58,8 @@ defineExpose({
         v-if="!exit"
       >
         <div class="message">
-          <div v-if="type === 'success'" i-carbon:checkmark-filled class="icon" text-green />
-          <div v-if="type === 'warning'" i-carbon:warning-filled class="icon" text-orange />
-          <div v-if="type === 'error'" i-carbon:close-filled class="icon" text-red />
-          <div flex-1>
+          <div :class="types[props.type]" />
+          <div flex-1 ml-1>
             {{ msg }}
           </div>
         </div>
@@ -83,10 +88,12 @@ defineExpose({
   justify-content: center;
   align-items: center;
   width: 260px;
-  height: 58px;
+  min-height: 58px;
 }
 .dark .message{
-  background-color: gray;
+  background-color: rgba(0,0,0);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 3px 5px rgba(10,10,10,0.2);
 }
 .icon{
   display: inline-block;
