@@ -102,6 +102,7 @@ export interface NoteModel {
   coordinates?: Coordinate
   images?: ImageModel[]
   meta?: any
+  liked?: boolean
 }
 
 export interface PostModel extends BaseModel {
@@ -121,6 +122,7 @@ export interface PostModel extends BaseModel {
   pinOrder?: number
   related?: Pick<PostModel, 'id' | 'title'>[]
   meta?: any
+  liked?: boolean
 }
 
 export interface SayModel extends BaseModel {

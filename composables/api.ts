@@ -192,3 +192,10 @@ export function getTheme() {
     method: 'get',
   })
 }
+
+export function like(data:{id: string, type: 'note' | 'post'}) {
+  return http('/count/like', {
+    method: 'post',
+    body: data,
+  })
+}

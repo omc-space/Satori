@@ -42,6 +42,12 @@ function getWeather() {
     return 'i-carbon-snow-scattered'
   return 'i-carbon-word-cloud'
 }
+
+async function handleLike(){
+  if(!note.value) return
+  await like({id: note.value.data.id, type: 'note'})
+  notification.success('感谢喜欢')
+}
 </script>
 
 <template>
@@ -75,7 +81,7 @@ function getWeather() {
         <div class="mt-8">
           <MarkdownViewer min-h-120 :value="note.data.text" />
           <div class="my-4 flex-center lg:hidden">
-            <CommonPostAction :vertical="false" type="note" :title="note.data.title"/>
+            <CommonPostAction :on-like-click="handleLike" :liked="note.data.liked" :vertical="false" type="note" :title="note.data.title"/>
           </div>
           <section ref="articleRef" class="relative text-sm mt-6">
             <div class="flex justify-between">
@@ -106,12 +112,12 @@ function getWeather() {
     <CommonEmpty v-if="!note" />
   </div>
 
-  <div v-if="note" class="relative sticky top-[120px] mt-[120px] hidden hidden h-[calc(100vh-4rem-150px-120px)] pl-4 xl:block">
+  <div v-if="note && !pending" class="relative sticky top-[120px] mt-[120px] hidden hidden h-[calc(100vh-4rem-150px-120px)] pl-4 xl:block">
     <div class="text-secondary">
       {{ percentage }}%
     </div>
     <div class="absolute bottom-2">
-      <CommonPostAction type="note" :title="note.data.title"/>
+      <CommonPostAction :on-like-click="handleLike" :liked="note.data.liked" type="note" :title="note.data.title"/>
     </div>
   </div>
 </template>

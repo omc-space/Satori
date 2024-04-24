@@ -18,8 +18,11 @@ function createClient() {
       },
       onResponse: ({ request: _request, response, options: _options }) => {
         const { status, _data } = response
-        if (status === 422 || status === 400){
+        if (status === 422){
           notification.error(_data.message[0])
+        }
+        else if(status === 400){
+          notification.error(_data.message)
         }
 
         // showError({ statusCode: status, message: _data.message })

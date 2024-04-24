@@ -1,23 +1,33 @@
 <script lang="ts" setup>
+
 const props = withDefaults(defineProps<{
   type: 'note' | 'post'
   vertical?: boolean,
-  onLikeClick?: () => void,
-  onShareClick?: () => void,
-  title: string,
+  onLikeClick?: () => any,
+  onShareClick?: () => any,
+  title?: string,
+  liked?: boolean,
 }>(),{
   vertical: true,
   onLikeClick: () => {},
   onShareClick: () => {},
+  title: '分享',
+  liked: false,
 })
+const isLiked = ref(props.liked)
 
-function handleLikeClick(){
-  notification.success('感谢喜欢')
+async function handleLikeClick(){
+  if(isLiked.value) {
+    notification.error('一天只能点赞一次哦')
+    return 
+  }
+  await props.onLikeClick()
+  isLiked.value = !isLiked.value
 }
 
 function handleShareClick(){
   navigator.share({
-    title: props.title || '分享',
+    title: props.title,
     url: location.href,
   })
 }
@@ -26,7 +36,10 @@ function handleShareClick(){
 
 <template>
   <div :class="props.vertical ? 'flex-col' : 'flex-row'" class="flex gap-5 p-2 text-xl text-zinc hover:text-black/80 dark:hover:text-white/80 transition-color">
-    <button @click="handleLikeClick" :class="props.type==='note' ? 'i-tabler:heart': 'i-tabler:thumb-up'" class="hover:text-primary"/>
+    <button class="hover:text-primary" @click="handleLikeClick">
+      <div v-if="props.type==='note'" class="i-tabler:heart" :class="{'i-tabler:heart-filled text-primary': isLiked} "</div>
+      <div v-if="props.type==='post'" class="i-tabler:thumb-up" :class="{'i-tabler:thumb-up-filled text-primary': isLiked} "</div>
+    </button>
     <button @click="handleShareClick" class="i-tabler:share-3 hover:text-primary"/>
     <button class="i-tabler:bell hover:text-primary"/>
     <button class="i-tabler:coffee hover:text-primary"/>
