@@ -5,15 +5,15 @@
   --spotlight-color: #e6f7f3;
   --border-color: #c7e4dd;
   --spotlight-color-2: #faeae7;
-  --dark-bg-color: rgba(0,0,0,0.8);
+  --dark-bg-color: rgba(0, 0, 0, 0.8);
   --dark-text-color: #fff;
   --fallback-a: #089773;
 }
-.dark body{
+.dark body {
   color: var(--dark-text-color);
   background-color: var(--dark-bg-color);
 }
-body{
+body {
   background-color: #fcfcfc;
 }
 /* 设置滚动条样式 */
@@ -33,9 +33,9 @@ body{
   border-radius: 3px;
 }
 
-::selection{
+::selection {
   color: white;
-  background-color: var(--primary-color)
+  background-color: var(--primary-color);
 }
 
 .timeline-container > .timeline-item {
@@ -73,12 +73,12 @@ body{
   background-color: var(--primary-color);
 }
 
-.pre-line{
-  padding-left: .5rem;
+.pre-line {
+  padding-left: 0.5rem;
   position: relative;
 }
-.pre-line::before{
-  content: "";
+.pre-line::before {
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;

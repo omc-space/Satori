@@ -12,7 +12,7 @@ import { softSpringPreset } from '~/constants/spring'
 const props = defineProps<{
   initial?: VariantDefinition
   transition?: AnimationOptionsWithOverrides
-  exit?: VariantDefinition 
+  exit?: VariantDefinition
   animate?: VariantDefinition
   spring?: SpringOptions
   easing?: Pick<KeyframeOptions, 'easing'>

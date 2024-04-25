@@ -35,14 +35,14 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
       <template #left>
         <CommonMotion :spring="microDampingPreset" class="my-5">
           <h1 class="py-2 text-4xl font-medium">
-            <CommonTextAnimate :text="`Hi, I'm ${masterInfo.name}👋。`"/>
+            <CommonTextAnimate :text="`Hi, I'm ${masterInfo.name}👋。`" />
           </h1>
           <h1 class="py-2 text-4xl font-medium">
-            <CommonTextAnimate text="A NodeJS Full Stack &lt;Developer/&gt" :delay="1"/>
+            <CommonTextAnimate text="A NodeJS Full Stack &lt;Developer/&gt" :delay="1" />
           </h1>
-          <CommonMotion :spring="microDampingPreset" :transition="{delay: 2.8}">
+          <CommonMotion :spring="microDampingPreset" :transition="{ delay: 2.8 }">
             <p class="mb-8 mt-3 text-black/50 md:mb-14 dark:text-white/50">
-                An independent developer coding with love.
+              An independent developer coding with love.
             </p>
             <div class="flex-center lg:block">
               <ClientOnly>
@@ -68,9 +68,11 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
     <HomePageContainer>
       <template #left>
         <h1 class="text-2xl font-medium">
-          <p class="pb-4">
-            <p py-2>这里或许有那么一些对于生活的感慨</p>
-            <p py-2>也或许有那么一些对于技术的记录。</p>
+          <p class="pb-4" /><p py-2>
+            这里或许有那么一些对于生活的感慨
+          </p>
+          <p py-2>
+            也或许有那么一些对于技术的记录。
           </p>
         </h1>
       </template>
@@ -82,7 +84,7 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
             :initial="{ x: 50, opacity: 0 }"
             :animate="{ x: 0, opacity: 1 }"
             :transition="{ delay: (idx + 1) * 0.2, easing: [.3, 1.02, .78, 1.0], duration: 0.8 }"
-            class="min-w-0 my-2 w-full flex-center"
+            class="my-2 min-w-0 w-full flex-center"
           >
             <PostHomeCard :post="i" />
           </CommonMotion>
@@ -101,27 +103,28 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
             </h1>
             <div v-if="notes?.data.length" class="my-6">
               <NuxtLink :to="`/note/${notes.data[0].nid}`">
-                <div class="from-transparent to-white bg-gradient-to-r border rounded relative p-4 text-right shadow overflow-hidden dark:to-black/10">
+                <div class="relative overflow-hidden border rounded from-transparent to-white bg-gradient-to-r p-4 text-right shadow dark:to-black/10">
                   <div class="pt-14">
                     {{ notes.data[0].title }}
                   </div>
                   <div class="mt-1 text-xs">
                     {{ formateRelativeTime(notes.data[0].created) }}
                   </div>
-                  <div class="absolute top-0 left-0 z--1 rounded">
+                  <div class="absolute left-0 top-0 z--1 rounded">
                     <CommonLazyLoadImage v-if="notes.data[0].images" :src="notes.data[0].images[0].src" />
                   </div>
                 </div>
               </NuxtLink>
             </div>
             <p>这里还有一些历史回顾</p>
-            <ul class="timeline-container my-10" v-if="visible">
+            <ul v-if="visible" class="timeline-container my-10">
               <CommonMotion
-                v-for="i,idx in notes?.data.slice(1, 5)"
+                v-for="i, idx in notes?.data.slice(1, 5)"
                 :key="i.id"
                 :delay="idx * 0.1 + 0.3"
                 :spring="microDampingPreset"
-                class="timeline-item flex justify-between text-x">
+                class="timeline-item flex justify-between text-x"
+              >
                 <CommonLink :to="`/note/${i.nid}`">
                   {{ i.title }}
                 </CommonLink>
@@ -138,10 +141,8 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
       </template>
       <template #right>
         <div class="flex-1 text-2xl font-medium">
-          <p class="m-auto max-w-100 pb-4">
-            <p>而在这里，你会看到一个不同的我，</p>
-            <p>一个在生活中发现美，感受痛苦，洞察人性的我。</p>
-          </p>
+          <p class="m-auto max-w-100 pb-4" /><p>而在这里，你会看到一个不同的我，</p>
+          <p>一个在生活中发现美，感受痛苦，洞察人性的我。</p>
         </div>
       </template>
     </HomePageContainer>
@@ -150,12 +151,12 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
         这些是我珍视的人，他们陪伴我走过人生的每一段旅程。
       </h1>
       <div class="grid grid-cols-3 mt-10 max-w-5xl min-w-0 gap-10 p-4 lg:grid-cols-5 md:grid-cols-4 lg:p-0">
-        <NuxtLink 
-        v-for="i in links?.data"
-        :key="i.id"
-        :to="i.url"
-        target="_blank"
-        class="flex-center flex-col"
+        <NuxtLink
+          v-for="i in links?.data"
+          :key="i.id"
+          :to="i.url"
+          target="_blank"
+          class="flex-center flex-col"
         >
           <CommonLazyLoadImage :src="i.avatar" class="h-24 w-24 border border-gray/20 rounded-full bg-gray-100" />
           <div class="mt-4 text-center text-x">

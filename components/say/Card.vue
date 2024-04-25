@@ -5,25 +5,24 @@ interface SayInfo extends SayModel {
   color?: string
   delay?: number
 }
-const { data, delay = 0 } = defineProps<{ data: SayInfo; delay?: number }>()
+const { data, delay = 0 } = defineProps<{ data: SayInfo, delay?: number }>()
 const transition = {
   type: 'spring',
   stiffness: 200,
   damping: 20,
   mass: 1,
-  delay
+  delay,
 }
-
 </script>
 
 <template>
-  <CommonMotion 
+  <CommonMotion
     :initial="{ opacity: 0.001, y: 20 }"
     :animate="{ opacity: 1, y: 0 }"
     :transition="transition"
     :style="`--color:${data.color};--bg:${data.color}1a;`"
     class="say-item"
-    >
+  >
     <div pb-4>
       {{ data.text }}
     </div>
@@ -39,21 +38,20 @@ const transition = {
 </template>
 
 <style scoped>
-.say-item{
+.say-item {
   padding: 1em 1em 1em 2em;
   font-size: 14.5px;
   background-color: var(--bg);
-  border-left: 4px solid var(--color) ;
+  border-left: 4px solid var(--color);
   opacity: 0;
   transition-delay: var(--delay);
   margin-bottom: 1em;
 }
-.say-info{
+.say-info {
   color: gray;
   display: flex;
   justify-content: space-between;
   font-size: 13px;
   gap: 4px;
 }
-
 </style>

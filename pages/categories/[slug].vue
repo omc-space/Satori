@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { getPostByCategory } from '~/composables/api'
-import { microDampingPreset } from '~/constants/spring';
+import { microDampingPreset } from '~/constants/spring'
 
 const route = useRoute<'categories-slug'>()
 const { data, pending } = useAsyncData(async () => {
   const res = await getPostByCategory(route.params.slug)
   return res.data
 })
-watchEffect(()=>{
+watchEffect(() => {
   useHead({
     title: `分类 - ${data.value?.name}`,
   })

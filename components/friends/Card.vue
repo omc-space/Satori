@@ -8,11 +8,12 @@ const props = defineProps<{
 </script>
 
 <template>
-  <NuxtLink 
-  :to="props.data.url" 
+  <NuxtLink
+    :to="props.data.url"
     target="_blank"
-    flex-center flex-col gap-2 rounded-md p-4 transition hover:bg-gray-2>
-    <CommonLazyLoadImage :src="props.data.avatar" h-20 w-20 rounded-xl/>
+    flex-center flex-col gap-2 rounded-md p-4 transition hover:bg-gray-2
+  >
+    <CommonLazyLoadImage :src="props.data.avatar" h-20 w-20 rounded-xl />
     <div text-bold>
       {{ props.data.name }}
     </div>

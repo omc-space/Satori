@@ -28,16 +28,15 @@ onBeforeUnmount(() => {
   masterStore.headerInfo.show = false
 })
 
-function copyText(){
+function copyText() {
   window.navigator.clipboard.writeText(fullPath.value)
   notification.success('复制成功')
 }
 
-async function handleLike(){
-  await like({id: route.params.id, type: 'post'})
+async function handleLike() {
+  await like({ id: route.params.id, type: 'post' })
   notification.success('感谢喜欢')
 }
-
 </script>
 
 <template>
@@ -80,9 +79,11 @@ async function handleLike(){
           </div>
           <div>最后修改时间: {{ formateDate(post.modified ?? post.created) }}</div>
           <CommonDivider />
-          <div v-if="post.copyright">版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</div>
-          <div class="flex-center my-4 lg:hidden">
-            <CommonPostAction :on-like-click="handleLike" :liked="post.liked" :vertical="false" type="post"/>
+          <div v-if="post.copyright">
+            版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）
+          </div>
+          <div class="my-4 flex-center lg:hidden">
+            <CommonPostAction :on-like-click="handleLike" :liked="post.liked" :vertical="false" type="post" />
           </div>
         </section>
         <Comment class="mt-8" :data="post" :type="CollectionRefTypes.Post" />
@@ -90,13 +91,13 @@ async function handleLike(){
     </CommonMotion>
     <template #aside>
       <div class="relative h-full">
-        <MarkdownCatalog/>
+        <MarkdownCatalog />
         <CommonDivider />
         <div class="text-secondary">
           {{ percentage }}%
         </div>
         <div class="absolute bottom-2">
-          <CommonPostAction :on-like-click="handleLike" :liked="post.liked" type="post"/>
+          <CommonPostAction :on-like-click="handleLike" :liked="post.liked" type="post" />
         </div>
       </div>
     </template>

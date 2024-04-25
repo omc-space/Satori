@@ -15,7 +15,8 @@ const aspectRatio = ref<string | number>('auto')
 function loadImage() {
   // data_url.value = resizeImgUrl(props.src, 48)
   return new Promise<void>((resolve, _reject) => {
-    if(!props.src) return resolve()
+    if (!props.src)
+      return resolve()
     loadingState.value = 'loading'
     const img = new Image()
     img.src = props.src

@@ -1,6 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { UserModel } from '../types/apiModles'
-import { getMasterInfo, getTheme } from '~/composables/api'
+import { getMasterInfo } from '~/composables/api'
+
 export const useMasterStore = defineStore('master', () => {
   const masterInfo = reactive<UserModel>({
     id: '',

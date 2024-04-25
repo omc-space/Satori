@@ -40,7 +40,7 @@ const { data, refresh, pending } = useAsyncData(async () => {
   })
   const keys = Object.keys(result).sort((a, b) => Number(b) - Number(a))
   let count = 0
-  const sortResult: Array<{data: Array<any>, year: string}> = []
+  const sortResult: Array<{ data: Array<any>, year: string }> = []
   keys.forEach((key) => {
     count += result[key].length
     result[key].sort((a, b) => dateFns(a.created).isBefore(b.created))
@@ -89,13 +89,13 @@ onBeforeMount(() => {
         :key="item.year"
       >
         <Motion
-          :initial="{ opacity: 0,scale: 0.95 }"
+          :initial="{ opacity: 0, scale: 0.95 }"
           :animate="{ scale: 1, opacity: 1 }"
           :transition="{ delay: idx * 0.15 + 0.2 }"
         >
-          <div class="pre-line ">
+          <div class="pre-line">
             <span>{{ item.year }}</span>
-            <span  ml-1 text-x text-gray-800>({{ item.data.length }})</span>
+            <span ml-1 text-x text-gray-800>({{ item.data.length }})</span>
           </div>
           <ul class="timeline-container text-sm">
             <li
@@ -103,7 +103,7 @@ onBeforeMount(() => {
               :key="i.id"
               class="timeline-item flex items-center justify-between gap-2 text-gray-600"
             >
-              <div class="flex-center min-w-0">
+              <div class="min-w-0 flex-center">
                 <span mr-2>{{ dateFns(i.created).format('MM/DD') }}</span>
                 <CommonLink :to="`/${i.type}/${i.nid ?? i._id}`" class="min-w-0 flex-1 text-omit">
                   {{ i.title }}

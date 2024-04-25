@@ -1,12 +1,6 @@
 import type { BytemdPlugin } from 'bytemd'
 import rehypeImageGroup from 'rehype-image-group'
 
-interface LazyOptions {
-  resizeWidth?: number
-  loading?: string
-  error?: string
-}
-
 const cache = new Map<string, Promise<HTMLImageElement>>()
 
 async function loadImage(options: { src: string, srcset?: string, sizes?: string }): Promise<HTMLImageElement> {

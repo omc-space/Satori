@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useCatalogState } from '~/composables/state';
+import { useCatalogState } from '~/composables/state'
 import { useCatalog } from '~/composables/useCatalog'
 
-const { anchor, active, show, parse } = useCatalog()
+const { anchor, active, parse } = useCatalog()
 const index = ref(0)
 const router = useRouter()
 const catelog = useCatalogState()
@@ -18,7 +18,7 @@ onBeforeUnmount(() => {
 watch(active, () => {
   index.value = Number(active.value.split('-')[1]) || 0
 })
-function handleClick(id: string, idx: number) {
+function handleClick(id: string) {
   router.replace(id)
 }
 </script>
@@ -26,8 +26,8 @@ function handleClick(id: string, idx: number) {
 <template>
   <div v-if="anchor.length" class="catalog">
     <div class="items" :style="`--top:${26 * index}px`">
-      <div v-for="i, idx in anchor" :key="i.id" class="catalog-item" :class="i.type">
-        <a :class="{ active: i.id === active }" @click="handleClick(i.id, idx)">
+      <div v-for="i in anchor" :key="i.id" class="catalog-item" :class="i.type">
+        <a :class="{ active: i.id === active }" @click="handleClick(i.id)">
           {{ i.text }}
         </a>
       </div>
@@ -37,8 +37,8 @@ function handleClick(id: string, idx: number) {
         目录
       </template>
       <div class="items" :style="`--top:${26 * index}px`" ml-4>
-        <div v-for="i, idx in anchor" :key="i.id" class="catalog-item" :class="i.type">
-          <a :class="{ active: i.id === active }" @click="handleClick(i.id, idx)">
+        <div v-for="i in anchor" :key="i.id" class="catalog-item" :class="i.type">
+          <a :class="{ active: i.id === active }" @click="handleClick(i.id)">
             {{ i.text }}
           </a>
         </div>

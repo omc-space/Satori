@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { isOutOfDate } from '~/composables/date';
+import { isOutOfDate } from '~/composables/date'
 import type { PostModel } from '~/types'
 
 const { post } = defineProps<{ post: PostModel }>()
-
 </script>
 
 <template>
@@ -27,7 +26,7 @@ const { post } = defineProps<{ post: PostModel }>()
         </div>
       </div>
       <div class="absolute bottom-0 left-0 top-0 z--1 h-full w-full scale-95 rounded-md bg-gray-200 op-0 transition duration-200 group-hover:scale-100 dark:bg-gray/20 group-hover:op-100" />
-      <div v-if="post.pin && !isOutOfDate(post.pin)" class="i-tabler:pin-filled absolute top-4 right-2 text-red" />
+      <div v-if="post.pin && !isOutOfDate(post.pin)" class="i-tabler:pin-filled absolute right-2 top-4 text-red" />
     </NuxtLink>
   </div>
 </template>

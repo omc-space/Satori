@@ -3,22 +3,22 @@ import { microDampingPreset } from '~/constants/spring'
 
 const route = useRoute()
 const router = useRouter()
-const page = computed(()=> Number(route.query.page || 1))
-const { data: posts, pending,refresh } = useAsyncData(() => getPosts({page: page.value}))
+const page = computed(() => Number(route.query.page || 1))
+const { data: posts, pending, refresh } = useAsyncData(() => getPosts({ page: page.value }))
 useHead({
   title: '文稿',
 })
 
-const changePage = (page: 1 | -1) => {
+function changePage(page: 1 | -1) {
   router.push({
     path: '/post',
     query: {
       page: posts.value!.pagination.currentPage + page,
-    }
+    },
   })
 }
 watch(page, async () => {
-  window.scrollTo({top: 0})
+  window.scrollTo({ top: 0 })
   refresh()
 })
 </script>
@@ -38,8 +38,8 @@ watch(page, async () => {
       <div class="text-right">
         <button
           v-if="posts.pagination.hasPrevPage"
-          @click="changePage(-1)"
           class="mr-4 border-[2px] border-primary rounded-md px-4 py-1 text-sm text-primary transition-colors hover:border-primary"
+          @click="changePage(-1)"
         >
           上一页
         </button>
@@ -47,8 +47,8 @@ watch(page, async () => {
       <div>
         <button
           v-if="posts.pagination.hasNextPage"
-          @click="changePage(1)"
           class="mr-4 border-[2px] border-primary rounded-md px-4 py-1 text-sm text-primary transition-colors hover:border-primary"
+          @click="changePage(1)"
         >
           下一页
         </button>

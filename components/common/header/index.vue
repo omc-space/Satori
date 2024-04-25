@@ -10,7 +10,7 @@ const masterStore = useMasterStore()
 const headerInfo = masterStore.headerInfo
 const isMiniSize = computed(() => useWindowSize().width.value < 768)
 
-function handleClick(){
+function handleClick() {
   notification.success('点击了')
 }
 </script>
@@ -58,9 +58,9 @@ function handleClick(){
             </CommonMotion>
           </Presence>
         </div>
-        <div class="absolute left-1/2 flex-center -translate-x-1/2" v-if="isMiniSize">
+        <div v-if="isMiniSize" class="absolute left-1/2 flex-center -translate-x-1/2">
           <Transition name="fade">
-            <NuxtLink to="/" v-if="(!showBg || !headerInfo.show)">
+            <NuxtLink v-if="(!showBg || !headerInfo.show)" to="/">
               <CommonLazyLoadImage class="h-10 w-10 rounded-4 bg-gray-3" :src="masterStore.masterInfo.avatar" alt="home" />
             </NuxtLink>
           </Transition>

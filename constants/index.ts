@@ -12,10 +12,10 @@ export const themes = [
   },
   {
     primary: '#FF6F91',
-    spotlight: '#fde3ea', 
+    spotlight: '#fde3ea',
   },
   {
     primary: '#936ac5',
     spotlight: '#E6E0EC',
-  }
+  },
 ]

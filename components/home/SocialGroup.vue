@@ -74,25 +74,25 @@ const socialList: Record<string, SocialType> = {
 </script>
 
 <template>
-  <div class="flex gap-3" v-if="props.socials">
+  <div v-if="props.socials" class="flex gap-3">
     <CommonMotion
       v-for="social, idx in props.socials"
       :key="social.name"
       :initial="{ opacity: 0.001, y: 20 }"
       :transition="{ delay: idx * 0.15 + props.initDelay }"
     >
-    <CommonTooltip>
+      <CommonTooltip>
         <NuxtLink
           :to="socialList[social.name ?? 'default']?.url(social.id ?? '')"
           target="_blank"
           :style="{ backgroundColor: socialList[social.name ?? 'default']?.color }"
-          class="border border-white/20 inline-block rounded-full p-1.8 text-4.5 text-white hover:scale-102"
+          class="inline-block border border-white/20 rounded-full p-1.8 text-4.5 text-white hover:scale-102"
         >
           <div
             :class="socialList[social.name ?? 'default']?.iconClass"
           />
         </NuxtLink>
-        
+
         <template #popper>
           <div class="text-x">
             {{ socialList[social.name ?? 'default']?.name }}

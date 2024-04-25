@@ -45,7 +45,7 @@ const links = [
     },
   ],
 ]
-const {data: otherKeys} = useAsyncData(()=> getSystemKey('other'))
+const { data: otherKeys } = useAsyncData(() => getSystemKey('other'))
 </script>
 
 <template>
@@ -64,7 +64,7 @@ const {data: otherKeys} = useAsyncData(()=> getSystemKey('other'))
           </NuxtLink>
         </div>
       </div>
-      <div flex flex-col items-center justify-between op-80 lg:flex-row gap-2>
+      <div flex flex-col items-center justify-between gap-2 op-80 lg:flex-row>
         <div class="text-center lg:text-left">
           <div>
             <span>© 2020-2024</span>

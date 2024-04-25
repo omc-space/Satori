@@ -15,7 +15,7 @@ const { data: note, pending } = useAsyncData(async () => {
   masterStore.headerInfo.title = res.data.title
   masterStore.headerInfo.read = res.data.count.read
   masterStore.headerInfo.show = true
-  nextTick(()=>{
+  nextTick(() => {
     useHead({
       title: res.data.title,
     })
@@ -43,9 +43,10 @@ function getWeather() {
   return 'i-carbon-word-cloud'
 }
 
-async function handleLike(){
-  if(!note.value) return
-  await like({id: note.value.data.id, type: 'note'})
+async function handleLike() {
+  if (!note.value)
+    return
+  await like({ id: note.value.data.id, type: 'note' })
   notification.success('感谢喜欢')
 }
 </script>
@@ -81,9 +82,9 @@ async function handleLike(){
         <div class="mt-8">
           <MarkdownViewer min-h-120 :value="note.data.text" />
           <div class="my-4 flex-center lg:hidden">
-            <CommonPostAction :on-like-click="handleLike" :liked="note.data.liked" :vertical="false" type="note" :title="note.data.title"/>
+            <CommonPostAction :on-like-click="handleLike" :liked="note.data.liked" :vertical="false" type="note" :title="note.data.title" />
           </div>
-          <section ref="articleRef" class="relative text-sm mt-6">
+          <section ref="articleRef" class="relative mt-6 text-sm">
             <div class="flex justify-between">
               <div>
                 <NuxtLink v-if="note.prev" :to="`/note/${note.prev.nid}`" class="flex-center">
@@ -98,7 +99,7 @@ async function handleLike(){
                 </NuxtLink>
               </div>
             </div>
-            <NuxtLink to="/timeline?type=notes" class=" absolute left-1/2 top-0 flex-center text-primary -translate-x-1/2">
+            <NuxtLink to="/timeline?type=notes" class="absolute left-1/2 top-0 flex-center text-primary -translate-x-1/2">
               <div>时间线</div>
               <div i-tabler:clock ml-2 />
             </NuxtLink>
@@ -117,7 +118,7 @@ async function handleLike(){
       {{ percentage }}%
     </div>
     <div class="absolute bottom-2">
-      <CommonPostAction :on-like-click="handleLike" :liked="note.data.liked" type="note" :title="note.data.title"/>
+      <CommonPostAction :on-like-click="handleLike" :liked="note.data.liked" type="note" :title="note.data.title" />
     </div>
   </div>
 </template>

@@ -35,15 +35,15 @@ const colors = [
 ]
 
 // 打乱数组
-const shuffle = (array:Array<any>) => {
+function shuffle(array: Array<any>) {
   for (let i = array.length - 1; i > 0; i--) {
-       const j = Math.floor(Math.random() * (i + 1));
-　　   [array[i], array[j]] = [array[j], array[i]]
-    }
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]
+  }
   return array
 }
 
-(function(){
+(function () {
   const randomArray = shuffle(colors)
   says.value = data.map((say, idx) => {
     const s = {

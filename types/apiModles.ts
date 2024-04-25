@@ -30,7 +30,7 @@ export enum CategoryType {
   Tag,
 }
 
-export interface CategoryModel extends BaseModel{
+export interface CategoryModel extends BaseModel {
   type: CategoryType
   count: number
   slug?: string

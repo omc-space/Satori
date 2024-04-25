@@ -24,7 +24,7 @@ const commentForm = reactive<CommentDto>({
 const maxLength = 500
 
 async function onSubmit() {
-  if(commentForm.url?.trim() === '')
+  if (commentForm.url?.trim() === '')
     commentForm.url = undefined
   props.onSubmit && await props.onSubmit(commentForm)
   user.value.author = commentForm.author

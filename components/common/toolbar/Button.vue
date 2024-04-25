@@ -7,10 +7,9 @@ const props = defineProps<{
 <template>
   <button
     v-bind="$attrs"
+    class="border border-slate-200 rounded-xl bg-white p-2 text-x shadow-xl dark:border-slate-700 dark:bg-slate-900"
     @click="props.onClick"
-    class="p-2 rounded-xl shadow-xl border text-x bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700"
   >
-    <slot/>
+    <slot />
   </button>
 </template>
-

@@ -24,7 +24,7 @@ function createMessage(type: MessageType, msg: string) {
   let instance: NotificationContext
   const props = {
     msg,
-    bottom: bottom,
+    bottom,
     type,
     onClose: () => {
       closeMessage(instance)
@@ -58,15 +58,15 @@ function closeMessage(instance: NotificationContext) {
   })
 }
 
-export const success = (msg: string) => {
+export function success(msg: string) {
   createMessage('success', msg)
 }
 
-export const warning = (msg: string) => {
+export function warning(msg: string) {
   createMessage('warning', msg)
 }
 
-export const error = (msg: string) => {
+export function error(msg: string) {
   createMessage('error', msg)
 }
 

@@ -40,6 +40,6 @@ export function formateToLocaleHasWeek(date: Date | string) {
   return dayjs(date).format('YYYY 年 M 月 D 日 dddd')
 }
 
-export function isOutOfDate (date: string) {
+export function isOutOfDate(date: string) {
   return dayjs(date).isBefore(dayjs())
 }

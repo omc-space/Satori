@@ -1,16 +1,16 @@
-:root{
+:root {
   /* --text-color: #67492e; */
   --text-color: #333;
-  --color-1:  #816145;
-  --color-2: #B39CD0;
-  --color-3: #F6E2FD;
-  --color-4: #7AA4B2;
-  --color-5: rgba(40, 97, 184,0.2);
+  --color-1: #816145;
+  --color-2: #b39cd0;
+  --color-3: #f6e2fd;
+  --color-4: #7aa4b2;
+  --color-5: rgba(40, 97, 184, 0.2);
   --color-6: #e5a5a56c;
   --gray: #d1d1d6;
   --pink: #eb445a;
 }
-/* 
+/*
   #184995 #B17AA1 #F5B6A4
   #E290BD #4D739A #8A4730
   #FDD19F #C67120 #12246C
@@ -37,7 +37,7 @@
   scroll-behavior: smooth;
   background-size: 50px 50px;
 }
-.dark .markdown-body{
+.dark .markdown-body {
   color: rgb(223, 215, 215);
 }
 .markdown-body h1,
@@ -106,11 +106,11 @@
 .markdown-body h3,
 .markdown-body h4,
 .markdown-body h5,
-.markdown-body h6{
+.markdown-body h6 {
   font-weight: 600;
 }
 
-.notes .markdown-body >p{
+.notes .markdown-body > p {
   text-decoration: 1px underline var(--color-6);
   text-underline-offset: 5px;
 }
@@ -123,7 +123,7 @@
   position: relative;
 }
 .markdown-body a::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 98%;
   height: 1px;
@@ -138,7 +138,8 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-.markdown-body a:active, .markdown-body a:link {
+.markdown-body a:active,
+.markdown-body a:link {
   color: var(--color-1);
 }
 .markdown-body img {
@@ -153,22 +154,22 @@
 .markdown-body .image-container {
   transition: filter 0.2s;
 }
-.markdown-body .image-container:has(img[lazy="loading"]){
+.markdown-body .image-container:has(img[lazy='loading']) {
   filter: blur(8px);
   background-color: rgba(200, 200, 200, 0.2);
   opacity: 1;
 }
-.markdown-body .image-container:has(img[lazy="loaded"]){
+.markdown-body .image-container:has(img[lazy='loaded']) {
   opacity: 1;
   filter: none;
 }
 /**
 图片
 **/
-.markdown-body figure{
+.markdown-body figure {
   margin: 1em 0;
 }
-.markdown-body figure figcaption{
+.markdown-body figure figcaption {
   position: relative;
   text-align: center;
   font-size: 14px;
@@ -176,11 +177,11 @@
   -webkit-user-select: none;
   user-select: none;
 }
-.markdown-body figure figcaption::before{
-  content: "⇡ ";
+.markdown-body figure figcaption::before {
+  content: '⇡ ';
 }
-.markdown-body figure figcaption::after{
-  content: "";
+.markdown-body figure figcaption::after {
+  content: '';
   display: block;
   position: absolute;
   width: 3em;
@@ -223,8 +224,13 @@
   margin: 0 0.2em;
   overflow-x: auto;
   word-break: break-word;
-  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
-  border-radius: .3em;
+  font-family:
+    Operator Mono,
+    Consolas,
+    Monaco,
+    Menlo,
+    monospace;
+  border-radius: 0.3em;
   font-size: 14px;
   background-color: #f7f2f4;
 }
@@ -239,20 +245,25 @@
   font-size: 0.9em;
   font-style: normal;
   font-weight: normal;
-  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  font-family:
+    Operator Mono,
+    Consolas,
+    Monaco,
+    Menlo,
+    monospace;
   line-height: 20px;
   color: #383838;
   border-radius: 2px;
   scroll-behavior: smooth;
   /* box-shadow: 0 0 8px #f7f2f4; */
-  transition: box-shadow .3s;
+  transition: box-shadow 0.3s;
   background-color: white;
 }
 
-.dark .markdown-body pre > code{
+.dark .markdown-body pre > code {
   color: white;
   background-color: #333;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 /* .markdown-body pre > code:hover {
   box-shadow: 0 4px 4px #2333;
@@ -289,7 +300,7 @@
 .markdown-body tr {
   background-color: #f8f5ff;
 }
-.markdown-body .operate-btn{
+.markdown-body .operate-btn {
   font-size: 14px;
   position: absolute;
   right: 1em;
@@ -300,26 +311,26 @@
   font-weight: 800;
   text-align: right;
 }
-.markdown-body .operate-btn .lang-btn{
+.markdown-body .operate-btn .lang-btn {
   display: block;
   text-transform: uppercase;
   opacity: 0.6;
 }
-.markdown-body .operate-btn .copy-btn{
+.markdown-body .operate-btn .copy-btn {
   user-select: none;
   opacity: 0.6;
   transition: opacity 0.3s;
   background-color: whitesmoke;
   border-bottom: 1px solid var(--text-color);
 }
-.markdown-body .operate-btn .copy-btn:hover{
+.markdown-body .operate-btn .copy-btn:hover {
   opacity: 1;
   font-weight: 800;
 }
-.medium-zoom-overlay{
+.medium-zoom-overlay {
   z-index: 24;
 }
-.medium-zoom-image--opened{
+.medium-zoom-image--opened {
   width: auto !important;
   z-index: 25;
 }
@@ -332,7 +343,7 @@
   .markdown-body h3::before,
   .markdown-body h4::before,
   .markdown-body h5::before,
-  .markdown-body h6::before{
+  .markdown-body h6::before {
     margin-left: 0;
   }
 }

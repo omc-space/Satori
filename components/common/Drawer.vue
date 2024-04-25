@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type DirectionType = 'left' | 'right' | 'top' | 'bottom'
+// type DirectionType = 'left' | 'right' | 'top' | 'bottom'
 
 const props = defineProps({
   // 是否显示抽屉
@@ -66,18 +66,18 @@ const computedDrawerPosition = computed(() => {
         : '100%',
     height:
       ((props.direction === 'top') || (props.direction === 'bottom'))
-        ? props.drag? height.value ? `${height.value}px`: props.size: props.size
-        : '100%'
+        ? props.drag ? height.value ? `${height.value}px` : props.size : props.size
+        : '100%',
   }
   positionObj[props.direction] = 0
   return positionObj
 })
 // 关闭抽屉弹出框
-const close = () => {
+function close() {
   emits('update:modelValue', false)
   emits('close')
 }
-const closeDrawer = () => {
+function closeDrawer() {
   // 若传递了beforeClose函数，就抛出关闭函数，供外部使用
   if (props.beforeClose)
     props.beforeClose(close)
@@ -86,7 +86,7 @@ const closeDrawer = () => {
     close()
 }
 
-const clickMaskCloseFn = () => {
+function clickMaskCloseFn() {
   if (props.clickMaskClose) {
     closeDrawer()
   }
@@ -95,22 +95,21 @@ const clickMaskCloseFn = () => {
         不控制冒泡的话，点击内容区也会导致弹出框关闭 */
   }
 }
-const onEnter = () => {
+function onEnter() {
   lockScroll?.lock()
 }
 
-const onLeave = () => {
+function onLeave() {
   lockScroll?.unlock()
 }
 
-
 const allowTouch = ref(false)
 
-let startPosition = {
+const startPosition = {
   time: 0,
   startHeight: 0,
 }
-function touchStart(e: TouchEvent) {
+function touchStart() {
   startPosition.startHeight = height.value
   startPosition.time = new Date().getTime()
   allowTouch.value = true
@@ -121,7 +120,8 @@ function touchEnd() {
 }
 
 const handleMove = useThrottleFn((e: TouchEvent) => {
-  if (!allowTouch.value) return
+  if (!allowTouch.value)
+    return
   const touch = e.touches[0]
   const h = window.innerHeight - touch.clientY
   height.value = h
@@ -129,16 +129,13 @@ const handleMove = useThrottleFn((e: TouchEvent) => {
 
 onMounted(() => {
   if (props.drag) {
-
     window.addEventListener('touchmove', handleMove)
-    window.ontouchend = (e: TouchEvent) => {
+    window.ontouchend = () => {
       allowTouch.value = false
       const speed = new Date().getTime() - startPosition.time
 
       if (
-        speed < 300
-        && startPosition.startHeight - height.value > 0
-        || height.value < 300
+        (speed < 300 && startPosition.startHeight - height.value > 0) || height.value < 300
       ) {
         closeDrawer()
         setTimeout(() => {
@@ -151,23 +148,24 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('touchmove', handleMove)
 })
-
 </script>
 
 <template>
   <Teleport to="body">
     <Transition :name="computedName" @after-enter="onEnter" @after-leave="onLeave">
       <div v-show="props.modelValue" class="myDrawerWrap" :class="{ isShowDrawerMask: mask }" @click="clickMaskCloseFn">
-        <div ref="drawerContentRef" class="drawerContent" :style="computedDrawerPosition" @click.stop
-          @touchstart="touchStart">
-          <div relative v-if="props.drag">
-            <div w-10 h-1 bg-coolGray rounded-full mx-auto></div>
+        <div
+          class="drawerContent" :style="computedDrawerPosition" @click.stop
+          @touchstart="touchStart"
+        >
+          <div v-if="props.drag" relative>
+            <div mx-auto h-1 w-10 rounded-full bg-coolgray />
           </div>
           <header v-show="props.isShowHeader" class="drawerHeader">
             <slot name="title">
               <span>{{ title }}</span>
             </slot>
-            <div v-show="props.showCloseIcon" text-right p-4 @click="onClose">
+            <div v-show="props.showCloseIcon" p-4 text-right @click="onClose">
               <button i-ri-close-line text-xl @click="closeDrawer" />
             </div>
           </header>

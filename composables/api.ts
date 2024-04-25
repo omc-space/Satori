@@ -188,12 +188,12 @@ export function getSystemKey(key: string) {
 }
 
 export function getTheme() {
-  return http<{primary: string, spotlight: string}>('/system/theme', {
+  return http<{ primary: string, spotlight: string }>('/system/theme', {
     method: 'get',
   })
 }
 
-export function like(data:{id: string, type: 'note' | 'post'}) {
+export function like(data: { id: string, type: 'note' | 'post' }) {
   return http('/count/like', {
     method: 'post',
     body: data,

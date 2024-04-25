@@ -1,4 +1,4 @@
-import { useCatalogState } from "./state"
+import { useCatalogState } from './state'
 
 export interface Catelog {
   id: string
@@ -10,7 +10,7 @@ const show = ref(false)
 const anchor = ref<Catelog[]>([])
 const active = ref('')
 
-export const useCatalog = () => {
+export function useCatalog() {
   const catelog = useCatalogState()
   const parse = () => {
     try {

@@ -3,7 +3,7 @@ export function useLockScroll(el?: HTMLElement) {
     return
 
   let originalOverflow: string
-  
+
   function lock() {
     el = el ?? document.documentElement
     originalOverflow = el.style.overflow

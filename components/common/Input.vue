@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   required: false,
   placeholder: '请输入内容',
-  type: 'text'
+  type: 'text',
 })
 const emit = defineEmits(['update:modelValue'])
 </script>
@@ -20,13 +20,13 @@ const emit = defineEmits(['update:modelValue'])
       :value="props.modelValue"
       type="text"
       :placeholder="props.placeholder + (props.required ? ' *' : '')"
-      class="w-full rounded-md my-1 px-4 py-1.5 text-xs base-bg placeholder:text-gray/80 focus:outline-[var(--border-color)]"
+      class="my-1 w-full rounded-md px-4 py-1.5 text-xs base-bg placeholder:text-gray/80 focus:outline-[var(--border-color)]"
       @input="(e) => emit('update:modelValue', (e.target! as HTMLInputElement).value)"
     >
     <textarea
       v-if="props.type === 'textarea'"
       :value="props.modelValue"
-      class="bg-gray-200/50 transition dark:bg-zinc-800/50 w-full resize-none p-2 rounded text-x text-gray-600 focus:outline-none"
+      class="w-full resize-none rounded bg-gray-200/50 p-2 text-x text-gray-600 transition dark:bg-zinc-800/50 focus:outline-none"
       :placeholder="props.placeholder"
       :maxlength="maxLength"
       rows="5"

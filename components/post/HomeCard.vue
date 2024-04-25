@@ -5,7 +5,7 @@ const { post } = defineProps<{ post: PostModel }>()
 </script>
 
 <template>
-  <div class="relative h-[100px] max-w-120 flex-1 min-w-0 overflow-hidden border border-gray/20 rounded-md">
+  <div class="relative h-[100px] max-w-120 min-w-0 flex-1 overflow-hidden border border-gray/20 rounded-md">
     <NuxtLink :to="`/post/${post.id}`" class="group relative inline-block w-full">
       <div class="w-full rounded-md from-white to-transparent bg-gradient-to-r p-4 dark:from-black">
         <h3 class="text-omit text-[18px] lg:text-xl">
@@ -23,7 +23,7 @@ const { post } = defineProps<{ post: PostModel }>()
         </div>
       </div>
       <div class="absolute bottom-0 left-0 top-0 z--1 h-full w-full rounded-md bg-gray-100 dark:bg-white/30">
-        <CommonLazyLoadImage class="w-full h-full bg-transparent rounded-md" v-if="post.images.length" :src="post.images[0].src"></CommonLazyLoadImage>
+        <CommonLazyLoadImage v-if="post.images.length" class="h-full w-full rounded-md bg-transparent" :src="post.images[0].src" />
       </div>
     </NuxtLink>
   </div>
