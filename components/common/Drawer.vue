@@ -10,7 +10,7 @@ const props = defineProps({
   // 打开的抽屉尺寸
   size: {
     type: String,
-    default: '40%',
+    default: '36%',
   },
   // 是否显示抽屉头部内容
   isShowHeader: {
@@ -46,23 +46,28 @@ const props = defineProps({
   beforeClose: {
     type: Function,
   },
+  drag: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emits = defineEmits(['update:modelValue', 'close'])
 
 const computedName = computed(() => `${props.direction}Move`)
 const lockScroll = useLockScroll()
+const height = ref(0)
 
 const computedDrawerPosition = computed(() => {
   const positionObj: Record<string, any> = {
     width:
-    ((props.direction === 'left') || (props.direction === 'right'))
-      ? '70%'
-      : '100%',
+      ((props.direction === 'left') || (props.direction === 'right'))
+        ? '70%'
+        : '100%',
     height:
-    ((props.direction === 'top') || (props.direction === 'bottom'))
-      ? '35%'
-      : '100%',
+      ((props.direction === 'top') || (props.direction === 'bottom'))
+        ? props.drag? height.value ? `${height.value}px`: props.size: props.size
+        : '100%'
   }
   positionObj[props.direction] = 0
   return positionObj
@@ -97,27 +102,67 @@ const onEnter = () => {
 const onLeave = () => {
   lockScroll?.unlock()
 }
+
+
+const allowTouch = ref(false)
+
+let startPosition = {
+  time: 0,
+  startHeight: 0,
+}
+function touchStart(e: TouchEvent) {
+  startPosition.startHeight = height.value
+  startPosition.time = new Date().getTime()
+  allowTouch.value = true
+}
+
+function touchEnd() {
+  allowTouch.value = false
+}
+
+const handleMove = useThrottleFn((e: TouchEvent) => {
+  if (!allowTouch.value) return
+  const touch = e.touches[0]
+  const h = window.innerHeight - touch.clientY
+  height.value = h
+}, 10)
+
+onMounted(() => {
+  if (props.drag) {
+
+    window.addEventListener('touchmove', handleMove)
+    window.ontouchend = (e: TouchEvent) => {
+      allowTouch.value = false
+      const speed = new Date().getTime() - startPosition.time
+
+      if (
+        speed < 300
+        && startPosition.startHeight - height.value > 0
+        || height.value < 300
+      ) {
+        closeDrawer()
+        setTimeout(() => {
+          height.value = 0
+        }, 300)
+      }
+    }
+  }
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('touchmove', handleMove)
+})
+
 </script>
 
 <template>
   <Teleport to="body">
-    <Transition
-      :name="computedName"
-      @after-enter="onEnter"
-      @after-leave="onLeave"
-    >
-      <div
-        v-show="props.modelValue"
-        class="myDrawerWrap"
-        :class="{ isShowDrawerMask: mask }"
-        @click="clickMaskCloseFn"
-      >
-        <div
-          ref="drawerContentRef"
-          class="drawerContent"
-          :style="computedDrawerPosition"
-          @click.stop
-        >
+    <Transition :name="computedName" @after-enter="onEnter" @after-leave="onLeave">
+      <div v-show="props.modelValue" class="myDrawerWrap" :class="{ isShowDrawerMask: mask }" @click="clickMaskCloseFn">
+        <div ref="drawerContentRef" class="drawerContent" :style="computedDrawerPosition" @click.stop
+          @touchstart="touchStart">
+          <div relative v-if="props.drag">
+            <div w-10 h-1 bg-coolGray rounded-full mx-auto></div>
+          </div>
           <header v-show="props.isShowHeader" class="drawerHeader">
             <slot name="title">
               <span>{{ title }}</span>
@@ -126,7 +171,7 @@ const onLeave = () => {
               <button i-ri-close-line text-xl @click="closeDrawer" />
             </div>
           </header>
-          <section class="drawerBody">
+          <section class="drawerBody" @touchstart.stop="touchEnd">
             <slot />
           </section>
         </div>
@@ -142,9 +187,10 @@ const onLeave = () => {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 100;
   overflow: hidden;
 }
+
 .drawerContent {
   /* // 搭配定位的方式控制在上下左右的那个方位 */
   position: absolute;
@@ -152,7 +198,10 @@ const onLeave = () => {
   box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.24);
   display: flex;
   flex-direction: column;
+  padding: 0.7rem;
+  border-radius: 0.6rem 0.6rem 0 0;
 }
+
 /* // 抽屉头部 */
 .drawerHeader {
   width: 100%;
@@ -165,6 +214,7 @@ const onLeave = () => {
   font-weight: bolder;
   color: #333;
 }
+
 /* 抽屉内容体部分 */
 .drawerBody {
   width: 100%;
@@ -173,13 +223,16 @@ const onLeave = () => {
   flex: 1;
   overflow-y: auto;
 }
-:deep(.dark .myDrawerWrap){
+
+:deep(.dark .myDrawerWrap) {
   background-color: #000000c4;
 }
+
 /* 遮罩层即为背景色 */
 .isShowDrawerMask {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
 /**
   动画
 */
@@ -188,33 +241,44 @@ const onLeave = () => {
 .rightMove-leave-to {
   opacity: 0;
 }
-.rightMove-enter-active, .rightMove-enter-active .drawerContent,
-.rightMove-leave-active, .rightMove-leave-active .drawerContent {
+
+.rightMove-enter-active,
+.rightMove-enter-active .drawerContent,
+.rightMove-leave-active,
+.rightMove-leave-active .drawerContent {
   transition: all 0.3s ease-in-out;
 }
+
 .rightMove-enter-from,
 .rightMove-leave-to {
   opacity: 0;
 }
+
 .rightMove-enter-from .drawerContent,
 .rightMove-leave-to .drawerContent {
-  transform: translate3d(100%,0,0);
+  transform: translate3d(100%, 0, 0);
 }
+
 /** 底部 */
 .bottomMove-enter-from,
 .bottomMove-leave-to {
   opacity: 0;
 }
-.bottomMove-enter-active, .bottomMove-enter-active .drawerContent,
-.bottomMove-leave-active, .bottomMove-leave-active .drawerContent {
+
+.bottomMove-enter-active,
+.bottomMove-enter-active .drawerContent,
+.bottomMove-leave-active,
+.bottomMove-leave-active .drawerContent {
   transition: all 0.3s ease-in-out;
 }
+
 .bottomMove-enter-from,
 .bottomMove-leave-to {
   opacity: 0;
 }
+
 .bottomMove-enter-from .drawerContent,
 .bottomMove-leave-to .drawerContent {
-  transform: translate3d(0,100%,0);
+  transform: translate3d(0, 100%, 0);
 }
 </style>

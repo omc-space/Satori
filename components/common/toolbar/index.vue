@@ -6,7 +6,7 @@ const catelog = useCatalogState()
 
 <template>
   <Teleport to="body">
-    <div fixed right-4 bottom-8 z-60 flex flex-col gap-1>
+    <div fixed right-4 bottom-8 z-40 flex flex-col gap-1>
       <Transition name="fade">
         <CommonToolbarButton lg:hidden v-if="catelog.data.length" :on-click="()=> catelog.show = true">
           <div i-tabler:menu-2></div>

@@ -32,7 +32,7 @@ function handleClick(id: string, idx: number) {
         </a>
       </div>
     </div>
-    <CommonDrawer v-model="catelog.show" direction="bottom">
+    <CommonDrawer v-model="catelog.show" direction="bottom" drag>
       <template #title>
         目录
       </template>
