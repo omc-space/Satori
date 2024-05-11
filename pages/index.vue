@@ -13,7 +13,7 @@ const socials = computed(() => {
   const ids = Object.keys(masterInfo.socialIds).map((key) => {
     return {
       name: key,
-      id: masterInfo.socialIds[key],
+      id: masterInfo.socialIds![key],
     }
   })
   ids.push({
@@ -35,7 +35,7 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
       <template #left>
         <CommonMotion :spring="microDampingPreset" class="my-5">
           <h1 class="py-2 text-4xl font-medium">
-            <CommonTextAnimate :text="`Hi, I'm ${masterInfo.name}👋。`" />
+            <CommonTextAnimate :text="`Hi, I'm ${masterInfo.name}👋`" />
           </h1>
           <h1 class="py-2 text-4xl font-medium">
             <CommonTextAnimate text="A NodeJS Full Stack &lt;Developer/&gt" :delay="1" />

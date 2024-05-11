@@ -7,7 +7,7 @@ interface SocialType {
 }
 interface Social {
   name?: keyof typeof socialList
-  id?: string
+  id?: string | number
   social?: SocialType
 }
 
