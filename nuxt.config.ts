@@ -66,6 +66,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  plugins: [
+    { src: './plugins/masonry', mode: 'client' },
+  ],
   devtools: {
     enabled: false,
   },

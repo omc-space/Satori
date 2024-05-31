@@ -61,7 +61,7 @@ export interface ImageModel {
   path?: string
   tag?: string[]
   title?: string
-  src: string
+  url: string
   width?: number
   created: string
   updated: string

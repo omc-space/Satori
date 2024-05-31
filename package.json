@@ -32,7 +32,8 @@
     "motion": "^10.17.0",
     "rehype-figure": "^1.0.1",
     "rehype-image-group": "^1.0.5",
-    "remark-flexible-containers": "^1.2.1"
+    "remark-flexible-containers": "^1.2.1",
+    "vue-masonry": "^0.16.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.15.0",
