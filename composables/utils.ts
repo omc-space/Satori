@@ -14,3 +14,16 @@ export function getImageSizeFromUrl(url: string) {
     return null
   }
 }
+
+export function resizeImgUrl(url: string, w?: number, h?: number) {
+  if (!url)
+    return url
+  try {
+    const u = new URL(url)
+    u.searchParams.set('x-oss-process', `image/resize${w ? (`,w_${w}`) : ''}${h ? (`,h_${w}`) : ''}`)
+    return u.toString()
+  }
+  catch {
+    return ''
+  }
+}
