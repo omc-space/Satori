@@ -53,8 +53,13 @@ watch(() => props.src, () => {
 </script>
 
 <template>
-  <div class="img-container" :style="{ aspectRatio, '--blur': blur ? '8px' : '0' }">
-    <img v-bind="$attrs" ref="image" :lazy="loadingState" :src="data_url">
+  <div class="img-container">
+    <img
+      ref="image"
+      v-bind="$attrs"
+      :lazy="loadingState" :src="data_url"
+      :style="{ aspectRatio, '--blur': blur ? '8px' : '0' }"
+    >
   </div>
 </template>
 

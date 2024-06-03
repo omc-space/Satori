@@ -16,11 +16,11 @@ function loadMore() {
 </script>
 
 <template>
-  <div v-if="pictures?.data.length" class="base-container">
+  <div v-if="pictures?.data.length" class="m-auto max-w-3xl lg:max-w-5xl">
     <ClientOnly>
-      <div v-masonry gutter="10" fit-width="true" transition-duration="0.5s" item-selector=".img-item" class="masonry-container">
+      <div v-masonry gutter="10" fit-width="true" transition-duration="0.3s" item-selector=".img-item" class="masonry-container">
         <div v-for="item, idx in pictures.data" :key="idx" v-masonry-tile class="img-item" w-44vw overflow-hidden md:w-60>
-          <CommonLazyLoadImage :src="resizeImgUrl(item.url, 720)" lazy blur />
+          <CommonLazyLoadImage :src="resizeImgUrl(item.url, 720)" blur />
           <div p-2>
             <div break-words pb-2 text-base text-sm>
               {{ item.description }}
