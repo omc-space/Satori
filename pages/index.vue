@@ -111,7 +111,7 @@ const { data: links } = useAsyncData(() => getLinkList({ page: 1, size: 10 }))
                     {{ formateRelativeTime(notes.data[0].created) }}
                   </div>
                   <div class="absolute left-0 top-0 z--1 rounded">
-                    <CommonLazyLoadImage v-if="notes.data[0].images" :src="notes.data[0].images[0].src" />
+                    <CommonLazyLoadImage v-if="notes.data[0].images?.length" :src="notes.data[0].images[0].src" />
                   </div>
                 </div>
               </NuxtLink>

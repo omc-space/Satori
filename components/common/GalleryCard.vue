@@ -20,7 +20,7 @@ function loadMore() {
     <ClientOnly>
       <div v-masonry gutter="10" fit-width="true" transition-duration="0.5s" item-selector=".img-item" class="masonry-container">
         <div v-for="item, idx in pictures.data" :key="idx" v-masonry-tile class="img-item" w-44vw overflow-hidden md:w-60>
-          <CommonLazyLoadImage :src="item.src" lazy blur />
+          <CommonLazyLoadImage :src="item.url" lazy blur />
           <div p-2>
             <div text="14px" break-words pb-2 text-base>
               {{ item.description }}
