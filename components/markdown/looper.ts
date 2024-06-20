@@ -11,13 +11,13 @@ function startLoop() {
     const currentIdx = ref(0)
 
     for (let i = 0; i < node.container.childElementCount; i++)
-      offsetList[i] = node.container.children[i].offsetLeft
+      offsetList[i] = (node.container.children[i] as HTMLDivElement).offsetLeft
     const len = node.container.childElementCount
     node.pointContainer.addEventListener('click', (e: Event) => {
-      const targetIndex = e.target?.dataset?.index
+      const targetIndex = (e.target as HTMLDivElement).dataset.index || 0
       if (targetIndex) {
         clearInterval(intervalIds[idx])
-        currentIdx.value = targetIndex
+        currentIdx.value = Number(targetIndex)
         node.container.scrollTo({
           left: offsetList[currentIdx.value],
           behavior: 'smooth',

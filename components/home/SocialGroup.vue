@@ -83,7 +83,7 @@ const socialList: Record<string, SocialType> = {
     >
       <CommonTooltip>
         <NuxtLink
-          :to="socialList[social.name ?? 'default']?.url(social.id ?? '')"
+          :to="socialList[social.name ?? 'default']?.url(String(social.id) ?? '')"
           target="_blank"
           :style="{ backgroundColor: socialList[social.name ?? 'default']?.color }"
           class="inline-block border border-white/20 rounded-full p-1.8 text-4.5 text-white hover:scale-102"

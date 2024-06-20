@@ -27,7 +27,7 @@ export function useCatalog() {
           id: `#${id}`,
           type: `catalog-${h}`,
           text: item.textContent || '',
-          top: item.offsetTop,
+          top: (item as HTMLDivElement).offsetTop,
         })
       })
       anchor.value = temp

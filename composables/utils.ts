@@ -1,4 +1,4 @@
-const reg = /w_(.*?)x(.*?)_/
+const reg = /w_(\d+)x(\d+)_/
 export function getImageSizeFromUrl(url: string) {
   try {
     const m = reg.exec(url)

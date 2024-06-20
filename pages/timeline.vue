@@ -38,12 +38,12 @@ const { data, refresh, pending } = useAsyncData(async () => {
       type: 'post',
     })
   })
-  const keys = Object.keys(result).sort((a, b) => Number(b) - Number(a))
+  const keys = Object.keys(result).sort((a, b) => Number(b) - Number(a)) as any as Array<keyof typeof result>
   let count = 0
-  const sortResult: Array<{ data: Array<any>, year: string }> = []
+  const sortResult: Array<{ data: Array<any>, year: number }> = []
   keys.forEach((key) => {
     count += result[key].length
-    result[key].sort((a, b) => dateFns(a.created).isBefore(b.created))
+    result[key].sort((a, b) => dateFns(a.created).unix() - dateFns(b.created).unix())
     sortResult.push({
       data: result[key],
       year: key,
