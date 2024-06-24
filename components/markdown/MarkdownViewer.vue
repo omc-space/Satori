@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { BytemdPlugin } from 'bytemd'
-import type { Viewer } from '@bytemd/vue-next'
+import { Viewer } from '@bytemd/vue-next'
 import gfm from '@bytemd/plugin-gfm'
 import math from '@bytemd/plugin-math'
 import highlight from '@bytemd/plugin-highlight-ssr'

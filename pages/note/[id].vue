@@ -99,7 +99,7 @@ async function handleLike() {
                 </NuxtLink>
               </div>
             </div>
-            <NuxtLink to="/timeline?type=notes" class="absolute left-1/2 top-0 flex-center text-primary -translate-x-1/2">
+            <NuxtLink to="/timeline?type=note" class="absolute left-1/2 top-0 flex-center text-primary -translate-x-1/2">
               <div>时间线</div>
               <div i-tabler:clock ml-2 />
             </NuxtLink>

@@ -69,7 +69,8 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="mb-16 prose base-container">
+  <CommonLoading :loading="pending" />
+  <div v-if="!pending" class="mb-16 prose base-container">
     <header class="mb-18">
       <h1>时间线</h1>
       <div class="mt-8 font-bold">
@@ -83,7 +84,7 @@ onBeforeMount(() => {
         <p>活在当下，珍惜眼下</p>
       </div>
     </header>
-    <div v-if="!pending">
+    <div>
       <div
         v-for="item, idx of data"
         :key="item.year"

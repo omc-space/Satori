@@ -5,7 +5,7 @@ import PostContainer from '~/layouts/note.vue'
 const route = useRoute<'note-id'>()
 const id = computed(() => route.params.id)
 const { data: notes, pending } = useAsyncData(() => getNoteList({ page: 1, size: 5 }))
-const selectId = ref(Number(route.params.id === 'latest' ? notes?.value?.data[0]?.nid : route.params.id))
+const selectId = computed(() => Number(route.params.id === 'latest' ? notes?.value?.data[0]?.nid : route.params.id))
 </script>
 
 <template>
