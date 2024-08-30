@@ -25,7 +25,7 @@
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@oku-ui/motion-nuxt": "^0.2.1",
     "@uvdream/bytemd-plugin-code-copy": "^0.1.0",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.13",
     "eslint": "^8.57.0",
     "floating-vue": "^5.2.2",
     "js-md5": "^0.8.3",
@@ -40,7 +40,7 @@
     "@iconify-json/carbon": "^1.1.35",
     "@iconify-json/twemoji": "^1.1.15",
     "@nuxtjs/color-mode": "^3.4.1",
-    "@pinia/nuxt": "^0.5.1",
+    "@pinia/nuxt": "^0.5.4",
     "@unocss/eslint-config": "^0.58.9",
     "@unocss/eslint-plugin": "^0.59.4",
     "@unocss/nuxt": "^0.58.9",
@@ -49,9 +49,9 @@
     "eslint": "^9.5.0",
     "eslint-plugin-format": "^0.1.2",
     "eslint-ts-patch": "8.55.0-1",
-    "nuxt": "^3.12.2",
+    "nuxt": "^3.13.0",
     "pinia": "^2.1.7",
     "typescript": "^5.4.5",
-    "vue-tsc": "^2.0.21"
+    "vue-tsc": "^2.1.2"
   }
 }

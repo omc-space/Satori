@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { fastPreset } from '~/constants/spring'
 import type { CommentDto } from '~/types'
+import Notification from '~/composables/notification'
 
 const props = defineProps<{
   onSubmit?: (comment: CommentDto) => void
@@ -24,6 +25,15 @@ const commentForm = reactive<CommentDto>({
 const maxLength = 500
 
 async function onSubmit() {
+  if (
+    commentForm.author.trim() === ''
+    || commentForm.text.trim() === ''
+    || commentForm.mail.trim() === ''
+  ) {
+    Notification.warning('还有信息没填哟')
+    return
+  }
+
   if (commentForm.url?.trim() === '')
     commentForm.url = undefined
   props.onSubmit && await props.onSubmit(commentForm)
